@@ -1,7 +1,6 @@
 
-
 .PHONY: frog2013
-frog2013: frog2013/index.html
+frog2013: frog2013/ol3.html
 	cd frog2013 && ./node_modules/.bin/grunt jade copy
 
 .PHONY: gh-pages
