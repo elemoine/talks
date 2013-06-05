@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Master Class OL3</title>
+    <title>OL3 FROG2013</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -67,8 +67,8 @@
       <div class="slides">
 
         <section>
-          <h1>Master class OL3</h1>
-          <p><a href="http://erilem.net/master-class-ol3/slides">http://erilem.net/master-class-ol3/slides</a></p>
+          <h1>OL3</h1>
+          <p><a href="http://erilem.net/talks/frog2013/ol3.html">http://erilem.net/talks/frog2013/ol3.html</a></p>
         </section>
 
         <section style="text-align:left;">
@@ -85,56 +85,15 @@
         </section>
 
         <section style="text-align:left;">
-          <h2>Contenu</h2>
-          <ul style="list-style-type:none;margin:20px 0 30px 0;">
-            <li class="frament">Présentation générale d'OL3</li>
-            <li class="fragment">Description de l'API et exercices élémentaires</li>
-            <li class="fragment">Développement d'une application</li>
-            <li class="fragment">Conclusion</li>
-          </ul>
-          <aside class="notes">
-            <p>La master class se veut interactive! Toute question à tout moment
-            est bienvenue.</p>
-            <p>Très important: certaines parties de l'API ne sont pas stabilisées.
-            La partie vecteur, par exemple, subit actuellement des modifications
-            profondes pour fonctionner avec WebGL. Nous n'insisterons pas sur les
-            parties les plus mouvantes. Mais il faut savoir que l'ensemble de
-            l'API peut être amené à changer. Aucune version stable d'OL3 n'est
-            encore sortie.</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>License</h2>
-          <a rel="license" href="img/cc-by-sa.png"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />Documents mis à disposition selon les termes de la license <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
-        </section>
-
-        <section>
-          <h1>Présentation générale d'OL3</h1>
-          <aside class="notes">
-            <p>Cette présentation a déja été donnée aux conférences FOSS4G-NA
-            et FROG2013.</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Commençons par une <a href="./examples/interaction-control.html">démo</a> !</h2>
-        </section>
-
-        <section style="text-align:left;">
           <h2>Liens</h2>
           <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;"src="img/www-logo.jpeg"> <a href="http://ol3js.org">http://ol3js.org</a></p>
           <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;" src="img/github-logo.png"> <a href="http://github.com/openlayers/ol3">http://github.com/openlayers/ol3</a></p>
           <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;" src="img/envelope-logo.gif"> <a href="https://groups.google.com/forum/#!forum/ol3-dev">https://groups.google.com/forum/#</a></p>
-          <aside class="notes">
-            <p>Connaître Git et GitHub est nécessaire pour contribuer à OL3. Et
-            très utile pour utiliser OL3.</p>
-          </aside>
         </section>
 
         <section>
           <h2>Vision OL3</h2>
-          <p>&rarr; Où veut-on aller avec OL3?</p>
+          <p>&rarr; Où veut-on aller avec OL3 ?</p>
         </section>
 
         <section>
@@ -195,7 +154,7 @@
         </section>
           
         <section>
-          <h2>Alors ? Où ?</h2>
+          <h2>Où ?</h2>
           <br>
           <div id="logos">
             <div class="fragment" data-fragment-index="0">
@@ -312,7 +271,7 @@ var mapbox = new ol.layer.TileLayer({
         </section>
 
         <section>
-          <h2>Pas de popups!?!</h2>
+          <h2>What? Pas de popups !?!</h2>
         </section>
 
         <section>
@@ -492,160 +451,9 @@ window.b=new function(){this.a="prop1"};window.b.a="change";
           <img src="img/cesium-ol3.png" alt="Cesium OpenLayers 3 integration">
         </section>
 
-        <section style="text-align:left;">
-          <h2>Contenu (rappel)</h2>
-          <ul style="list-style-type:none;margin:20px 0 30px 0;">
-            <li>Présentation générale d'OL3</li>
-            <li>Description de l'API et exercices élémentaires</li>
-            <li>Développement d'une application</li>
-            <li>Conclusion</li>
-          </ul>
-        </section>
-
         <section>
-          <h1>API, et exercices élémentaires</h1>
-        </section>
-
-        <section>
-          <h2>Logiciels requis</h2>
-          <ul style="list-style-type:none;margin:20px 0 30px 0;">
-            <li>Éditeur de texte</li>
-            <li>Serveur web (Apache)</li>
-            <li>Navigateur web (FireFox ou Chrome)</li>
-          </ul>
-          <p>Ou utiliser <a href="http://jsfiddle.net">http://jsfiddle.net</a></p>
-        </section>
-
-        <section>
-          <h2>Ressources</h2>
-          <ul style="list-style-type:none;margin: 30px 0 0 0;">
-            <li>Doc de l'API : <a href="http://ol3js.org/en/master/apidoc/">http://ol3js.org/en/master/apidoc/</a></li>
-            <li>Exemples : <a href="http://ol3js.org/en/master/examples/">http://ol3js.org/en/master/examples/</a></li>
-          </ul>
-          <aside class="notes">
-            <p>La doc de l'API est loin d'être parfaite. Il manque du texte, et
-            certaines classes et fonctions n'apparaissent à cause de problèmes
-            techniques. Ces problèmes sont en train d'être corrigés.</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Les objets de base</h2>
-          <ul style="list-style-type:none;margin: 30px 0 0 0;">
-            <li><code>ol.Map</code></li>
-            <li><code>ol.View2D</code></li>
-            <li><code>ol.layer.* (ol.layer.TileLayer)</code></li>
-            <li><code>ol.control.* (ol.control.Attribution)</code></li>
-            <li><code>ol.interaction.* (ol.interaction.DragPan)</code></li>
-          </ul>
-          <aside class="notes">
-            <p>Ces objets sont qui sont manipulés dans les exercices
-            élémentaires.</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Exemple de base</h2>
-          <p>Utilisé comme base pour chaque exercice.</p>
-          <pre><code class="html">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-    &lt;meta name="viewport"
-          content="initial-scale=1.0, user-scalable=no,
-                   width=device-width"&gt;
-    &lt;title&gt;Exercice élémentaire&lt;/title&gt;
-    &lt;link rel="stylesheet"
-          href="http://ol3js.org/en/master/build/ol.css"&gt;
-    &lt;style&gt;
-        #map {
-          width: 600px;
-          height: 400px;
-        }
-    &lt;/style&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-      &lt;div id="map"&gt;&lt;/div&gt;
-      &lt;script
-        src="http://ol3js.org/en/master/build/ol.js"&gt;&lt;/script&gt;
-      &lt;script&gt;
-      var map = new ol.Map({
-        target: 'map',
-        view: new ol.View2D({
-          zoom: 0,
-          center: [0, 0]
-        }),
-        layers: [
-          new ol.layer.TileLayer({
-            source: new ol.source.OSM()
-          })
-        ]
-      });
-      &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-          </code></pre>
-          <aside class="notes">
-            <p>Cette page sert de base pour chaque exercice élémentaire.</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Exemple de base</h2>
-          <p><small>Disponible ici: <a href="http://erilem.net/master-class-ol3/exercices/exercices-elementaires.html">http://erilem.net/master-class-ol3/exercices/exercices-elementaires.html</a>.</small></p>
-        </section>
-
-        <section>
-          <h2>Maintenant, à vos cahiers d'exercices !</h2>
-          <p class="fragment"><a href="http://erilem.net/master-class-ol3/exercices">http://erilem.net/master-class-ol3/exercices</a></p>
-        </section>
-
-        <section style="text-align:left;">
-          <h2>Contenu (rappel)</h2>
-          <ul style="list-style-type:none;margin:20px 0 30px 0;">
-            <li>Présentation générale d'OL3</li>
-            <li>Description de l'API et exercices élémentaires</li>
-            <li>Développement d'une application</li>
-            <li>Conclusion</li>
-          </ul>
-        </section>
-
-        <section>
-          <h1>Dév application</h1>
-        </section>
-
-        <section>
-          <h2>Quelques mots sur l'application</h2>
-          <ul style="list-style-type:none;margin:20px 0 30px 0;">
-            <li class="frament">Simple</li>
-            <li class="fragment">Construite par étape</li>
-            <li class="fragment">Plein écran</li>
-            <li class="fragment">Adaptée au mobile</li>
-            <li class="fragment">Services OGC WMS</li>
-            <li class="fragment">Lambert93 (utilisation de proj4js)</li>
-            <li class="fragment">Un peu de DOM avec jQuery</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Les nouveaux objets</h2>
-          <ul style="list-style-type:none;margin:20px 0 30px 0;">
-            <li><code>ol.source.TiledWMS</code></li>
-            <li><code>ol.source.SingleImageWMS</code></li>
-            <li><code>ol.layer.ImageLayer</code></li>
-            <li><code>ol.Geolocation</code></li>
-            <li><code>ol.animation.*</code></li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>À vos cahiers d'exercices !</h2>
-          <p class="fragment"><a href="http://erilem.net/master-class-ol3/exercices">http://erilem.net/master-class-ol3/exercices</a></p>
-        </section>
-
-        <section>
-          <h1>Conclusion</h1>
+          <h2>Thanks!</h2>
+          <a rel="license" href="img/cc-by-sa.png"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />Mis à disposition selon les termes de la license <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
         </section>
 
       </div>
