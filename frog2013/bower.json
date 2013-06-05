@@ -1,0 +1,8 @@
+{
+  "name": "master-class-ol3",
+  "version": "0.0.0",
+  "dependencies": {
+    "reveal.js": "2.4.0",
+    "bootstrap": "2.3.2"
+  }
+}

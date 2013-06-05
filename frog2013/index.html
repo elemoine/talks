@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Master Class OL3</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="theme/ol3.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="components/reveal.js/lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="components/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+      section {
+        text-align: left;
+      }
+      .reveal h1.beefy {
+        font-weight: bold;
+        text-shadow: 10px 10px 6px rgba(0, 0, 0, 0.2);
+      }
+      .reveal ul.plain {
+        list-style-type: none;
+      }
+      .reveal h2 > img {
+        vertical-align: sub;
+      }
+      .ex-link {
+        font-size: smaller;
+      }
+      #logos > div {
+        padding: 0 10px;
+        display: inline-block;
+        margin-bottom: 40px;
+        text-align: center;
+        vertical-align: middle;
+      }
+      #logos > div img {
+        margin: 0;
+        vertical-align: text-bottom;
+      }
+      .reveal pre {
+        margin: 40px 0 30px 0;
+      }
+      pre.narrow {
+        width: 50%;
+      }
+
+    </style>
+
+    <script>
+        document.write( '<link rel="stylesheet" href="components/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+  </head>
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h1>Master class OL3</h1>
+          <p><a href="http://erilem.net/master-class-ol3/slides">http://erilem.net/master-class-ol3/slides</a></p>
+        </section>
+
+        <section style="text-align:left;">
+          <h2>Éric Lemoine</h2>
+          <p><img style=vertical-align:middle;margin:0;" src="img/c2c_square_143x50_transparent.png"> <a href="http://www.camptocamp.com">http://www.camptocamp.com</a></p>
+          <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;" src="img/envelope-logo.gif"> eric.lemoine@camptocamp.com</p>
+          <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;" src="img/twitter-logo.png"> @elemoine</p>
+          <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;" src="img/github-logo.png"> @elemoine</p>
+          <aside class="notes">
+            <p>Camptocamp utilise, et contribue à, OpenLayers depuis 2006. En 2012,
+            Camptocamp décide de développer une nouvelle version d'OpenLayers :
+            OpenLayers 3.</p>
+          </aside>
+        </section>
+
+        <section style="text-align:left;">
+          <h2>Contenu</h2>
+          <ul style="list-style-type:none;margin:20px 0 30px 0;">
+            <li class="frament">Présentation générale d'OL3</li>
+            <li class="fragment">Description de l'API et exercices élémentaires</li>
+            <li class="fragment">Développement d'une application</li>
+            <li class="fragment">Conclusion</li>
+          </ul>
+          <aside class="notes">
+            <p>La master class se veut interactive! Toute question à tout moment
+            est bienvenue.</p>
+            <p>Très important: certaines parties de l'API ne sont pas stabilisées.
+            La partie vecteur, par exemple, subit actuellement des modifications
+            profondes pour fonctionner avec WebGL. Nous n'insisterons pas sur les
+            parties les plus mouvantes. Mais il faut savoir que l'ensemble de
+            l'API peut être amené à changer. Aucune version stable d'OL3 n'est
+            encore sortie.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>License</h2>
+          <a rel="license" href="img/cc-by-sa.png"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />Documents mis à disposition selon les termes de la license <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+        </section>
+
+        <section>
+          <h1>Présentation générale d'OL3</h1>
+          <aside class="notes">
+            <p>Cette présentation a déja été donnée aux conférences FOSS4G-NA
+            et FROG2013.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Commençons par une <a href="./examples/interaction-control.html">démo</a> !</h2>
+        </section>
+
+        <section style="text-align:left;">
+          <h2>Liens</h2>
+          <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;"src="img/www-logo.jpeg"> <a href="http://ol3js.org">http://ol3js.org</a></p>
+          <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;" src="img/github-logo.png"> <a href="http://github.com/openlayers/ol3">http://github.com/openlayers/ol3</a></p>
+          <p><img style="width:48px;height:48px;vertical-align:middle;margin:0;" src="img/envelope-logo.gif"> <a href="https://groups.google.com/forum/#!forum/ol3-dev">https://groups.google.com/forum/#</a></p>
+          <aside class="notes">
+            <p>Connaître Git et GitHub est nécessaire pour contribuer à OL3. Et
+            très utile pour utiliser OL3.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Vision OL3</h2>
+          <p>&rarr; Où veut-on aller avec OL3?</p>
+        </section>
+
+        <section>
+          <h2>2D et 3D</h2>
+          <img class="framed" src="img/osm3d.jpg">
+          <aside class="notes">
+            <p>OL3 permettra d'afficher des données 3D de type "bâtiment" et
+            "terrain". Références : nouvelle version de Google Maps, Nokia Maps.
+            La technologie WebGL nous permet d'aller dans cette direction.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>2D et 3D</h2>
+          Un de objectifs : afficher des données 3D de type "bâtiment" et "terrain".
+        </section>
+
+        <section>
+          <h2>Vecteur</h2>
+          <p>Des millions?!</p>
+          <img class="framed" src="img/many-points-map.png">
+          <aside class="notes">
+            <p>OL3 permettra d'afficher beaucoup d'objets vectoriels avec des
+            styles complexes. A nouveau, la technologie WebGL permet des choses
+            jusque là impossible. Dans ce cadre, la notion de "tuile vecteur" est
+            aussi quelque chose que nous suivons de près.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Vecteur</h2>
+          Objectif : afficher vecteur "complexes", autant au niveau des
+          styles que des nombres d'objets à afficher.
+        </section>
+
+        <section>
+          <h2>Cartes = Graphiques</h2>
+          <img class="framed" src="img/teapot-map.jpg">
+          <aside class="notes">
+            <p>Pour être capables d'afficher des objets 2D et 3D nous utilisons
+            les technologies Canvas et WebGL. Ces technologies permettent aussi
+            d'obtenir des bonnes performance. Elles permettent aussi d'isoler la
+            carte du reste de la page HTML, ce qui rend OL3 plus fiable et
+            robuste pour les développeurs d'application.</p>
+        </section>
+
+        <section>
+          <h2>Cartes = Graphiques</h2>
+          <p>Objectif : afficher des
+          données 2D et 3D complexes avec de bonnes performances.</p>
+          <p>Utilisation de Canvas et WebGL.</p>
+
+        </section>
+
+        <section>
+          <h2>"Mais d'autres libs sont déja disponibles, non ?"</h2>
+          <p>&rarr; Où se situe OL3 ?</p>
+        </section>
+          
+        <section>
+          <h2>Alors ? Où ?</h2>
+          <br>
+          <div id="logos">
+            <div class="fragment" data-fragment-index="0">
+              <img src="img/ol2-logo.png"> OpenLayers 2
+              <br><br>
+              <img src="img/leaflet-logo.png">
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <img src="img/ol3-logo.png">
+              <br>
+              OL3
+            </div>
+            <div class="fragment" data-fragment-index="1">
+              <img src="img/cesium-logo.png">
+              <br><br>
+              <img src="img/owg-logo.png">
+            </div>
+          </div>
+          <p class="fragment">&rarr; OL3 doit savoir faire beaucoup de choses !</p>
+          <p class="fragment">&rarr; "Un projet ambitieux, pour des cartes ambitieuses"</p>
+          <aside class="notes">
+            <p>Comparaison OL2 / OL3 : OL3 doit offrir les fonctionalités d'OL2,
+            plus d'autres. OL3 offre une API plus cohérente. OL3 est plus légère
+            qu'OL2. OL3 est plus performante qu'OL2.</p>
+            <p>Comparaison Leaflet / OL3 : OL3 permet d'utiliser des systèmes de
+            de projection locaux. OL3 permet d'exploiter des grilles irrégulières
+            de tuiles. OL3 permet d'afficher des données à n'importe quelle
+            résolution. OL3 doit fournir des outils de dessin complexes.</p>
+            <p>Comparaison Cesium / OL3 : OL3 est plus léger que Cesium. OL3
+            ne nécessite pas WebGL. OL3 fonctionne très bien sur les mobiles.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>API,<br>et exemples</h2>
+        </section>
+
+        <section>
+          <h2><code>ol.Map</code> / <code>ol.View</code></h2>
+          <pre class="narrow"><code class="javascript" data-trim>
+var view = new ol.View2D({
+  center: [0, 0],
+  zoom: 0
+});
+var map = new ol.Map({
+  target: 'map',
+  layers: [layer],
+  view: view
+});
+          </code></pre>
+          <p><a href="./examples/hello-world.html">Exemple Hello World</a></p>
+          <aside class="notes">
+            <p>Les concepts de "map" et "view" sont séparés. Dans le futur, pour
+            la 3D, nous aurons une classe <code>ol.View3D</code> ou
+            <code>ol.Camera</code>.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2><code>ol.layer</code> / <code>ol.source</code></h2>
+          <pre><code class="javascript" data-trim>
+var osm = new ol.layer.TileLayer({
+  source: new ol.source.OSM()
+});
+
+var bing = new ol.layer.TileLayer({
+  source: new ol.source.BingMaps({
+    // your key here
+    key: 'AlQLZ0-5yk301_ESrmN...',
+    style: 'AerialWithLabels'
+  })
+}));
+
+var mapbox = new ol.layer.TileLayer({
+  source: new ol.source.TileJSON({
+    url: '//api.tiles.mapbox.com/v3/mapbox.world-dark.jsonp'
+  })
+});
+          </code></pre>
+          <a href="./examples/tiles-galore.html">Exemple couches tuilées</a>
+          <aside class="notes">
+           <p>A nouveau les concepts sont séparés : "layer" et "source". Le
+           "source" interagit avec le service web et stocke les données. Le
+           "layer" contient les informations relatives à l'affichage (l'opacité
+           de la couche par example).</p>
+           <p>Ce qu'on peut voir dans l'exemple: affichage à n'importe quelle
+           résolution, tuiles temporaires (carte sans bord), caches de tuiles,
+           file avec priorités pour le chargement des tuiles (les tuiles les
+           plus proches de la souris sont chargés en premier).</p>
+        </section>
+
+        <section>
+          <h2><code>ol.interaction</code></h2>
+          <ul class="plain">
+            <li><code>ol.interaction.Drag</code></li>
+            <li><code>ol.interaction.DragRotate</code></li>
+            <li><code>ol.interaction.KeyboardPan</code></li>
+            <li><code>ol.interaction.TouchZoom</code></li>
+            <li><code>// etc.</code></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2><code>ol.control</code></h2>
+          <ul class="plain">
+            <li><code>ol.control.Zoom</code></li>
+            <li><code>ol.control.ScaleLine</code></li>
+            <li><code>ol.control.MousePosition</code></li>
+            <li><code>ol.control.Attribution</code></li>
+            <li><code>// etc.</code></li>
+          </ul>
+          <br><br>
+          <a href="./examples/interaction-control.html">Example interaction et control</a>
+        </section>
+
+        <section>
+          <h2>Pas de popups!?!</h2>
+        </section>
+
+        <section>
+          <h2><code>ol.Overlay</code></h2>
+          <pre><code class="javascript" data-trim>
+var marker = new ol.Overlay({
+  map: map,
+  position: buriedTreasure,
+  element: document.createTextElement('X marks the spot')
+});
+          </code></pre>
+          <aside class="notes">
+            <p>Un object <code>Overlay</code> est attaché à la carte - il bouge
+            avec la carte, contrairement à un objet <code>Control</code> qui est
+            fixe dans la carte.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2><code>ol.Overlay</code></h2>
+          <pre><code class="javascript" data-trim>
+var el = document.getElementById('popup');
+
+var popup = new ol.Overlay({
+  map: map,
+  element: el
+});
+
+map.on('click', function(evt) {
+  $(el).popover({
+    'placement': 'top',
+    'html': true,
+    'content': 'Roll your own popup!'
+  });
+  $(el).popover('show');
+  popup.setPosition(evt.getCoordinate());
+});
+          </code></pre>
+          <a href="./examples/overlays.html">Example overlay</a>
+          <aside class="notes">
+            <p>Cet exemple permet aussi de montrer la fonction de "binding"
+            d'OL3. Par exemple saisir la ligne suivante dans une console :
+            <br>
+            <code>popup.bindTo('position', map.getView(), 'center');</code>
+            <br>
+          </aside>
+        </section>
+
+        <section>
+          <h2><code>ol.animation</code></h2>
+          <pre><code class="javascript" data-trim>
+function fly(map, home, duration) {
+  var view = map.getView().getView2D();
+  var start = +new Date();
+  var pan = ol.animation.pan({
+    duration: duration,
+    source: view.getCenter(),
+    start: start
+  });
+  var bounce = ol.animation.bounce({
+    duration: duration,
+    resolution: 4 * view.getResolution(),
+    start: start
+  });
+  map.addPreRenderFunctions([pan, bounce]);
+  view.setCenter(home);
+}
+          </code></pre>
+          <a href="./examples/animation.html">Example animation</a>
+          <aside class="notes">
+            <p>OL3 offre un framework d'animation très poussé. Le framework
+            n'est pas forcément évident à utiliser mais il permet beaucoup
+            de choses.</p>
+          </aside>
+        </section>
+
+        <section style="text-align:center;">
+          <h2>Vecteur</h2>
+          <img class="fragment" src="img/Warning-zone.jpg">
+          <aside class="notes">
+            <p>L'API relative au vecteur n'est pas stable. Le travail en cours
+            sur WebGL vecteur nécessite des changements.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2><code>ol.layer.Vector</code></h2>
+          <pre><code class="javascript" data-trim>
+var vector = new ol.layer.Vector({
+  source: new ol.source.Vector({
+    projection: ol.proj.get('EPSG:4326')
+  })
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Vecteur avec Canvas 2D</h2>
+
+          <p>Code pour l'interaction avec les vecteurs:</p>
+          <pre><code class="javascript" data-trim>
+map.getFeatureInfo({
+  pixel: evt.getPixel(),
+  layers: [countries], // optional
+  success: function(features) {
+    $('#info').html('');
+    for (var i = 0, ii = features.length; i < ii; ++i) {
+      $('#info').append(features[i].get('name') + '&lt;br&gt;');
+    }
+  }
+});
+          </code></pre>
+          <a class="ex-link" href="./examples/synthetic-data.html">Exemple vecteur canvas</a>
+        </section>
+
+        <section>
+          <h2>Un mot sur la compilation</h2>
+          <p><span class="fragment">Hein ?</span> <span class="fragment">Oui oui.</span></p>
+        </section>
+
+        <section>
+        <h2><img src="img/closure-logo.png">Closure Compiler</h2>
+          <ul class="plain">
+            <li class="fragment fade-in">Renommage des variables</li>
+            <li class="fragment fade-in">Elimination du code non utilisé</li>
+            <li class="fragment fade-in">Applatissage des propriétés</li>
+            <li class="fragment fade-in">Dévirtualisation des méthodes</li>
+            <li class="fragment fade-in">"Inlining"</li>
+          </ul>
+          <!-- Notes:
+               - Our build tools (hosted build tool included) will be
+                 based on the Closure tools. This will enable creating
+                 with just what the application developer needs.
+          -->
+        </section>
+
+        <section>
+          <h2>Closure Compiler Example</h2>
+          <pre><code class="javascript" data-trim>
+goog.provide('ANamespace.ASubNamespace.AClass');
+ANamespace.ASubNamespace.AClass = function() {
+  this.aProperty = 'prop1';
+};
+ANamespace.ASubNamespace.AClass.prototype.aMethod =
+    function() {
+  this.aProperty = 'change';
+};
+var anInstance = new ANamespace.ASubNamespace.AClass();
+anInstance.aMethod();
+          </code></pre>
+          compiles to:
+          <pre><code class="javascript" data-trim>
+window.b=new function(){this.a="prop1"};window.b.a="change";
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>État actuel</h2>
+          <ul class="plain fragment">
+            <li>Alpha 1 released</li>
+            <li>Limité, mais déja utile</li>
+            <li>L'API change...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Vers 3.0.0 final</h2>
+          <ul class="plain">
+            <li class="fragment">Plus d'alphas et betas à venir</li>
+            <li class="fragment">Le renderer WebGL pour le vecteur</li>
+            <li class="fragment">Stabilisation des API</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Cesium Integration</h2>
+          <img src="img/cesium-ol3.png" alt="Cesium OpenLayers 3 integration">
+        </section>
+
+        <section style="text-align:left;">
+          <h2>Contenu (rappel)</h2>
+          <ul style="list-style-type:none;margin:20px 0 30px 0;">
+            <li>Présentation générale d'OL3</li>
+            <li>Description de l'API et exercices élémentaires</li>
+            <li>Développement d'une application</li>
+            <li>Conclusion</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>API, et exercices élémentaires</h1>
+        </section>
+
+        <section>
+          <h2>Logiciels requis</h2>
+          <ul style="list-style-type:none;margin:20px 0 30px 0;">
+            <li>Éditeur de texte</li>
+            <li>Serveur web (Apache)</li>
+            <li>Navigateur web (FireFox ou Chrome)</li>
+          </ul>
+          <p>Ou utiliser <a href="http://jsfiddle.net">http://jsfiddle.net</a></p>
+        </section>
+
+        <section>
+          <h2>Ressources</h2>
+          <ul style="list-style-type:none;margin: 30px 0 0 0;">
+            <li>Doc de l'API : <a href="http://ol3js.org/en/master/apidoc/">http://ol3js.org/en/master/apidoc/</a></li>
+            <li>Exemples : <a href="http://ol3js.org/en/master/examples/">http://ol3js.org/en/master/examples/</a></li>
+          </ul>
+          <aside class="notes">
+            <p>La doc de l'API est loin d'être parfaite. Il manque du texte, et
+            certaines classes et fonctions n'apparaissent à cause de problèmes
+            techniques. Ces problèmes sont en train d'être corrigés.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Les objets de base</h2>
+          <ul style="list-style-type:none;margin: 30px 0 0 0;">
+            <li><code>ol.Map</code></li>
+            <li><code>ol.View2D</code></li>
+            <li><code>ol.layer.* (ol.layer.TileLayer)</code></li>
+            <li><code>ol.control.* (ol.control.Attribution)</code></li>
+            <li><code>ol.interaction.* (ol.interaction.DragPan)</code></li>
+          </ul>
+          <aside class="notes">
+            <p>Ces objets sont qui sont manipulés dans les exercices
+            élémentaires.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Exemple de base</h2>
+          <p>Utilisé comme base pour chaque exercice.</p>
+          <pre><code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport"
+          content="initial-scale=1.0, user-scalable=no,
+                   width=device-width"&gt;
+    &lt;title&gt;Exercice élémentaire&lt;/title&gt;
+    &lt;link rel="stylesheet"
+          href="http://ol3js.org/en/master/build/ol.css"&gt;
+    &lt;style&gt;
+        #map {
+          width: 600px;
+          height: 400px;
+        }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="map"&gt;&lt;/div&gt;
+      &lt;script
+        src="http://ol3js.org/en/master/build/ol.js"&gt;&lt;/script&gt;
+      &lt;script&gt;
+      var map = new ol.Map({
+        target: 'map',
+        view: new ol.View2D({
+          zoom: 0,
+          center: [0, 0]
+        }),
+        layers: [
+          new ol.layer.TileLayer({
+            source: new ol.source.OSM()
+          })
+        ]
+      });
+      &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
+          <aside class="notes">
+            <p>Cette page sert de base pour chaque exercice élémentaire.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Exemple de base</h2>
+          <p><small>Disponible ici: <a href="http://erilem.net/master-class-ol3/exercices/exercices-elementaires.html">http://erilem.net/master-class-ol3/exercices/exercices-elementaires.html</a>.</small></p>
+        </section>
+
+        <section>
+          <h2>Maintenant, à vos cahiers d'exercices !</h2>
+          <p class="fragment"><a href="http://erilem.net/master-class-ol3/exercices">http://erilem.net/master-class-ol3/exercices</a></p>
+        </section>
+
+        <section style="text-align:left;">
+          <h2>Contenu (rappel)</h2>
+          <ul style="list-style-type:none;margin:20px 0 30px 0;">
+            <li>Présentation générale d'OL3</li>
+            <li>Description de l'API et exercices élémentaires</li>
+            <li>Développement d'une application</li>
+            <li>Conclusion</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Dév application</h1>
+        </section>
+
+        <section>
+          <h2>Quelques mots sur l'application</h2>
+          <ul style="list-style-type:none;margin:20px 0 30px 0;">
+            <li class="frament">Simple</li>
+            <li class="fragment">Construite par étape</li>
+            <li class="fragment">Plein écran</li>
+            <li class="fragment">Adaptée au mobile</li>
+            <li class="fragment">Services OGC WMS</li>
+            <li class="fragment">Lambert93 (utilisation de proj4js)</li>
+            <li class="fragment">Un peu de DOM avec jQuery</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Les nouveaux objets</h2>
+          <ul style="list-style-type:none;margin:20px 0 30px 0;">
+            <li><code>ol.source.TiledWMS</code></li>
+            <li><code>ol.source.SingleImageWMS</code></li>
+            <li><code>ol.layer.ImageLayer</code></li>
+            <li><code>ol.Geolocation</code></li>
+            <li><code>ol.animation.*</code></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>À vos cahiers d'exercices !</h2>
+          <p class="fragment"><a href="http://erilem.net/master-class-ol3/exercices">http://erilem.net/master-class-ol3/exercices</a></p>
+        </section>
+
+        <section>
+          <h1>Conclusion</h1>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- reveal.js loading and configuration -->
+    <script src="components/reveal.js/lib/js/head.min.js"></script>
+    <script src="components/reveal.js/js/reveal.min.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        rollingLinks: false,
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+          src: 'components/reveal.js/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        }, {
+          src: 'components/reveal.js/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        }, {
+          src: 'components/reveal.js/plugin/notes/notes.js',
+          async: true,
+          condition: function() {
+              return !!document.body.classList;
+          }
+        }]
+      });
+
+    </script>
+  </body>
+</html>
