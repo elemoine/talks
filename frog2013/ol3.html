@@ -240,7 +240,7 @@ var mapbox = new ol.layer.TileLayer({
            <p>A nouveau les concepts sont séparés : "layer" et "source". Le
            "source" interagit avec le service web et stocke les données. Le
            "layer" contient les informations relatives à l'affichage (l'opacité
-           de la couche par example).</p>
+           de la couche par exemple).</p>
            <p>Ce qu'on peut voir dans l'exemple: affichage à n'importe quelle
            résolution, tuiles temporaires (carte sans bord), caches de tuiles,
            file avec priorités pour le chargement des tuiles (les tuiles les
@@ -268,11 +268,11 @@ var mapbox = new ol.layer.TileLayer({
             <li><code>// etc.</code></li>
           </ul>
           <br><br>
-          <a href="./examples/interaction-control.html">Example interaction et control</a>
+          <a href="./examples/interaction-control.html">Exemple interaction et control</a>
         </section>
 
         <section>
-          <h2>What? Pas de popups !?!</h2>
+          <h2>Quoi ? Pas de popup !?!</h2>
         </section>
 
         <section>
@@ -311,7 +311,7 @@ map.on('click', function(evt) {
   popup.setPosition(evt.getCoordinate());
 });
           </code></pre>
-          <a href="./examples/overlays.html">Example overlay</a>
+          <a href="./examples/overlays.html">Exemple overlay</a>
           <aside class="notes">
             <p>Cet exemple permet aussi de montrer la fonction de "binding"
             d'OL3. Par exemple saisir la ligne suivante dans une console :
@@ -341,7 +341,7 @@ function fly(map, home, duration) {
   view.setCenter(home);
 }
           </code></pre>
-          <a href="./examples/animation.html">Example animation</a>
+          <a href="./examples/animation.html">Exemple animation</a>
           <aside class="notes">
             <p>OL3 offre un framework d'animation très poussé. Le framework
             n'est pas forcément évident à utiliser mais il permet beaucoup
@@ -410,7 +410,7 @@ map.getFeatureInfo({
         </section>
 
         <section>
-          <h2>Closure Compiler Example</h2>
+          <h2>Closure Compiler - un exemple</h2>
           <pre><code class="javascript" data-trim>
 goog.provide('ANamespace.ASubNamespace.AClass');
 ANamespace.ASubNamespace.AClass = function() {
@@ -423,7 +423,7 @@ ANamespace.ASubNamespace.AClass.prototype.aMethod =
 var anInstance = new ANamespace.ASubNamespace.AClass();
 anInstance.aMethod();
           </code></pre>
-          compiles to:
+          est compilé en :
           <pre><code class="javascript" data-trim>
 window.b=new function(){this.a="prop1"};window.b.a="change";
           </code></pre>
@@ -439,7 +439,7 @@ window.b=new function(){this.a="prop1"};window.b.a="change";
         </section>
 
         <section>
-          <h2>Vers 3.0.0 final</h2>
+          <h2>Vers la 3.0.0 finale</h2>
           <ul class="plain">
             <li class="fragment">Plus d'alphas et betas à venir</li>
             <li class="fragment">Le renderer WebGL pour le vecteur</li>
