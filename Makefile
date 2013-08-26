@@ -3,6 +3,10 @@
 frog2013: frog2013/ol3.html
 	cd frog2013 && ./node_modules/.bin/grunt jade copy
 
+.PHONY: foss4g2013
+foss4g2013: foss4g2013/geoalchemy.html
+	cd foss4g2013 && npm install
+
 .PHONY: gh-pages
 gh-pages: .gh-pages
 	(cd .gh-pages && \
