@@ -10,14 +10,13 @@ After cloning the repo (and installing Node):
 
     cd talks/foss4g2013
     npm install
+    npm start
 
-Now you can view the slides by loading `geoalchemy.html` and `ol3.html` in a browser.
+Now you can view the slides by opening http://localhost:9001/geoalchemy.html and http://localhost:9001/ol3.html in a browser.
 
 ## OpenLayers Examples
 
-The OpenLayers 3 presentation includes examples. For the examples to work in the slideshow use `npm start` and open http://localhost:9001/ol3.html in the browser.
-
-The OpenLayers examples all share the same basic layout, so they are built from templates.  The `npm install` step above builds all examples (and more) and puts everything in the `.grunt/self` directory.  To facilitate rebuilding of examples during development, a simple server and watch task are included. This can be fired up with the following:
+The OpenLayers examples all share the same basic layout, so they are built from templates.  The `npm install` step above builds all examples (and more) and puts everything in the `.grunt/self` directory.  To facilitate rebuilding of examples during development, a simple server and watch task are included. This is fired up with the following:
 
     npm start
 
@@ -27,4 +26,4 @@ While this task is running, the slideshow is available at http://localhost:9001/
 
 ## Credits
 
-Credits to [reveal.js](http://lab.hakim.se/reveal-js/) for the slick presentation software, and to @tschaub for the npm/bower/grunt set-up.
+Credits to [reveal.js](http://lab.hakim.se/reveal-js/) for the slick presentation software, and to @tschaub for the nice npm/bower/grunt set-up.
