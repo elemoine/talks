@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FOSS4G 2013 GeoAlchemy</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="components/reveal.js/css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="components/reveal.js/lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="components/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+    </style>
+
+    <script>
+        document.write( '<link rel="stylesheet" href="components/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+  </head>
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h1>GeoAlchemy</h1>
+          <p><a href="http://erilem.net/talks/foss4g2013_geoalchemy/">http://erilem.net/talks/foss4g2013_geoalchemy/</a></p>
+          <img src="img/foss4g2013-white-300.png">
+        </section>
+
+        <section>
+          <p>We have PostGIS. Hooray!</p>
+          <!-- We all love PostGIS. For good reasons. -->
+        </section>
+
+        <section>
+          <p>We have Python. Horray!</p>
+          <!-- Lots of great Python libs. And lots of great Python GIS libs. -->
+        </section>
+
+        <section>
+          <p>We need good ways/tools to use PostGIS from Python.</p>
+        </section>
+
+        <section>
+          <p>That's the reason we're developing GeoAlchemy</p>
+          <img src="img/geoalchemy.png">
+        </section>
+
+        <section>
+          <p>Wait! There's Django, and GeoDjango!</p>
+        </section>
+
+        <section>
+          <p>YES (it's great), BUT...</p>
+        </section>
+
+        <section>
+          <p>There's a life outside Web and Django!</p>
+          <!-- Think data manipulation and scripting. -->
+        </section>
+
+        <section>
+          <p>Has anyone heard about Flask, Bottle, Pyramid?</p>
+          <p class="fragment">They're great framework, with lots of users.</p>
+        </section>
+
+        <section>
+          <p>They all love the SQLAlchemy toolkit.</p>
+          <p class="fragment">For good reasons!</p>
+          <!-- If you use one of these frameworks then you probably know SQLAlchemy already. -->
+        </section>
+
+        <section>
+          <h2>SQLAlchemy</h2>
+          <quote>The Database Toolkit for Python</quote>
+          http://techspot.zzzeek.org/files/2011/sqla_arch_retro.key.pdf
+        </section>
+
+        <section>
+          <h2>GeoAlchemy</h2>
+          <p>Thin layer above SQLAlchemy</p>
+          <p class="fragment">With the same philosophy</p>
+          ...
+        </section>
+
+        <section>
+          <h2>Examples</h2>
+        </section>
+
+        <section>
+          <h2>Status</h2>
+          <p>Version 2 released 6 months ago (03/17/2013)</p>
+          <ul>
+            <li>Benefits from SQLALchemy's latest advances</li>
+            <li>Improved API</li>
+            <li>PostGIS 2 support</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Exposure</h2>
+          <p>Used in production</p>
+          <ul>
+            <li>MapFish projects by Camptocamp</li>
+            <li>The SkyLines project (https://www.skylines-project.org/)</li>
+        </section>
+
+
+      </div>
+    </div>
+
+    <!-- reveal.js loading and configuration -->
+    <script src="components/reveal.js/lib/js/head.min.js"></script>
+    <script src="components/reveal.js/js/reveal.min.js"></script>
+
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        rollingLinks: false,
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+          src: 'components/reveal.js/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        }, {
+          src: 'components/reveal.js/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        }, {
+          src: 'components/reveal.js/plugin/notes/notes.js',
+          async: true,
+          condition: function() {
+              return !!document.body.classList;
+          }
+        }]
+      });
+
+    </script>
+  </body>
+</html>
