@@ -1,4 +1,4 @@
-var raster = new ol.layer.TileLayer({
+var raster = new ol.layer.Tile({
   source: new ol.source.MapQuestOpenAerial()
 });
 
@@ -37,12 +37,16 @@ var vector = new ol.layer.Vector({
         new ol.style.Shape({
           type: ol.style.ShapeType.CIRCLE,
           size: ol.expr.parse('size'),
-          strokeColor: '#666666',
-          fillColor: '#bada55'
+          stroke: new ol.style.Stroke({color: '#666666'}),
+          fill: new ol.style.Fill({color: '#bada55'})
         })
       ]
     })
   ]})
+});
+
+var popup = new ol.Overlay({
+  element: document.getElementById('popup')
 });
 
 var map = new ol.Map({
@@ -52,13 +56,10 @@ var map = new ol.Map({
   view: new ol.View2D({
     center: [0, 0],
     zoom: 2
-  })
+  }),
+  overlays: [popup]
 });
 
-var popup = new ol.Overlay({
-  map: map,
-  element: document.getElementById('popup')
-});
 map.on('mousemove', function(evt) {
   map.getFeatureInfo({
     pixel: evt.getPixel(),
