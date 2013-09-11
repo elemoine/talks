@@ -2,9 +2,9 @@ var style = new ol.style.Style({rules: [
   new ol.style.Rule({
     filter: 'where == "outer"',
     symbolizers: [
-      new ol.style.Line({
-        strokeColor: ol.expr.parse('color'),
-        strokeWidth: 4,
+      new ol.style.Stroke({
+        color: ol.expr.parse('color'),
+        width: 4,
         opacity: 1
       })
     ]
@@ -12,14 +12,14 @@ var style = new ol.style.Style({rules: [
   new ol.style.Rule({
     filter: 'where == "inner"',
     symbolizers: [
-      new ol.style.Line({
+      new ol.style.Stroke({
         strokeColor: '#013',
         strokeWidth: 4,
         opacity: 1
       }),
-      new ol.style.Line({
-        strokeColor: ol.expr.parse('color'),
-        strokeWidth: 2,
+      new ol.style.Stroke({
+        color: ol.expr.parse('color'),
+        width: 2,
         opacity: 1
       })
     ]
@@ -28,14 +28,14 @@ var style = new ol.style.Style({rules: [
     filter: 'geometryType("point")',
     symbolizers: [
       new ol.style.Shape({
-        size: 40,
-        fillColor: '#013'
+        size: 60,
+        fill: new ol.style.Fill({color: '#013'})
       }),
       new ol.style.Text({
         color: '#bada55',
         text: ol.expr.parse('label'),
         fontFamily: 'Calibri,sans-serif',
-        fontSize: 14
+        fontSize: 16
       })
     ]
   })
