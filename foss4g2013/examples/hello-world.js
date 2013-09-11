@@ -1,7 +1,7 @@
 var map = new ol.Map({
   target: 'map',
   layers: [
-    new ol.layer.TileLayer({
+    new ol.layer.Tile({
       source: new ol.source.OSM()
     })
   ],

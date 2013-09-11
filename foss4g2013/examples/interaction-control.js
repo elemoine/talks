@@ -3,7 +3,7 @@ var view = new ol.View2D({
   zoom: 14
 });
 
-var layer = new ol.layer.TileLayer({
+var layer = new ol.layer.Tile({
   source: new ol.source.BingMaps({
     key: 'Ar33pRUvQOdESG8m_T15MUmNz__E1twPo42bFx9jvdDePhX0PNgAcEm44OVTS7tt',
     style: 'Aerial'
@@ -12,7 +12,10 @@ var layer = new ol.layer.TileLayer({
 
 var map = new ol.Map({
   target: 'map',
-  controls: ol.control.defaults({}, [
+  interactions: ol.interaction.defaults().extend([
+    new ol.interaction.DragRotateAndZoom()
+  ]),
+  controls: ol.control.defaults().extend([
     new ol.control.FullScreen(),
     new ol.control.ScaleLine({
       units: ol.control.ScaleLineUnits.IMPERIAL
