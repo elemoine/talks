@@ -170,17 +170,18 @@
         <section>
           <h2>SoC - 2/3</h2>
           <ul>
-            <li>The Map</li>
-            <li>The Map has a renderer</li>
-            <li>The map has a view</li>
-            <li>The map has layers</li>
-            <li>Layers have sources</li>
+            <li class="fragment">Map</li>
+            <li class="fragment">Map has a renderer</li>
+            <li class="fragment">Map has a view</li>
+            <li class="fragment">Map has layers</li>
+            <li class="fragment">Layers have sources</li>
           </ul>
         </section>
         <section>
           <h2>SoC - 3/3</h2>
+          <p>Interactions vs Controls</li>
           <ul>
-            <li>Controls versus Interactions</li>
+            <li class="fragment">Interactions respond to browser events on the map</li>
             <li class="fragment">Controls have a presence in the DOM</li>
           </ul>
         </section>
@@ -190,21 +191,23 @@
                - We take code performance seriously.
                - Some of the things we're watching out for.
           -->
-          <ul class="plain">
+          <ul>
             <li>Avoid boxing/unboxing operations</li>
-            <li>Reuse objects and be nice with the GC</li>
-            <li>Use <code>requestAnimationFrame</code> and watch the frame rate</li>
+            <li>Be nice with the GC and reuse objects</li>
+            <li>Use <code>rAF</code> and watch the frame rate</li>
             <li>Redraw as few pixels as possible</li>
           </ul>
         </section>
         <section>
           <h2>No opinion on the UI</h2>
-          <p>Use CSS</p>
-          <p>Provide objects for integration with other frameworks (<code>ol.Ovelay</code>)</p>
+          <ul>
+            <li>Use CSS</li>
+            <li>Provide objects for integration with other frameworks<br>(<code>ol.Ovelay</code>)</li>
+          </ul>
         </section>
         <section>
-        <h2><img src="img/closure-logo.png">Closure Compiler</h2>
-          <ul class="plain">
+        <h2><img src="img/closure-logo.png">Closure Compiler - (1/2)</h2>
+          <ul>
             <li class="fragment fade-in">Variable renaming</li>
             <li class="fragment fade-in">Dead code elimination</li>
             <li class="fragment fade-in">Property flattening</li>
@@ -218,7 +221,8 @@
           -->
         </section>
         <section>
-          <h2>Closure Compiler Example</h2>
+          <h2><img src="img/closure-logo.png">Closure Compiler - (2/2)</h2>
+          <p>Example:</p>
           <pre><code class="javascript" data-trim>
 goog.provide('ANamespace.ASubNamespace.AClass');
 ANamespace.ASubNamespace.AClass = function() {
@@ -252,234 +256,38 @@ window.b=new function(){this.a="prop1"};window.b.a="change";
         </section>
         <section>
           <h2>Interactions and controls</h2>
-        </section>
-        <section>
-          <h2>Animations</h2>
-        </section>
-        <section>
-          <h1>Show me the code!</h1>
-        </section>
-        <section>
-          <h2><code>ol.Map</code> / <code>ol.View</code></h2>
-          <pre class="narrow"><code class="javascript" data-trim>
-var view = new ol.View2D({
-  center: [0, 0],
-  zoom: 0
-});
-var map = new ol.Map({
-  target: 'map',
-  layers: [layer],
-  view: view
-});
-          </code></pre>
-        </section>
-        <section>
-          <h2><code>ol.layer</code> / <code>ol.source</code></h2>
-          <pre><code class="javascript" data-trim>
-var osm = new ol.layer.TileLayer({
-  source: new ol.source.OSM()
-});
-          </code></pre>
-          <pre class="fragment fade-in"><code class="javascript" data-trim>
-var bing = new ol.layer.TileLayer({
-  source: new ol.source.BingMaps({
-    // your key here
-    key: 'AlQLZ0-5yk301_ESrmN...',
-    style: 'AerialWithLabels'
-  })
-}));
-          </code></pre>
-          <pre class="fragment fade-in"><code class="javascript" data-trim>
-var mapbox = new ol.layer.TileLayer({
-  source: new ol.source.TileJSON({
-    url: '//api.tiles.mapbox.com/v3/mapbox.world-dark.jsonp'
-  })
-});
-          </code></pre>
-          <a href="./examples/tiles-galore.html">
-            tiles galore example
-          </a>
-        </section>
-        <section>
-          <h2><code>ol.layer</code> / <code>ol.source</code></h2>
-          <br>
-          <span>and vector too!</span>
-          <pre><code class="javascript" data-trim>
-var vector = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    projection: ol.projection.get('EPSG:4326')
-  })
-});
-          </code></pre>
-          <span>more to come on vector ...</span>
-        </section>
-        <section>
-          <h2><code>ol.interaction</code></h2>
-          <ul class="plain">
-            <li><code>ol.interaction.Drag</code></li>
-            <li><code>ol.interaction.DragRotate</code></li>
-            <li><code>ol.interaction.KeyboardPan</code></li>
-            <li><code>ol.interaction.TouchZoom</code></li>
-            <li><code>// etc.</code></li>
-          </ul>
-        </section>
-        <section>
-          <h2><code>ol.control</code></h2>
-          <ul class="plain">
-            <li><code>ol.control.Zoom</code></li>
-            <li><code>ol.control.ScaleLine</code></li>
-            <li><code>ol.control.MousePosition</code></li>
-            <li><code>ol.control.Attribution</code></li>
-            <li><code>// etc.</code></li>
-          </ul>
-          <br><br>
           <a href="./examples/interaction-control.html">
             interaction/control example
           </a>
-          <!--
-            Notes:
-              - configurable defaults
-              - easily styled
-              - demonstrate full-screen
-              - attributions and logo from source
-              - range slider with 2-way binding
-          -->
         </section>
         <section>
-          <h1>What! No popups?!?</h1>
-        </section>
-        <section>
-          <h2><code>ol.Overlay</code></h2>
-          <pre><code class="javascript" data-trim>
-var marker = new ol.Overlay({
-  map: map,
-  position: buriedTreasure,
-  element: document.createTextElement('X marks the spot')
-});
-          </code></pre>
-        </section>
-        <section>
-          <h2><code>ol.Overlay</code></h2>
-          <pre><code class="javascript" data-trim>
-var el = document.getElementById('popup');
-
-var popup = new ol.Overlay({
-  map: map,
-  element: el
-});
-
-map.on('click', function(evt) {
-  $(el).popover({
-    'placement': 'top',
-    'html': true,
-    'content': 'Roll your own popup!'
-  });
-  $(el).popover('show');
-  popup.setPosition(evt.getCoordinate());
-});
-          </code></pre>
-          <a href="./examples/overlays.html">
-            overlay example
-          </a>
-          <!--
-            Notes:
-             - registering event listeners
-             - popup.bindTo('position', map.getView(), 'center')
-          -->
-        </section>
-        <section>
-          <h2><code>ol.animation</code></h2>
-          <pre><code class="javascript" data-trim>
-function fly(map, home, duration) {
-  var view = map.getView().getView2D();
-  var start = +new Date();
-  var pan = ol.animation.pan({
-    duration: duration,
-    source: view.getCenter(),
-    start: start
-  });
-  var bounce = ol.animation.bounce({
-    duration: duration,
-    resolution: 4 * view.getResolution(),
-    start: start
-  });
-  map.addPreRenderFunctions([pan, bounce]);
-  view.setCenter(home);
-}
-          </code></pre>
+          <h2>Animations</h2>
           <a href="./examples/animation.html">
             animation example
           </a>
         </section>
         <section>
-          <h2>Vector Data and Canvas 2D Rendering</h2>
-          <ul class="plain">
-            <li>Indexing: by geometry type and bounds (R-Tree)</li>
-            <li>Render by tiles</li>
-            <li>Render groups of same symbolizer and geometry type</li>
-          </ul>
-          <br><br>
-          <a class="ex-link" href="./examples/vector-layer.html">
-            vector layer example
-          </a>
-        </section>
-        <section>
-          <h2>Interacting with Features</h2>
-          <ul class="plain">
-            <li>Same API for all layer types</li>
-            <li>Analytic hit detection for vector layers</li>
-          </ul>
-          <pre><code class="javascript" data-trim>
-map.getFeatures({
-  pixel: evt.getPixel(),
-  layers: [countries], // optional
-  success: function(result) {
-    $('#info').html('');
-    for (var i = 0, ii = result[0].length; i < ii; ++i) {
-      $('#info').append(result[0][i].get('name') + '&lt;br&gt;');
-    }
-  }
-});
-          </code></pre>
+          <h2>Vector</h2>
           <a class="ex-link" href="./examples/synthetic-data.html">
             synthetic data example
           </a>
         </section>
         <section>
-          <h2>Styling and Symbolization</h2>
-          <ul class="plain">
-            <li>Feature styles and rule based styling</li>
-            <li>Multiple symbolizers per feature</li>
-            <li>Choices: ol3 style API, CartoCSS or SLD</li>
-          </ul>
-          <br><br>
+          <h2>Rule-based Styling</h2>
           <a class="ex-link" href="./examples/style-rules.html">
             style rules example
           </a>
-          <!-- Notes:
-               - For now, rules are defined by arbitrary filter functions
-          -->
         </section>
         <section>
-          <h2>Vector Format Parsers</h2>
-          <ul class="plain">
-            <li class="fragment fade-in">Geometries use GeoJSON coordinates structure
-            <pre><code class="javascript" data-trim>
-ol.parser.GeoJSON.prototype.parsePolygon_ =
-    function(json, opt_vertices) {
-  return new ol.geom.Polygon(
-      json.coordinates, opt_vertices);
-};
-            </code></pre></li>
-            <li class="fragment fade-in">Reprojection during parsing
-            <pre><code class="javascript" data-trim>
-vector.parseFeatures(xhr.responseText, geojson, proj);
-            </code></pre></li>
-            <li class="fragment fade-in">Support for asynchronous loading</li>
-          </ul>
+          <h2>Swisstopo Geoadmin</h2>
+          <img src="img/swisstopo-logo.jpg">
         </section>
         <section>
-          <h2>Thanks!</h2>
+          <h1>Status Update</h1>
+          TBD
+        </section>
+        <section>
+          <h1>Thanks!</h1>
         </section>
       </div>
     </div>
