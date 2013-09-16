@@ -100,7 +100,7 @@
               <li class="fragment">It's not about abstracting the DB</li>
               <li class="fragment">Abstracting is Hiding</li>
               <li class="fragment">It's about Automation</li>
-              <li class="fragment">Instruct SQLA to do the grunt work with give it</li>
+              <li class="fragment">Instruct SQLA to do the grunt work we give it</li>
               <li class="fragment">Relational form of data is preserved</li>
               <li class="fragment">SQLA provides a rich vocabulary to express decisions made by the developer</li>
           </ul>
@@ -130,16 +130,22 @@
               Lake.geom.ST_Buffer(2).ST_Area() > 33).all()
           </code></pre>
           <i>The lakes whose buffers have areas greater than 33.</i>
+          <p class="fragment">It looks like SQLA!</p>
+          <p class="fragment">It looks like PostGIS SQL!</p>
         </section>
 
         <section>
           <h2>Status</h2>
           <p>Version 2 released 6 months ago (03/17/2013)</p>
+          <p>
+            <a href="https://geoalchemy-2.readthedocs.org">https://geoalchemy-2.readthedocs.org</a>
+          </p>
           <ul>
             <li>Benefits from SQLALchemy's latest advances</li>
             <li>Improved API</li>
             <li>Works both with SQLA Core and ORM</li>
             <li>PostGIS 2 support (Raster included)</li>
+            <li>Fully documented and tested</li>
           </ul>
         </section>
 
