@@ -73,6 +73,16 @@
           -->
         </section>
         <section>
+          <h2>Outline</h2>
+          <ol>
+            <li>Vision</li>
+            <li>Design principles</li>
+            <li>Demos</li>
+            <li>Swisstopo application</li>
+            <li>Status update</li>
+          </ol>
+        </section>
+        <section>
           <h1>Vision</h1>
           <h3>Where OL3 is going</h3>
         </section>
@@ -156,7 +166,7 @@
           -->
         </section>
         <section>
-          <h1>Design Principles</h1>
+          <h1>Design principles</h1>
         </section>
         <section>
           <h2>SoC - 1/3</h2>
@@ -186,11 +196,14 @@
           </ul>
         </section>
         <section>
-          <h2>High-Performance JS</h2>
+          <h2>High-Performance</h2>
           <!-- Notes:
                - We take code performance seriously.
                - Some of the things we're watching out for.
           -->
+          <p>
+          For example:
+          </p>
           <ul>
             <li>Avoid boxing/unboxing operations</li>
             <li>Be nice with the GC and reuse objects</li>
@@ -206,7 +219,7 @@
           </ul>
         </section>
         <section>
-        <h2><img src="img/closure-logo.png">Closure Compiler - (1/2)</h2>
+        <h2><img src="img/closure-logo.png">Closure Compiler</h2>
           <ul>
             <li class="fragment fade-in">Variable renaming</li>
             <li class="fragment fade-in">Dead code elimination</li>
@@ -221,43 +234,12 @@
           -->
         </section>
         <section>
-          <h2><img src="img/closure-logo.png">Closure Compiler - (2/2)</h2>
-          <p>Example:</p>
-          <pre><code class="javascript" data-trim>
-goog.provide('ANamespace.ASubNamespace.AClass');
-ANamespace.ASubNamespace.AClass = function() {
-  this.aProperty = 'prop1';
-};
-ANamespace.ASubNamespace.AClass.prototype.aMethod =
-    function() {
-  this.aProperty = 'change';
-};
-var anInstance = new ANamespace.ASubNamespace.AClass();
-anInstance.aMethod();
-          </code></pre>
-          compiles to:
-          <pre><code class="javascript" data-trim>
-window.b=new function(){this.a="prop1"};window.b.a="change";
-          </code></pre>
+          <h1>Demos</h1>
         </section>
         <section>
-          <h1>Demo Time!</h1>
-        </section>
-        <section>
-          <h2>Hello World</h2>
-          <a href="./examples/hello-world.html">hello world example </a>
-          <!--
-            Notes:
-              - arbitrary resolutions
-              - interim tiles (maps w/o edges)
-              - tile cache (LRU, each source)
-              - prioritized tile queue (in frame, close to focus, at resolution)
-          -->
-        </section>
-        <section>
-          <h2>Interactions and controls</h2>
+          <h2>Map with controls</h2>
           <a href="./examples/interaction-control.html">
-            interaction/control example
+            map with controls example
           </a>
         </section>
         <section>
@@ -273,18 +255,51 @@ window.b=new function(){this.a="prop1"};window.b.a="change";
           </a>
         </section>
         <section>
-          <h2>Rule-based Styling</h2>
-          <a class="ex-link" href="./examples/style-rules.html">
-            style rules example
-          </a>
-        </section>
-        <section>
-          <h2>Swisstopo Geoadmin</h2>
+          <h2>geo.admin.ch Third Release</h2>
           <img src="img/swisstopo-logo.jpg">
         </section>
         <section>
-          <h1>Status Update</h1>
-          TBD
+          <h2>New map.geo.admin.ch viewer</h2>
+          <ul>
+            <li class="fragment fade-in">Based on OpenLayers 3, AngularJS 1.2 & Bootstrap 3.0</li>
+            <li class="fragment fade-in">Components</li>
+            <li class="fragment fade-in">Mobile & desktop: all in one</li>
+            <li class="fragment fade-in">RE2: 650 Ko / RE3: 250 Ko</li>
+            <li class="fragment fade-in">In production on 17.10.2013</li>
+            <li class="fragment fade-in"><a href="https://github.com/geoadmin/mf-geoadmin3">Code on Github</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Responsiveness - phone</h2>
+          <img class="framed" src="img/RE3_phone.png" alt="map.geo.admin.ch for phone">
+          </ul>
+        </section>
+        <section>
+          <h2>Responsiveness - tablet</h2>
+          <img class="framed" src="img/RE3_tablet.png" alt="map.geo.admin.ch for tablet">
+          </ul>
+        </section>
+        <section>
+          <h2>Responsiveness - desktop</h2>
+          <img class="framed" src="img/RE3_desktop.png" alt="map.geo.admin.ch for desktop">
+          </ul>
+        </section>
+         <section>
+          <h1>Demo</h2>
+          <a href="http://mf-geoadmin3.bgdi.admin.ch/main/prod/">map.geo.admin.ch</a>
+        </section>
+        <section>
+          <h1>Status update</h1>
+          <ul>
+            <li class="fragment">3.0.0 beta1 about to be released</li>
+            <li class="fragment">Things in the work:
+            <ul>
+              <li class="fragment">New web site</li>
+              <li class="fragment">New build system</li>
+              <li class="fragment">WebGL vector</li>
+              <li class="fragment">Vector editing</li>
+            </ul>
+          </ul>
         </section>
         <section>
           <h1>Thanks!</h1>
