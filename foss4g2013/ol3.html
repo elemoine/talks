@@ -201,6 +201,9 @@
                - We take code performance seriously.
                - Some of the things we're watching out for.
           -->
+          <p>
+          For example:
+          </p>
           <ul>
             <li>Avoid boxing/unboxing operations</li>
             <li>Be nice with the GC and reuse objects</li>
@@ -216,7 +219,7 @@
           </ul>
         </section>
         <section>
-        <h2><img src="img/closure-logo.png">Closure Compiler - (1/2)</h2>
+        <h2><img src="img/closure-logo.png">Closure Compiler</h2>
           <ul>
             <li class="fragment fade-in">Variable renaming</li>
             <li class="fragment fade-in">Dead code elimination</li>
@@ -231,43 +234,12 @@
           -->
         </section>
         <section>
-          <h2><img src="img/closure-logo.png">Closure Compiler - (2/2)</h2>
-          <p>Example:</p>
-          <pre><code class="javascript" data-trim>
-goog.provide('ANamespace.ASubNamespace.AClass');
-ANamespace.ASubNamespace.AClass = function() {
-  this.aProperty = 'prop1';
-};
-ANamespace.ASubNamespace.AClass.prototype.aMethod =
-    function() {
-  this.aProperty = 'change';
-};
-var anInstance = new ANamespace.ASubNamespace.AClass();
-anInstance.aMethod();
-          </code></pre>
-          compiles to:
-          <pre><code class="javascript" data-trim>
-window.b=new function(){this.a="prop1"};window.b.a="change";
-          </code></pre>
-        </section>
-        <section>
           <h1>Demos</h1>
         </section>
         <section>
-          <h2>Hello World</h2>
-          <a href="./examples/hello-world.html">hello world example </a>
-          <!--
-            Notes:
-              - arbitrary resolutions
-              - interim tiles (maps w/o edges)
-              - tile cache (LRU, each source)
-              - prioritized tile queue (in frame, close to focus, at resolution)
-          -->
-        </section>
-        <section>
-          <h2>Interactions and controls</h2>
+          <h2>Map with controls</h2>
           <a href="./examples/interaction-control.html">
-            interaction/control example
+            map with controls example
           </a>
         </section>
         <section>
@@ -280,12 +252,6 @@ window.b=new function(){this.a="prop1"};window.b.a="change";
           <h2>Vector</h2>
           <a class="ex-link" href="./examples/synthetic-data.html">
             synthetic data example
-          </a>
-        </section>
-        <section>
-          <h2>Rule-based Styling</h2>
-          <a class="ex-link" href="./examples/style-rules.html">
-            style rules example
           </a>
         </section>
         <section>
@@ -325,9 +291,14 @@ window.b=new function(){this.a="prop1"};window.b.a="change";
         <section>
           <h1>Status update</h1>
           <ul>
-            <li class="fragment">3.0.0 beta1 released</li>
-            <li class="fragment">WebGL vector in the work</li>
-            <li class="fragment">3.0.0 final due to...</li>
+            <li class="fragment">3.0.0 beta1 about to be released</li>
+            <li class="fragment">Things in the work:
+            <ul>
+              <li class="fragment">New web site</li>
+              <li class="fragment">New build system</li>
+              <li class="fragment">WebGL vector</li>
+              <li class="fragment">Vector editing</li>
+            </ul>
           </ul>
         </section>
         <section>
