@@ -136,6 +136,17 @@
         </section>
 
         <section>
+          <h3>Shapely Integration</h3>
+          <p><code>to_shape</code> and <code>from_shape</code> functions</p>
+          <pre><code>
+          lake  = session.query(Lake).filter(
+              Lake.geom.ST_Buffer(2).ST_Area() > 33).first()
+          lake_shape = to_shape(lake.geom)
+          lake_shape.representative_point().wkt
+          </code></pre>
+        </section>
+
+        <section>
           <h2>Status</h2>
           <p>Version 2 released 6 months ago (03/17/2013)</p>
           <p>
