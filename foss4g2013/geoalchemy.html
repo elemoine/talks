@@ -79,7 +79,7 @@
 
         <section>
           <p>Has anyone heard about Flask, Bottle, Pyramid?</p>
-          <p class="fragment">They're great framework, with lots of users.</p>
+          <p class="fragment">They're great frameworks, with lots of users.</p>
         </section>
 
         <section>
@@ -109,6 +109,15 @@
         </section>
 
         <section>
+          <h3>SQLAlchemy Core / ORM</h3>
+          <p>SQLAlchemy has two distinct areas:</p>
+          <ul>
+            <li>Core (SQL expression system)</li>
+            <li>Object Relational Mapper (ORM)</li>
+          </ul>
+        </section>
+
+        <section>
           <h3>SQLAlchemy Query Example</h3>
           <pre><code>
           user = session.query(User).join(Address).\
@@ -133,6 +142,17 @@
           <i>The lakes whose buffers have areas greater than 33.</i>
           <p class="fragment">It looks like SQLA!</p>
           <p class="fragment">It looks like PostGIS SQL!</p>
+        </section>
+
+        <section>
+          <h3>Shapely Integration</h3>
+          <p><code>to_shape</code> and <code>from_shape</code> functions</p>
+          <pre><code>
+          lake  = session.query(Lake).filter(
+              Lake.geom.ST_Buffer(2).ST_Area() > 33).first()
+          lake_shape = to_shape(lake.geom)
+          lake_shape.representative_point().wkt
+          </code></pre>
         </section>
 
         <section>
