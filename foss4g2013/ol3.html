@@ -77,6 +77,7 @@
           <ol>
             <li>Vision</li>
             <li>Design principles</li>
+            <li>Features</li>
             <li>Demos</li>
             <li>Swisstopo application</li>
             <li>Status update</li>
@@ -209,29 +210,26 @@
             <li>Be nice with the GC and reuse objects</li>
             <li>Use <code>rAF</code> and watch the frame rate</li>
             <li>Redraw as few pixels as possible</li>
+            <li>Use Closure Compiler</li>
           </ul>
         </section>
         <section>
           <h2>No opinion on the UI</h2>
           <ul>
             <li>Use CSS</li>
-            <li>Provide objects for integration with other frameworks<br>(<code>ol.Overlay</code>)</li>
+            <li>Provide objects for integration with other libs (<code>ol.Overlay</code>)</li>
           </ul>
         </section>
         <section>
-        <h2><img src="img/closure-logo.png">Closure Compiler</h2>
-          <ul>
-            <li class="fragment fade-in">Variable renaming</li>
-            <li class="fragment fade-in">Dead code elimination</li>
-            <li class="fragment fade-in">Property flattening</li>
-            <li class="fragment fade-in">Prototype method devirtualization</li>
-            <li class="fragment fade-in">Inlining</li>
+          <h1>Features</h1>
+          <ul classs="plain">
+            <li class="fragment">Various tile sources/providers: OSM, XYZ, Stamen, TileJSON, Bing Maps, WMTS, WMS</li>
+            <li class="fragment">Controls: Attribution, Full-screen, Mouse position, Scaleline, Zoom, Zoom slider</li>
+            <li class="fragment">Vector layer: rule-based styling with powerful expression system</li>
+            <li class="fragment">Parsers: GeoJSON, GPX, KML, FE, GML, WMS Capabilities, WMTS Capabilities</li>
+            <li class="fragment">Animations</li>
+            <li class="fragment">Geolocation, Device orientation</li>
           </ul>
-          <!-- Notes:
-               - Our build tools (hosted build tool included) will be
-                 based on the Closure tools. This will enable creating
-                 with just what the application developer needs.
-          -->
         </section>
         <section>
           <h1>Demos</h1>
@@ -246,12 +244,6 @@
           <h2>Animations</h2>
           <a href="./examples/animation.html">
             animation example
-          </a>
-        </section>
-        <section>
-          <h2>Vector</h2>
-          <a class="ex-link" href="./examples/synthetic-data.html">
-            synthetic data example
           </a>
         </section>
         <section>
