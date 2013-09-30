@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OpenLayers 3</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="theme/ol3.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="components/reveal.js/lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="components/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+      .reveal h1.beefy {
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 10px 10px 6px rgba(0, 0, 0, 0.2);
+      }
+      .reveal ul.plain {
+        list-style-type: none;
+      }
+      .reveal h2 > img {
+        vertical-align: sub;
+      }
+      .ex-link {
+        font-size: smaller;
+      }
+      #logos > div {
+        padding: 0 10px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+      }
+      #logos > div img {
+        margin: 0;
+        vertical-align: text-bottom;
+      }
+      pre.narrow {
+        width: 50%;
+      }
+
+    </style>
+
+    <script>
+        document.write( '<link rel="stylesheet" href="components/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+  </head>
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 class="beefy">OL3</h1>
+          <p><a href="http://erilem.net/talks/foss4g2013/ol3.html">http://erilem.net/talks/foss4g2013/ol3.html</a></p>
+          <img src="img/foss4g2013-white-300.png">
+        </section>
+        <section>
+          <h2>Intro</h2>
+          <p>
+            Introducing OpenLayers 3
+            <br>
+            <a class="ex-link" href="http://ol3js.org/">
+              http://ol3js.org/
+            </a>
+          </p>
+          <!-- Notes:
+               - Fund raising effort.
+               - Multiple companies involved.
+          -->
+        </section>
+        <section>
+          <h2>Outline</h2>
+          <ol>
+            <li>Vision</li>
+            <li>Design principles</li>
+            <li>Features</li>
+            <li>Demos</li>
+            <li>Swisstopo application</li>
+            <li>Status update</li>
+          </ol>
+        </section>
+        <section>
+          <h1>Vision</h1>
+          <h3>Where OL3 is going</h3>
+        </section>
+        <section>
+          <h2>2D 3D Convergence</h2>
+          <img class="framed" src="img/osm3d.jpg" alt="Building on an OSM map">
+          <p>(Image courtesy of the OSM-3D.org project)</p>
+          <!-- Notes:
+               - 3D building and terrain data in cartesian space.
+               - References: Google Maps API, Nokia Maps 3D WebGL.
+          -->
+          </ul>
+        </section>
+        <section>
+          <h2>Client-side rendering</li>
+          <img class="framed" src="img/many-points-map.png" alt="Many points map">
+          <!-- Notes:
+               - Rendering of complex and numerous vector features.
+               - Vector tiles.
+               - Lots of vectors with WebGL.
+          -->
+        </section>
+        <section>
+          <h2>Maps are Graphics</h2>
+          <img class="framed" src="img/teapot-map.jpg" alt="Teapot map">
+          <!-- Notes:
+               - Rely on the Canvas and WebGL Graphics APIs.
+               - Performance (GPU).
+               - Isolate the map from the rest of the page.
+          -->
+        </section>
+        <section>
+          <h2>Where does OL3 fit?</h2>
+          <br>
+          <div id="logos">
+            <div class="fragment" data-fragment-index="0">
+              <img src="img/ol2-logo.png"> OpenLayers 2
+              <br><br>
+              <img src="img/leaflet-logo.png">
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <img src="img/ol3-logo.png">
+              <br>
+              OpenLayers 3
+            </div>
+            <div class="fragment" data-fragment-index="1">
+              <img src="img/cesium-logo.png">
+              <br><br>
+              <img src="img/owg-logo.png">
+            </div>
+          </div>
+          <!-- Notes:
+               - Leaflet:
+                 - Nice API, easy to work with.
+                 - Lightweight, works great on mobile.
+               - Cesium:
+                 - Fantastic virtual globe solution.
+               - OL3
+                 - Compared to Leaflet:
+                   - Support for many layer types, formats, etc.
+                   - Support for irregular tile grids.
+                   - Support for local projections.
+                   - Support for arbitrary resolutions.
+                   - Support for advanced drawing tools.
+                   - Built-in functionality, as opposed to 3d-party plugins.
+                 - Compared to OL2:
+                   - Better and more consistent APIs.
+                   - Smaller builds.
+                   - Better performance.
+                   - Flexible architecture.
+                 - Compared to Cesium.
+                   - Smaller and more compact than Cesium.
+                   - Easier to use.
+                   - WebGL not required.
+                   - Better mobile support.
+                 - Focus on performance.
+                   - WebGL.
+                   - GPU acceleration.
+                   - requestAnimationFrame.
+                   - Closure Compiler.
+          -->
+        </section>
+        <section>
+          <h1>Design principles</h1>
+        </section>
+        <section>
+          <h2>SoC - 1/3</h2>
+          <p>(Separation of Concerns)</p>
+          <img src="img/lego.png">
+          <!-- Notes:
+               We strive to separate concerns within the library and throughout
+               the API.
+          -->
+        </section>
+        <section>
+          <h2>SoC - 2/3</h2>
+          <ul>
+            <li class="fragment">Map</li>
+            <li class="fragment">Map has a renderer</li>
+            <li class="fragment">Map has a view</li>
+            <li class="fragment">Map has layers</li>
+            <li class="fragment">Layers have sources</li>
+          </ul>
+        </section>
+        <section>
+          <h2>SoC - 3/3</h2>
+          <p>Interactions vs Controls</li>
+          <ul>
+            <li class="fragment">Interactions respond to browser events on the map</li>
+            <li class="fragment">Controls have a presence in the DOM</li>
+          </ul>
+        </section>
+        <section>
+          <h2>High-Performance</h2>
+          <!-- Notes:
+               - We take code performance seriously.
+               - Some of the things we're watching out for.
+          -->
+          <p>
+          For example:
+          </p>
+          <ul>
+            <li>Avoid boxing/unboxing operations</li>
+            <li>Be nice with the GC and reuse objects</li>
+            <li>Use <code>rAF</code> and watch the frame rate</li>
+            <li>Redraw as few pixels as possible</li>
+            <li>Use Closure Compiler</li>
+          </ul>
+        </section>
+        <section>
+          <h2>No opinion on the UI</h2>
+          <ul>
+            <li>Use CSS</li>
+            <li>Provide objects for integration with other libs (<code>ol.Overlay</code>)</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Features</h1>
+          <ul classs="plain">
+            <li class="fragment">Various tile sources/providers: OSM, XYZ, Stamen, TileJSON, Bing Maps, WMTS, WMS</li>
+            <li class="fragment">Controls: Attribution, Full-screen, Mouse position, Scaleline, Zoom, Zoom slider</li>
+            <li class="fragment">Vector layer: rule-based styling with powerful expression system</li>
+            <li class="fragment">Parsers: GeoJSON, GPX, KML, FE, GML, WMS Capabilities, WMTS Capabilities</li>
+            <li class="fragment">Animations</li>
+            <li class="fragment">Geolocation, Device orientation</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Demos</h1>
+        </section>
+        <section>
+          <h2>Map with controls</h2>
+          <a href="./examples/interaction-control.html">
+            map with controls example
+          </a>
+        </section>
+        <section>
+          <h2>Animations</h2>
+          <a href="./examples/animation.html">
+            animation example
+          </a>
+        </section>
+        <section>
+          <h2>geo.admin.ch Third Release</h2>
+          <img src="img/swisstopo-logo.jpg">
+        </section>
+        <section>
+          <h2>New map.geo.admin.ch viewer</h2>
+          <ul>
+            <li class="fragment fade-in">Based on OpenLayers 3, AngularJS 1.2 & Bootstrap 3.0</li>
+            <li class="fragment fade-in">Components</li>
+            <li class="fragment fade-in">Mobile & desktop: all in one</li>
+            <li class="fragment fade-in">RE2: 650 Ko / RE3: 250 Ko</li>
+            <li class="fragment fade-in">In production on 17.10.2013</li>
+            <li class="fragment fade-in"><a href="https://github.com/geoadmin/mf-geoadmin3">Code on Github</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Responsiveness - phone</h2>
+          <img class="framed" src="img/RE3_phone.png" alt="map.geo.admin.ch for phone">
+          </ul>
+        </section>
+        <section>
+          <h2>Responsiveness - tablet</h2>
+          <img class="framed" src="img/RE3_tablet.png" alt="map.geo.admin.ch for tablet">
+          </ul>
+        </section>
+        <section>
+          <h2>Responsiveness - desktop</h2>
+          <img class="framed" src="img/RE3_desktop.png" alt="map.geo.admin.ch for desktop">
+          </ul>
+        </section>
+         <section>
+          <h1>Demo</h2>
+          <a href="http://mf-geoadmin3.bgdi.admin.ch/main/prod/">map.geo.admin.ch</a>
+        </section>
+        <section>
+          <h1>Status update</h1>
+          <ul>
+            <li class="fragment">3.0.0 beta1 about to be released</li>
+            <li class="fragment">Things in the work:
+            <ul>
+              <li class="fragment">New web site</li>
+              <li class="fragment">New build system</li>
+              <li class="fragment">WebGL vector</li>
+              <li class="fragment">Vector editing</li>
+            </ul>
+          </ul>
+        </section>
+        <section>
+          <h1>Thanks!</h1>
+        </section>
+      </div>
+    </div>
+
+    <!-- reveal.js loading and configuration -->
+    <script src="components/reveal.js/lib/js/head.min.js"></script>
+    <script src="components/reveal.js/js/reveal.min.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        rollingLinks: false,
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+          src: 'components/reveal.js/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        }, {
+          src: 'components/reveal.js/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        }]
+      });
+
+    </script>
+  </body>
+</html>
