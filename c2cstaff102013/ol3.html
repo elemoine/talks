@@ -30,6 +30,9 @@
       .reveal h2 > img {
         vertical-align: sub;
       }
+      .reveal pre {
+        font-size: 0.85em;
+      }
       .ex-link {
         font-size: smaller;
       }
@@ -60,21 +63,24 @@
       <div class="slides">
         <section>
           <h1 class="beefy">OL3</h1>
-          <p><a href="http://erilem.net/talks/foss4g2013/ol3.html">http://erilem.net/talks/foss4g2013/ol3.html</a></p>
-          <img src="img/foss4g2013-white-300.png">
+          <!-- Notes:
+               - Récupération des présentations faites à FOSS4G.
+               - J'encourage Tom et Benoît à intervenir.
+          -->
         </section>
         <section>
-          <h2>Intro</h2>
-          <p>
-            Introducing OpenLayers 3
-            <br>
-            <a class="ex-link" href="http://ol3js.org/">
-              http://ol3js.org/
-            </a>
-          </p>
+          <h2>Fund raising</h2>
           <!-- Notes:
-               - Fund raising effort.
-               - Multiple companies involved.
+               - Levée de fonds.
+               - Plusieurs entreprises impliquées : OpenGeo (Boundless), Terrestris et Camptocamp.
+               - Swisstopo au commande de la levée de fonds.
+          -->
+        </section>
+        <section>
+          <h2><a class="ex-link" href="http://ol3js.org">http://ol3js.org</a></h2>
+          <!-- Notes:
+               - Nouveau site web.
+               - Objectif : ne pas "perturber" OpenLayers 2.
           -->
         </section>
         <section>
@@ -82,9 +88,7 @@
           <ol>
             <li>Vision</li>
             <li>Design principles</li>
-            <li>Features</li>
             <li>Demos</li>
-            <li>Swisstopo application</li>
             <li>Status update</li>
           </ol>
         </section>
@@ -176,7 +180,7 @@
         </section>
         <section>
           <h2>SoC - 1/3</h2>
-          <p>(Separation of Concerns)</p>
+          <p>Separation of Concerns</p>
           <img src="img/lego.png">
           <!-- Notes:
                We strive to separate concerns within the library and throughout
@@ -185,7 +189,7 @@
         </section>
         <section>
           <h2>SoC - 2/3</h2>
-          <ul>
+          <ul class="plain">
             <li class="fragment">Map</li>
             <li class="fragment">Map has a renderer</li>
             <li class="fragment">Map has a view</li>
@@ -195,22 +199,22 @@
         </section>
         <section>
           <h2>SoC - 3/3</h2>
-          <p>Interactions vs Controls</li>
-          <ul>
-            <li class="fragment">Interactions respond to browser events on the map</li>
-            <li class="fragment">Controls have a presence in the DOM</li>
-          </ul>
+          <p>Interactions versus Controls</li>
+          <!-- Notes:
+               - Les interactions n'ont pas de présence dans le DOM. Elles
+                 agissent sur la carte/vue suite à des actions utilisateur.
+               - Exemple d'interaction : "double clic pour zoomer".
+               - Les controls ont une une présence dans le DOM. Ce sont 
+                 des componsants de plus haut niveau.
+               - Exemple de controls : barre d'échelle.
+          -->
         </section>
         <section>
           <h2>High-Performance</h2>
-          <!-- Notes:
-               - We take code performance seriously.
-               - Some of the things we're watching out for.
-          -->
           <p>
           For example:
           </p>
-          <ul>
+          <ul class="plain">
             <li>Avoid boxing/unboxing operations</li>
             <li>Be nice with the GC and reuse objects</li>
             <li>Use <code>rAF</code> and watch the frame rate</li>
@@ -219,83 +223,114 @@
           </ul>
         </section>
         <section>
-          <h2>No opinion on the UI</h2>
-          <ul>
-            <li>Use CSS</li>
-            <li>Provide objects for integration with other libs (<code>ol.Overlay</code>)</li>
-          </ul>
+          <h2><img src="img/closure-logo.png">Closure Compiler</h2>
+            <ul class="plain">
+              <li class="fragment fade-in">Variable renaming</li>
+              <li class="fragment fade-in">Dead code elimination</li>
+              <li class="fragment fade-in">Property flattening</li>
+              <li class="fragment fade-in">Prototype method devirtualization</li>
+              <li class="fragment fade-in">Inlining</li>
+            </ul>
         </section>
         <section>
-          <h1>Features</h1>
-          <ul classs="plain">
-            <li class="fragment">Various tile sources/providers: OSM, XYZ, Stamen, TileJSON, Bing Maps, WMTS, WMS</li>
-            <li class="fragment">Controls: Attribution, Full-screen, Mouse position, Scaleline, Zoom, Zoom slider</li>
-            <li class="fragment">Vector layer: rule-based styling with powerful expression system</li>
-            <li class="fragment">Parsers: GeoJSON, GPX, KML, FE, GML, WMS Capabilities, WMTS Capabilities</li>
-            <li class="fragment">Animations</li>
-            <li class="fragment">Geolocation, Device orientation</li>
+          <h2>No opinion on the UI</h2>
+          <ul class="plain">
+            <li class="fragment">Use CSS</li>
+            <li class="fragment">Integration with UI toolkits: <code>ol.Overlay</code></li>
           </ul>
         </section>
         <section>
           <h1>Demos</h1>
         </section>
         <section>
-          <h2>Map with controls</h2>
-          <a href="./examples/interaction-control.html">
-            map with controls example
+          <h2><code>ol.Map/ol.View</code></h2>
+          <pre><code class="javascript" data-trim>
+var view = new ol.View2D({
+  center: [0, 0],
+  zoom: 0
+});
+var map = new ol.Map({
+  target: 'map',
+  layers: [layer],
+  view: view
+});
+          </code></pre>
+          <a href="./examples/hello-world.html">
+            hello world example
           </a>
         </section>
         <section>
-          <h2>Animations</h2>
+          <h2><code>ol.layer/ol.source</code></h2>
+          <pre><code class="javascript" data-trim>
+var osm = new ol.layer.Tile({
+  source: new ol.source.OSM()
+});
+          </code></pre>
+          <pre><code class="javascript" data-trim>
+var bing = new ol.layer.Tile({
+  source: new ol.source.BingMaps({
+    // your key here
+    key: 'AlQLZ0-5yk301_ESrmN...',
+    style: 'AerialWithLabels'
+  })
+}));
+          </code></pre>
+          <a href="./examples/tiles-galore.html">
+            tiles galore example
+          </a>
+        </section>
+        <section>
+          <h2><code>ol.interaction/</code><br><code>ol.control</code></h2>
+          <a href="./examples/interaction-control.html">
+            interaction/control example
+          </a>
+        </section>
+        <section>
+          <h2><code>ol.animation</code></h2>
           <a href="./examples/animation.html">
             animation example
           </a>
         </section>
         <section>
-          <h2>geo.admin.ch Third Release</h2>
-          <img src="img/swisstopo-logo.jpg">
-        </section>
-        <section>
-          <h2>New map.geo.admin.ch viewer</h2>
-          <ul>
-            <li class="fragment fade-in">Based on OpenLayers 3, AngularJS 1.2 & Bootstrap 3.0</li>
-            <li class="fragment fade-in">Components</li>
-            <li class="fragment fade-in">Mobile & desktop: all in one</li>
-            <li class="fragment fade-in">RE2: 650 Ko / RE3: 250 Ko</li>
-            <li class="fragment fade-in">In production on 17.10.2013</li>
-            <li class="fragment fade-in"><a href="https://github.com/geoadmin/mf-geoadmin3">Code on Github</a></li>
-          </ul>
-        </section>
-        <section>
-          <h2>Responsiveness - phone</h2>
-          <img class="framed" src="img/RE3_phone.png" alt="map.geo.admin.ch for phone">
-          </ul>
-        </section>
-        <section>
-          <h2>Responsiveness - tablet</h2>
-          <img class="framed" src="img/RE3_tablet.png" alt="map.geo.admin.ch for tablet">
-          </ul>
-        </section>
-        <section>
-          <h2>Responsiveness - desktop</h2>
-          <img class="framed" src="img/RE3_desktop.png" alt="map.geo.admin.ch for desktop">
-          </ul>
-        </section>
-         <section>
-          <h1>Demo</h2>
-          <a href="http://mf-geoadmin3.bgdi.admin.ch/main/prod/">map.geo.admin.ch</a>
+          <h2><code>ol.style</code></h2>
+          <pre><code class="javascript" data-trim>
+var style = new ol.style.Style({
+  rules: [
+    new ol.style.Rule({
+      filter: 'type = "highway"',
+      symbolizers: [
+        new ol.style.Stroke({
+          width: 3
+        })
+      ]
+    })
+  ]});
+          </code></pre>
+          <a href="./examples/vector-style.html">
+            vector styling example
+          </a>
         </section>
         <section>
           <h1>Status update</h1>
-          <ul>
-            <li class="fragment">3.0.0 beta1 about to be released</li>
-            <li class="fragment">Things in the work:
-            <ul>
-              <li class="fragment">New web site</li>
-              <li class="fragment">New build system</li>
-              <li class="fragment">WebGL vector</li>
-              <li class="fragment">Vector editing</li>
-            </ul>
+        </section>
+        <section>
+          <h2><code>v3.0.0-beta.1</code><br>is out!</h2>
+        </section>
+        <section>
+          <h2>What's missing?</h2>
+          <ul class="plain">
+            <li class="fragment">WebGL vector</li>
+            <li class="fragment">Vector drawing/selection/editing</li>
+            <li class="fragment">Custom builds tool</li>
+            <li class="fragment">Maturity!</li>
+            <li class="fragment">API stability!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Challenges/lessons</h2>
+          <ul class="plain">
+            <li class="fragment">WebGL is hard</li>
+            <li class="fragment">Stabilize APIs takes time</li>
           </ul>
         </section>
         <section>
