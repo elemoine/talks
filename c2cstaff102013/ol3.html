@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OpenLayers 3</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="theme/ol3.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="components/reveal.js/lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="components/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+      .reveal h1.beefy {
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 10px 10px 6px rgba(0, 0, 0, 0.2);
+      }
+      .reveal ul.plain {
+        list-style-type: none;
+      }
+      .reveal h2 > img {
+        vertical-align: sub;
+      }
+      .reveal pre {
+        font-size: 0.85em;
+      }
+      .ex-link {
+        font-size: smaller;
+      }
+      #logos > div {
+        padding: 0 10px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+      }
+      #logos > div img {
+        margin: 0;
+        vertical-align: text-bottom;
+      }
+      pre.narrow {
+        width: 50%;
+      }
+
+    </style>
+
+    <script>
+        document.write( '<link rel="stylesheet" href="components/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+  </head>
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 class="beefy">OL3</h1>
+          <!-- Notes:
+               - Récupération des présentations faites à FOSS4G.
+               - J'encourage Tom et Benoît à intervenir.
+          -->
+        </section>
+        <section>
+          <h2>Fund raising</h2>
+          <!-- Notes:
+               - Levée de fonds.
+               - Plusieurs entreprises impliquées : OpenGeo (Boundless), Terrestris et Camptocamp.
+               - Swisstopo au commande de la levée de fonds.
+          -->
+        </section>
+        <section>
+          <h2><a class="ex-link" href="http://ol3js.org">http://ol3js.org</a></h2>
+          <!-- Notes:
+               - Nouveau site web.
+               - Objectif : ne pas "perturber" OpenLayers 2.
+          -->
+        </section>
+        <section>
+          <h2>Outline</h2>
+          <ol>
+            <li>Vision</li>
+            <li>Design principles</li>
+            <li>Demos</li>
+            <li>Status update</li>
+          </ol>
+        </section>
+        <section>
+          <h1>Vision</h1>
+          <h3>Where OL3 is going</h3>
+        </section>
+        <section>
+          <h2>2D 3D Convergence</h2>
+          <img class="framed" src="img/osm3d.jpg" alt="Building on an OSM map">
+          <p>(Image courtesy of the OSM-3D.org project)</p>
+          <!-- Notes:
+               - 3D building and terrain data in cartesian space.
+               - References: Google Maps API, Nokia Maps 3D WebGL.
+          -->
+          </ul>
+        </section>
+        <section>
+          <h2>Client-side rendering</li>
+          <img class="framed" src="img/many-points-map.png" alt="Many points map">
+          <!-- Notes:
+               - Rendering of complex and numerous vector features.
+               - Vector tiles.
+               - Lots of vectors with WebGL.
+          -->
+        </section>
+        <section>
+          <h2>Maps are Graphics</h2>
+          <img class="framed" src="img/teapot-map.jpg" alt="Teapot map">
+          <!-- Notes:
+               - Rely on the Canvas and WebGL Graphics APIs.
+               - Performance (GPU).
+               - Isolate the map from the rest of the page.
+          -->
+        </section>
+        <section>
+          <h2>Where does OL3 fit?</h2>
+          <br>
+          <div id="logos">
+            <div class="fragment" data-fragment-index="0">
+              <img src="img/ol2-logo.png"> OpenLayers 2
+              <br><br>
+              <img src="img/leaflet-logo.png">
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <img src="img/ol3-logo.png">
+              <br>
+              OpenLayers 3
+            </div>
+            <div class="fragment" data-fragment-index="1">
+              <img src="img/cesium-logo.png">
+              <br><br>
+              <img src="img/owg-logo.png">
+            </div>
+          </div>
+          <!-- Notes:
+               - Leaflet:
+                 - Nice API, easy to work with.
+                 - Lightweight, works great on mobile.
+               - Cesium:
+                 - Fantastic virtual globe solution.
+               - OL3
+                 - Compared to Leaflet:
+                   - Support for many layer types, formats, etc.
+                   - Support for irregular tile grids.
+                   - Support for local projections.
+                   - Support for arbitrary resolutions.
+                   - Support for advanced drawing tools.
+                   - Built-in functionality, as opposed to 3d-party plugins.
+                 - Compared to OL2:
+                   - Better and more consistent APIs.
+                   - Smaller builds.
+                   - Better performance.
+                   - Flexible architecture.
+                 - Compared to Cesium.
+                   - Smaller and more compact than Cesium.
+                   - Easier to use.
+                   - WebGL not required.
+                   - Better mobile support.
+                 - Focus on performance.
+                   - WebGL.
+                   - GPU acceleration.
+                   - requestAnimationFrame.
+                   - Closure Compiler.
+          -->
+        </section>
+        <section>
+          <h1>Design principles</h1>
+        </section>
+        <section>
+          <h2>SoC - 1/3</h2>
+          <p>Separation of Concerns</p>
+          <img src="img/lego.png">
+          <!-- Notes:
+               We strive to separate concerns within the library and throughout
+               the API.
+          -->
+        </section>
+        <section>
+          <h2>SoC - 2/3</h2>
+          <ul class="plain">
+            <li class="fragment">Map</li>
+            <li class="fragment">Map has a renderer</li>
+            <li class="fragment">Map has a view</li>
+            <li class="fragment">Map has layers</li>
+            <li class="fragment">Layers have sources</li>
+          </ul>
+        </section>
+        <section>
+          <h2>SoC - 3/3</h2>
+          <p>Interactions versus Controls</li>
+          <!-- Notes:
+               - Les interactions n'ont pas de présence dans le DOM. Elles
+                 agissent sur la carte/vue suite à des actions utilisateur.
+               - Exemple d'interaction : "double clic pour zoomer".
+               - Les controls ont une une présence dans le DOM. Ce sont 
+                 des componsants de plus haut niveau.
+               - Exemple de controls : barre d'échelle.
+          -->
+        </section>
+        <section>
+          <h2>High-Performance</h2>
+          <p>
+          For example:
+          </p>
+          <ul class="plain">
+            <li>Avoid boxing/unboxing operations</li>
+            <li>Be nice with the GC and reuse objects</li>
+            <li>Use <code>rAF</code> and watch the frame rate</li>
+            <li>Redraw as few pixels as possible</li>
+            <li>Use Closure Compiler</li>
+          </ul>
+        </section>
+        <section>
+          <h2><img src="img/closure-logo.png">Closure Compiler</h2>
+            <ul class="plain">
+              <li class="fragment fade-in">Variable renaming</li>
+              <li class="fragment fade-in">Dead code elimination</li>
+              <li class="fragment fade-in">Property flattening</li>
+              <li class="fragment fade-in">Prototype method devirtualization</li>
+              <li class="fragment fade-in">Inlining</li>
+            </ul>
+        </section>
+        <section>
+          <h2>No opinion on the UI</h2>
+          <ul class="plain">
+            <li class="fragment">Use CSS</li>
+            <li class="fragment">Integration with UI toolkits: <code>ol.Overlay</code></li>
+          </ul>
+        </section>
+        <section>
+          <h1>Demos</h1>
+        </section>
+        <section>
+          <h2><code>ol.Map/ol.View</code></h2>
+          <pre><code class="javascript" data-trim>
+var view = new ol.View2D({
+  center: [0, 0],
+  zoom: 0
+});
+var map = new ol.Map({
+  target: 'map',
+  layers: [layer],
+  view: view
+});
+          </code></pre>
+          <a href="./examples/hello-world.html">
+            hello world example
+          </a>
+        </section>
+        <section>
+          <h2><code>ol.layer/ol.source</code></h2>
+          <pre><code class="javascript" data-trim>
+var osm = new ol.layer.Tile({
+  source: new ol.source.OSM()
+});
+          </code></pre>
+          <pre><code class="javascript" data-trim>
+var bing = new ol.layer.Tile({
+  source: new ol.source.BingMaps({
+    // your key here
+    key: 'AlQLZ0-5yk301_ESrmN...',
+    style: 'AerialWithLabels'
+  })
+}));
+          </code></pre>
+          <a href="./examples/tiles-galore.html">
+            tiles galore example
+          </a>
+        </section>
+        <section>
+          <h2><code>ol.interaction/</code><br><code>ol.control</code></h2>
+          <a href="./examples/interaction-control.html">
+            interaction/control example
+          </a>
+        </section>
+        <section>
+          <h2><code>ol.animation</code></h2>
+          <a href="./examples/animation.html">
+            animation example
+          </a>
+        </section>
+        <section>
+          <h2><code>ol.style</code></h2>
+          <pre><code class="javascript" data-trim>
+var style = new ol.style.Style({
+  rules: [
+    new ol.style.Rule({
+      filter: 'type = "highway"',
+      symbolizers: [
+        new ol.style.Stroke({
+          width: 3
+        })
+      ]
+    })
+  ]});
+          </code></pre>
+          <a href="./examples/vector-style.html">
+            vector styling example
+          </a>
+        </section>
+        <section>
+          <h1>Status update</h1>
+        </section>
+        <section>
+          <h2><code>v3.0.0-beta.1</code><br>is out!</h2>
+        </section>
+        <section>
+          <h2>What's missing?</h2>
+          <ul class="plain">
+            <li class="fragment">WebGL vector</li>
+            <li class="fragment">Vector drawing/selection/editing</li>
+            <li class="fragment">Custom builds tool</li>
+            <li class="fragment">Maturity!</li>
+            <li class="fragment">API stability!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Challenges/lessons</h2>
+          <ul class="plain">
+            <li class="fragment">WebGL is hard</li>
+            <li class="fragment">Stabilize APIs takes time</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Thanks!</h1>
+        </section>
+      </div>
+    </div>
+
+    <!-- reveal.js loading and configuration -->
+    <script src="components/reveal.js/lib/js/head.min.js"></script>
+    <script src="components/reveal.js/js/reveal.min.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        rollingLinks: false,
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+          src: 'components/reveal.js/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        }, {
+          src: 'components/reveal.js/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        }]
+      });
+
+    </script>
+  </body>
+</html>
