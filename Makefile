@@ -18,6 +18,8 @@ gh-pages: .gh-pages
 	 cp ../frog2013/ol3.pdf frog2013 && \
 	 mkdir -p foss4g2013 && \
 	 cp -r ../foss4g2013/.grunt/self/* foss4g2013 && \
+	 mkdir -p c2cstaff102013 && \
+	 cp -r ../c2cstaff102013/.grunt/self/* c2cstaff102013 && \
 	 git add --all . && \
 	 git commit -m 'Update' && \
 	 git push origin gh-pages)
