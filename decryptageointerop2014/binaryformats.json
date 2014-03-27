@@ -1,0 +1,31 @@
+{
+  "name": "Course Template 1.0",
+  "description": "Course Template Materials, revision 1.0",
+  "courseware-metadata": {
+    "title": "Course Template",
+    "subtitle": "for Systems Administrators",
+    "department": "infrastructure",
+    "version": "1.0"
+  },
+  "favicon": "file/_images-base/favicon.ico",
+  "protected": [
+    "presenter",
+    "onepage",
+    "print"
+  ],
+  "user": "myuser",
+  "password": "mypassword",
+  "version": "0.9.7",
+  "feedback": true,
+  "sections": [
+    "BinaryFormats/Cover.md",
+    "Course_Overview/Course_Trainer.md",
+    "BinaryFormats/Definition.md",
+    "BinaryFormats/Context.md",
+    "BinaryFormats/Demos.md",
+    "BinaryFormats/Objectives.md",
+    "BinaryFormats/EtatDeLArt.md",
+    "BinaryFormats/Thanks.md"
+
+  ]
+}
