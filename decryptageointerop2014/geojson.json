@@ -1,0 +1,34 @@
+{
+  "name": "Course Template 1.0",
+  "description": "Course Template Materials, revision 1.0",
+  "courseware-metadata": {
+    "title": "Course Template",
+    "subtitle": "for Systems Administrators",
+    "department": "infrastructure",
+    "version": "1.0"
+  },
+  "favicon": "file/_images-base/favicon.ico",
+  "protected": [
+    "presenter",
+    "onepage",
+    "print"
+  ],
+  "user": "myuser",
+  "password": "mypassword",
+  "version": "0.9.7",
+  "feedback": true,
+  "sections": [
+    "Course_Overview/Course_Intro.md",
+    "Course_Overview/Course_Trainer.md",
+    "GeoJSON/JamesClarkQuote.md",
+    "GeoJSON/JSON.md",
+    "GeoJSON/LeWebEtJSON.md",
+    "GeoJSON/GeoJSON.md",
+    "GeoJSON/Objectifs.md",
+    "GeoJSON/Exemple.md",
+    "GeoJSON/Succes.md",
+    "GeoJSON/Flexible.md",
+    "GeoJSON/CRS.md",
+    "GeoJSON/LiensAvecOGC.md"
+  ]
+}
