@@ -11,5 +11,5 @@ Serveurs WFS prenant en charge WFS :
 * GeoServer
 * ?
 
-Mais valeur `outputFormat` non spécifiée (`application/json` typiquement
-utilisé).
+Mais les valeurs possibles pour `outputFormat` ne sont pas spécifiées
+(`application/json` typiquement utilisé).
