@@ -22,3 +22,5 @@ Formats "features" géographiques
 3D
 
 * [glTF](https://github.com/KhronosGroup/glTF/blob/master/specification/README.md)
+
+**Travail prospectif**
