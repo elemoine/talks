@@ -2,6 +2,7 @@ var seattle = [-13618019.918127416, 6050307.967492877];
 
 var map = new ol.Map({
   target: 'map',
+  renderer: ol.RendererHint.CANVAS,
   layers: [
     new ol.layer.TileLayer({
       source: new ol.source.Stamen({

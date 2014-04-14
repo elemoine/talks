@@ -12,6 +12,7 @@ var layer = new ol.layer.Tile({
 
 var map = new ol.Map({
   target: 'map',
+  renderer: ol.RendererHint.CANVAS,
   interactions: ol.interaction.defaults().extend([
     new ol.interaction.DragRotateAndZoom()
   ]),
