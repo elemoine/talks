@@ -16,6 +16,7 @@ var view = new ol.View2D({
 
 var map = new ol.Map({
   target: 'map',
+  renderer: ol.RendererHint.CANVAS,
   layers: [
     new ol.layer.Tile({
       preload: 4,
