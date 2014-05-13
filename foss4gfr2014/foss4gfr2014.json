@@ -1,0 +1,48 @@
+{
+  "name": "Course Template 1.0",
+  "description": "Course Template Materials, revision 1.0",
+  "courseware-metadata": {
+    "title": "Course Template",
+    "subtitle": "for Systems Administrators",
+    "department": "infrastructure",
+    "version": "1.0"
+  },
+  "favicon": "file/_images-base/favicon.ico",
+  "protected": [
+    "presenter",
+    "onepage",
+    "supplemental",
+    "print"
+  ],
+  "user": "myuser",
+  "password": "mypassword",
+  "version": "0.9.7",
+  "feedback": true,
+  "sections": [
+
+/* Course Overview */
+    // Setup exercises & solutions
+    "Course_Overview/Solutions_Slide.md",
+    "Course_Overview/Course_Intro.md",
+    "Course_Overview/Table_of_Contents.md",
+    /* remove trainer for book creation */
+//    "Course_Overview/Course_Trainer.md",
+    "Course_Overview/Course_Objectives.md",
+    "Course_Overview/Course_Overview.md",
+    "Course_Overview/Course_Agenda_1.md",
+    "Course_Overview/About_Camptocamp.md",
+
+/* Course Conclusion */
+    "Course_Conclusion/Conclusion_Section.md",
+    "Course_Conclusion/Course_Summary.md",
+    "Course_Conclusion/next_steps.md",
+//    "Course_Conclusion/Feedback.md",
+
+/* Capstone Lab & Future Discussion */
+//  	"Capstone_Lab/Section.md",
+//  	"Capstone_Lab/LabCapstone.md",
+    "Course_Conclusion/Outro.md"
+
+//    "Appendix.md"
+  ]
+}
