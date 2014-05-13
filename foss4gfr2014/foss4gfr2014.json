@@ -1,10 +1,10 @@
 {
-  "name": "Course Template 1.0",
-  "description": "Course Template Materials, revision 1.0",
+  "name": "FOSS4G-FR OpenLayers 3 Talk",
+  "description": "FOSS4G-FR OpenLayers 3 Talk",
   "courseware-metadata": {
-    "title": "Course Template",
-    "subtitle": "for Systems Administrators",
-    "department": "infrastructure",
+    "title": "OpenLayers 3 : une bibliothèque unique",
+    "subtitle": "",
+    "department": "geospatial",
     "version": "1.0"
   },
   "favicon": "file/_images-base/favicon.ico",
