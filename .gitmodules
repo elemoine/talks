@@ -1,3 +1,6 @@
 [submodule "decryptageointerop2014/common"]
 	path = decryptageointerop2014/common
 	url = git@github.com:camptocamp/courseware-common.git
+[submodule "foss4gfr2014/common"]
+	path = foss4gfr2014/common
+	url = git@github.com:camptocamp/courseware-common.git
