@@ -2,11 +2,11 @@
 
 # Du vrai vecteur !
 
-Les couches/objets vecteur sont dessinés "très souvent".
+Les vecteurs sont dessinés <strong>très souvent</strong>.
 
 * pendant les animations
-* pendant les interactions (ex : pendant le pinch-zoom)
+* pendant les interactions (pendant le "pinch-zoom" !)
 
-Avantage : qualité du rendu (ex : pas de blur suite à une rotation)
+Avantage : qualité du rendu – pas de "blur" suite à une rotation.
 
 <a target="blank" href="/_files/vector.html">Démo</a>

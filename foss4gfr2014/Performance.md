@@ -1,8 +1,8 @@
 <!SLIDE>
 
-# Et les performances ?
+# Et les perf ?
 
-Question : comment dessiner souvent et obtenir de bonnes performances ?
+Question : comment dessiner souvent et obtenir de bonnes perf ?
 
 &#8680; Utilisation de techniques et algorithmes adaptés.
 

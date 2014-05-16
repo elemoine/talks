@@ -1,7 +1,7 @@
 <!SLIDE center cover>
 
 <h1 style="margin-left: 0; text-align: center;">OpenLayers 3</div>
-<h2 style="margin-left: 0; text-align: center;">Une bibliothèque unique</h2>
+<h2 style="margin-left: 0; text-align: center;">Une bibliothèque unique !</h2>
 
 <div style="margin-top: 50px;">
 <img src="/image/_images/ol3-logo.png" />

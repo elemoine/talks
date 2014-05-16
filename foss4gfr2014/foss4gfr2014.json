@@ -20,13 +20,22 @@
   "feedback": true,
   "sections": [
     "Title.md",
+    "TitleBis.md",
     "Online.md",
-    "ThisTalk.md",
-    "Objectives.md",
+    "AgendaFull.md",
+    "AgendaObjectives.md",
+    "AgendaVector.md",
     "Vector.md",
     "Performance.md",
     "Simplification.md",
     "Batching.md",
-    "Oversimplification.md"
+    "Oversimplification.md",
+    "AgendaCompiler.md",
+    "ClosureCompiler.md",
+    "ClosureCompilerExample.md",
+    "ClosureCompilerAdvantages.md",
+    "AgendaConclusion.md",
+    "Thanks.md",
+    "FinalRelease.md"
   ]
 }
