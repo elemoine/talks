@@ -30,11 +30,14 @@
     "Simplification.md",
     "Batching.md",
     "Oversimplification.md",
+    "AgendaHitDetection.md",
+    "HitDetection.md",
     "AgendaCompiler.md",
     "ClosureCompiler.md",
     "ClosureCompilerExample.md",
     "ClosureCompilerAdvantages.md",
     "AgendaConclusion.md",
+    "Conclusion.md",
     "Thanks.md",
     "FinalRelease.md"
   ]

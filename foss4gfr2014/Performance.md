@@ -1,11 +1,11 @@
 <!SLIDE>
 
-# Et les perf ?
+# Et les performances ?
 
-Question : comment dessiner souvent et obtenir de bonnes perf ?
+Comment dessiner souvent et obtenir de bonnes performances ?
 
 &#8680; Utilisation de techniques et algorithmes adaptés.
 
-<p style="color: #FF680A;">
-On pousse l'implémentation et les technologies à leurs limites !
-</p>
+<div style="text-align: center; color: #FF680A; font-size: 1.6em;">
+On pousse l'implémentation à ses limites !
+</div>

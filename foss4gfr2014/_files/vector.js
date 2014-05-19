@@ -69,3 +69,48 @@ $('#layerselect').change(function() {
   }
 });
 $('#layerselect').trigger('change');
+
+var featureOverlay = new ol.FeatureOverlay({
+  style: [
+    new ol.style.Style({
+      fill: new ol.style.Fill({
+        color: [255, 255, 255, 0.5]
+      }),
+      stroke: new ol.style.Stroke({
+        color: [255, 255, 255, 1],
+        width: 5
+      }),
+      image: new ol.style.Icon({
+        src: '/file/_files/arch.png',
+        anchor: [0.5, 1.0],
+        scale: 2
+      })
+    }),
+    new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: [0, 153, 255, 1],
+        width: 3
+      })
+    })
+  ]
+});
+featureOverlay.setMap(map);
+
+map.on('pointermove', (function() {
+  var selectedFeature = null;
+  return function(e) {
+    var feature = map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
+      return feature;
+    });
+    if (feature) {
+      if (feature != selectedFeature) {
+        featureOverlay.getFeatures().clear();
+        featureOverlay.getFeatures().push(feature);
+        selectedFeature = feature;
+      }
+    } else {
+      featureOverlay.getFeatures().clear();
+      selectedFeature = null;
+    }
+  };
+})());
