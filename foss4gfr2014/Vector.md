@@ -9,4 +9,4 @@ Les vecteurs sont dessinés <strong>très souvent</strong>.
 
 Avantage : qualité du rendu – pas de "blur" suite à une rotation.
 
-<a target="blank" href="/_files/vector.html">Démo</a>
+<a target="blank" href="/file/_files/vector.html">Démo</a>
