@@ -17,6 +17,9 @@ var vectorSource = new ol.source.GeoJSON({
   projection: 'EPSG:3857'
 });
 
+var arcTriompheCoord = ol.proj.transform([2.295, 48.8738],
+    'EPSG:4326', 'EPSG:3857');
+
 var map = new ol.Map({
   target: 'map',
   renderer: 'canvas',
@@ -46,14 +49,12 @@ var map = new ol.Map({
     })
   ],
   view: new ol.View2D({
-    center: [645740.0149531711, 1007745.7809117641],
+    center: arcTriompheCoord,
     zoom: 2
   })
 });
 
-var coordinates = ol.proj.transform([2.295, 48.8738],
-    'EPSG:4326', map.getView().getProjection());
-var pointFeature = new ol.Feature(new ol.geom.Point(coordinates));
+var pointFeature = new ol.Feature(new ol.geom.Point(arcTriompheCoord));
 vectorSource.addFeature(pointFeature);
 
 $('#layerselect').change(function() {

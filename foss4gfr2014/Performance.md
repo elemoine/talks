@@ -1,6 +1,6 @@
 <!SLIDE>
 
-# Et les performances ?
+# Performance
 
 Comment dessiner souvent et obtenir de bonnes performances ?
 
