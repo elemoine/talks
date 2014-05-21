@@ -59,7 +59,6 @@ vectorSource.addFeature(pointFeature);
 
 $('#layerselect').change(function() {
   var name = $(this).find(':selected').val();
-  console.log(name);
   var layers = map.getLayers().getArray();
   var i, ii;
   for (i = 0, ii = layers.length; i < ii; ++i) {
