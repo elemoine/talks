@@ -45,3 +45,17 @@ var map = new ol.Map({
 
 var rotation = new ol.dom.Input(document.getElementById('rotation'));
 rotation.bindTo('value', map.getView(), 'rotation');
+
+document.onkeydown = function(e) {
+  var view = map.getView();
+  var rotation = view.getRotation();
+  if (e.keyCode == 82) {
+    // "r" key
+    rotation += 0.01;
+    view.setRotation(Math.min(rotation, 3.14159));
+  } else if (e.keyCode == 76) {
+    // "l" key
+    rotation -= 0.01;
+    view.setRotation(Math.max(rotation, -3.14159));
+  }
+};
