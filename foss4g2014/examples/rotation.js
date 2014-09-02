@@ -17,7 +17,7 @@ var vectorLayer = new ol.layer.Vector({
     if (!styleCache[text]) {
       styleCache[text] = [new ol.style.Style({
         text: new ol.style.Text({
-          font: '12px Calibri,sans-serif',
+          font: '16px Calibri,sans-serif',
           text: text,
           fill: new ol.style.Fill({
             color: '#000'
