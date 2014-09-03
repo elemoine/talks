@@ -16,6 +16,13 @@ var vectorLayer = new ol.layer.Vector({
     var text = feature.get('name');
     if (!styleCache[text]) {
       styleCache[text] = [new ol.style.Style({
+        fill: new ol.style.Fill({
+          color: 'rgba(255, 255, 255, 0.1)'
+        }),
+        stroke: new ol.style.Stroke({
+          color: '#319FD3',
+          width: 2
+        }),
         text: new ol.style.Text({
           font: '16px Calibri,sans-serif',
           text: text,
