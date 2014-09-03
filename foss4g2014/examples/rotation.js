@@ -98,7 +98,7 @@ document.onkeydown = function(e) {
     view.setRotation(Math.max(rotation, -3.14159));
   } else if (e.keyCode == 70 || e.keyCode == 66) {
     // "f" key - fly to Mexico
-    // "b" key - fly back to 
+    // "b" key - fly back to Jamaica
     var duration = 2000;
     var start = +new Date();
     var pan = ol.animation.pan({
@@ -113,8 +113,8 @@ document.onkeydown = function(e) {
     });
     map.beforeRender(pan, bounce);
     if (e.keyCode == 70) {
-      // Mexico
-      view.setCenter([-11405013.422465283, 2746182.234668064]);
+      // Guatemala
+      view.setCenter([-10029702.877605246, 1772716.450247171]);
     } else {
       // Jamaica
       view.setCenter(marker.getGeometry().getCoordinates());
