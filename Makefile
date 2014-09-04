@@ -7,6 +7,10 @@ frog2013: frog2013/ol3.html
 foss4g2013: foss4g2013/geoalchemy.html
 	cd foss4g2013 && npm install
 
+.PHONY: foss4g2014
+foss4g2014: foss4g2013/geoalchemy.html
+	cd foss4g2014 && npm install
+
 .PHONY: gh-pages
 gh-pages: .gh-pages
 	(cd .gh-pages && \
@@ -18,6 +22,8 @@ gh-pages: .gh-pages
 	 cp ../frog2013/ol3.pdf frog2013 && \
 	 mkdir -p foss4g2013 && \
 	 cp -r ../foss4g2013/.grunt/self/* foss4g2013 && \
+	 mkdir -p foss4g2014 && \
+	 cp -r ../foss4g2014/.grunt/self/* foss4g2014 && \
 	 mkdir -p c2cstaff102013 && \
 	 cp -r ../c2cstaff102013/.grunt/self/* c2cstaff102013 && \
 	 git add --all . && \
