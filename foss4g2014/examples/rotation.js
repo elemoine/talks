@@ -21,7 +21,7 @@ var vectorLayer = new ol.layer.Vector({
         }),
         stroke: new ol.style.Stroke({
           color: '#319FD3',
-          width: 2
+          width: 3
         }),
         text: new ol.style.Text({
           font: '16px Calibri,sans-serif',
@@ -53,31 +53,35 @@ var pinkSightStyle = new ol.style.Style({
   })
 });
 
-var marker = new ol.Feature(
+var jamaicaMarker = new ol.Feature(
     new ol.geom.Point([-8620815.572252877, 2078464.5633878764]));
-marker.setStyle(greenSightStyle);
-marker.setId('marker');
-vectorLayer.getSource().addFeature(marker);
+jamaicaMarker.setStyle(greenSightStyle);
+
+var guatemalaMarker = new ol.Feature(
+    new ol.geom.Point([-10037040.832320623, 1804514.2540138045]));
+guatemalaMarker.setStyle(pinkSightStyle);
+
+vectorLayer.getSource().addFeatures([jamaicaMarker, guatemalaMarker]);
 
 var map = new ol.Map({
   target: 'map',
   layers: [rasterLayer, vectorLayer],
   view: new ol.View({
-    center: marker.getGeometry().getCoordinates(),
+    center: jamaicaMarker.getGeometry().getCoordinates(),
     zoom: 6
   })
 });
 
 map.on('click', function(e) {
   var feature = map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
-    if (feature.getId() == 'marker') {
+    if (feature === jamaicaMarker) {
       return feature;
     }
   });
   if (feature) {
     feature.setStyle(pinkSightStyle);
   } else {
-    marker.setStyle(greenSightStyle);
+    jamaicaMarker.setStyle(greenSightStyle);
   }
 });
 
@@ -114,10 +118,10 @@ document.onkeydown = function(e) {
     map.beforeRender(pan, bounce);
     if (e.keyCode == 70) {
       // Guatemala
-      view.setCenter([-10029702.877605246, 1772716.450247171]);
+      view.setCenter(guatemalaMarker.getGeometry().getCoordinates());
     } else {
       // Jamaica
-      view.setCenter(marker.getGeometry().getCoordinates());
+      view.setCenter(jamaicaMarker.getGeometry().getCoordinates());
     }
   }
 };
