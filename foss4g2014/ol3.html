@@ -36,6 +36,9 @@
       .reveal h2 > img {
         vertical-align: sub;
       }
+      .text-align-left {
+        text-align: left;
+      }
       .ex-link {
         font-size: smaller;
       }
@@ -79,7 +82,7 @@
           <p>present some of the techniques used in the library</p>
         </section>
         <section>
-          <a href="./examples/rotation.html">Example #1</a> (Rotate and animate)
+          <a href="./examples/rotation.html">Example #1</a> (rotate and animate)
         </section>
         <section>
           <h2>« Draw early, Draw often »</h2>
@@ -97,7 +100,10 @@
           <h2>Performance challenge!</h2>
         </section>
         <section>
-          <h2>Batching</h2>
+          <h3>Let's look at the techniques we use in the library…</h3>
+        </section>
+        <section>
+          <h2>#1 batching</h2>
           <p>Minimize data processing and manipulation:</p>
           <ul>
             <li>style calculations</li>
@@ -113,7 +119,22 @@
           <p>Let's look at <a href="./examples/rotation.html">Example #1</a> again.</p>
         </section>
         <section>
-          <a href="./examples/fractal.html">Example #2</a> (Complex and large features)
+          <h2>#2 geometry simplification</h2>
+          <ul>
+            <li>Douglas Peuker (lines)</li>
+            <li>Quantization – to maintain topology (polygons)</li>
+          </ul>
+          <br>
+          <br>
+          <p>&#8680; also allows for better rendering qualtity</p>
+        </section>
+        <section>
+          <h2>#3 over-simplification</h2>
+          <p>Over-simplification and clipping for the parts that are outside the viewport.</p>
+          <img src="img/over-simplification.png">
+        </section>
+        <section>
+          <a href="./examples/fractal.html">Example #2</a> (complex and large features)
         </section>
         <section>
           <h1>Thanks!</h1>
