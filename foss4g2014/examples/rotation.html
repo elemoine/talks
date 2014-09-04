@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OL3 - Rotation</title>
+    <link rel="stylesheet" href="ol-v3.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      #rotation-wrapper {
+        position: absolute;
+        top: 14px;
+        right: 60px;
+        border-radius: 4px;
+        padding: 2px;
+        background: rgba(255,255,255,0.4);
+        height: 10px;
+        line-height: 5px;
+      }
+      #rotation {
+        -webkit-appearance: none;
+        background-color: white;
+        width: 100px;
+        height: 4px;
+        border: 0;
+        font-size: 5px;
+      }
+      #rotation::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-color: rgba(0,60,136,0.75);
+        width: 10px;
+        height: 10px;
+        border-radius: 4px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="rotation-wrapper">
+      <input id="rotation" type="range" min="-3.14159" max="3.14159" step="0.01">
+    </div>
+    <script src="ol-v3.js"></script>
+    <script src="rotation.js"></script>
+  </body>
+</html>

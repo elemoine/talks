@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OpenLayers 3</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="theme/ol3.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+      .reveal h1.beefy {
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 10px 10px 6px rgba(0, 0, 0, 0.2);
+      }
+      .reveal ul.plain {
+        list-style-type: none;
+      }
+      .reveal h2 {
+        margin-bottom: 40px;
+      }
+      .reveal h3 {
+        margin-bottom: 30px;
+      }
+      .reveal h2 > img {
+        vertical-align: sub;
+      }
+      .text-align-left {
+        text-align: left;
+      }
+      .ex-link {
+        font-size: smaller;
+      }
+      #logos > div {
+        padding: 0 10px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+      }
+      #logos > div img {
+        margin: 0;
+        vertical-align: text-bottom;
+      }
+      pre.narrow {
+        width: 50%;
+      }
+
+    </style>
+
+    <script>
+        document.write( '<link rel="stylesheet" href="bower_components/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+  </head>
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 class="beefy">OL3</h1>
+          <h2>A unique mapping library</h2>
+          <img src="img/logo_bird.png">
+          <img src="img/logo.png">
+          <img src="img/c2c_square_64x64.png">
+        </section>
+        <section>
+          <h2>OL 3.0 has been released!</h2>
+        </section>
+        <section>
+          <h2>This talk:</h2>
+          <p>present some of the techniques used in the library</p>
+        </section>
+        <section>
+          <a href="./examples/rotation.html">Example #1</a> (rotate and animate)
+        </section>
+        <section>
+          <h2>« Draw early, Draw often »</h2>
+          <img src="img/mona320x360_html5.jpg">
+        </section>
+        <section>
+          <h3>So for good rendering quality:</h3>
+          <ul>
+            <li>vectors redrawn at each frame</li>
+            <li>while interacting and animating</li>
+            <li>at 60 fps!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Performance challenge!</h2>
+        </section>
+        <section>
+          <h3>Let's look at the techniques we use in the library…</h3>
+        </section>
+        <section>
+          <h2>#1 batching</h2>
+          <p>Minimize data processing and manipulation:</p>
+          <ul>
+            <li>style calculations</li>
+            <li>geometry simplifications</li>
+            <li>R-tree lookups</li>
+            <li>object creations</li>
+          </ul>
+          <br>
+          <br>
+          <p>&#8680; replay batch during animations/interactions</p>
+        </section>
+        <section>
+          <p>Let's look at <a href="./examples/rotation.html">Example #1</a> again.</p>
+        </section>
+        <section>
+          <h2>#2 geometry simplification</h2>
+          <ul>
+            <li>Douglas Peuker (lines)</li>
+            <li>Quantization – to maintain topology (polygons)</li>
+          </ul>
+          <br>
+          <br>
+          <p>&#8680; also allows for better rendering qualtity</p>
+        </section>
+        <section>
+          <h2>#3 over-simplification</h2>
+          <p>Over-simplification and clipping for the parts that are outside the viewport.</p>
+          <img src="img/over-simplification.png">
+        </section>
+        <section>
+          <a href="./examples/fractal.html">Example #2</a> (complex and large features)
+        </section>
+        <section>
+          <h1>Thanks!</h1>
+        </section>
+      </div>
+    </div>
+
+    <!-- reveal.js loading and configuration -->
+    <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        rollingLinks: false,
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+          src: 'bower_components/reveal.js/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        }, {
+          src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        }]
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OL3 - Fractal</title>
+    <link rel="stylesheet" href="ol-v3.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      #depth-wrapper {
+        position: absolute;
+        top: 14px;
+        right: 60px;
+        border-radius: 4px;
+        padding: 2px;
+        background: rgba(255,255,255,0.4);
+        height: 15px;
+        line-height: 13px;
+      }
+      #depth {
+        -webkit-appearance: none;
+        background-color: white;
+        width: 100px;
+        height: 4px;
+        border: 0;
+        font-size: 5px;
+      }
+      #depth::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-color: rgba(0,60,136,0.75);
+        width: 10px;
+        height: 10px;
+        border-radius: 4px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="depth-wrapper">
+      <label for="depth">depth:&nbsp;</label>
+      <input id="depth" type="range" min="0" max="9" step="1" value="5">&nbsp;(<span id="count">#</span>points)
+    </div>
+    <script src="ol-v3.js"></script>
+    <script src="fractal.js"></script>
+  </body>
+</html>
