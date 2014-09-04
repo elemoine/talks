@@ -27,6 +27,12 @@
       .reveal ul.plain {
         list-style-type: none;
       }
+      .reveal h2 {
+        margin-bottom: 40px;
+      }
+      .reveal h3 {
+        margin-bottom: 30px;
+      }
       .reveal h2 > img {
         vertical-align: sub;
       }
@@ -70,19 +76,44 @@
         </section>
         <section>
           <h2>This talk:</h2>
-          <p>Present some of the techniques used in the library</p>
+          <p>present some of the techniques used in the library</p>
         </section>
         <section>
-          <a href="./examples/rotation.html">Example #1</a>
+          <a href="./examples/rotation.html">Example #1</a> (Rotate and animate)
         </section>
         <section>
           <h2>« Draw early, Draw often »</h2>
+          <img src="img/mona320x360_html5.jpg">
+        </section>
+        <section>
+          <h3>So for good rendering quality:</h3>
           <ul>
             <li>vectors redrawn at each frame</li>
-            <li>while interacting</li>
-            <li>while animating</li>
-            <li>at 60 fps</li>
+            <li>while interacting and animating</li>
+            <li>at 60 fps!</li>
           </ul>
+        </section>
+        <section>
+          <h2>Performance challenge!</h2>
+        </section>
+        <section>
+          <h2>Batching</h2>
+          <p>Minimize data processing and manipulation:</p>
+          <ul>
+            <li>style calculations</li>
+            <li>geometry simplifications</li>
+            <li>R-tree lookups</li>
+            <li>object creations</li>
+          </ul>
+          <br>
+          <br>
+          <p>&#8680; replay batch during animations/interactions</p>
+        </section>
+        <section>
+          <p>Let's look at <a href="./examples/rotation.html">Example #1</a> again.</p>
+        </section>
+        <section>
+          <a href="./examples/fractal.html">Example #2</a> (Complex and large features)
         </section>
         <section>
           <h1>Thanks!</h1>
