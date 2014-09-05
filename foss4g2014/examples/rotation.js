@@ -72,20 +72,6 @@ var map = new ol.Map({
   })
 });
 
-map.on('click', function(e) {
-  var feature = map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
-    if (feature === jamaicaMarker) {
-      return feature;
-    }
-  });
-  if (feature) {
-    feature.setStyle(pinkSightStyle);
-  } else {
-    jamaicaMarker.setStyle(greenSightStyle);
-  }
-});
-
-
 var rotation = new ol.dom.Input(document.getElementById('rotation'));
 rotation.bindTo('value', map.getView(), 'rotation');
 
