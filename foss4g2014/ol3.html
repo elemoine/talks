@@ -100,33 +100,37 @@
           <h2>Performance challenge!</h2>
         </section>
         <section>
-          <h3>Let's look at the techniques we use in the library…</h3>
+          <h3>Now let's look at the techniques we use in the library…</h3>
         </section>
         <section>
           <h2>#1 batching</h2>
-          <p>Minimize data processing and manipulation:</p>
-          <ul>
-            <li>style calculations</li>
-            <li>geometry simplifications</li>
-            <li>R-tree lookups</li>
-            <li>object creations</li>
-          </ul>
-          <br>
-          <br>
-          <p>&#8680; replay batch during animations/interactions</p>
+          <div class="text-align-left">
+            <p>Minimize data processing and manipulation:</p>
+            <ul>
+              <li>style calculations</li>
+              <li>geometry simplifications</li>
+              <li>R-tree lookups</li>
+              <li>object creations</li>
+            </ul>
+            <br>
+            <br>
+            <p>&#8680; replay batch during animations/interactions</p>
+          </div>
         </section>
         <section>
           <p>Let's look at <a href="./examples/rotation.html">Example #1</a> again.</p>
         </section>
         <section>
           <h2>#2 geometry simplification</h2>
-          <ul>
-            <li>Douglas Peuker (lines)</li>
-            <li>Quantization – to maintain topology (polygons)</li>
-          </ul>
-          <br>
-          <br>
-          <p>&#8680; also allows for better rendering qualtity</p>
+          <div class="text-align-left">
+            <ul>
+              <li>Douglas Peuker (lines)</li>
+              <li>Quantization – to maintain topology (polygons)</li>
+            </ul>
+            <br>
+            <br>
+            <p>&#8680; also allows for better rendering qualtity</p>
+          </div>
         </section>
         <section>
           <h2>#3 over-simplification</h2>
@@ -135,6 +139,17 @@
         </section>
         <section>
           <a href="./examples/fractal.html">Example #2</a> (complex and large features)
+        </section>
+        <section>
+          <h2>#4 No intermediate canvas for vectors</h2>
+          <p>Vector geometries are draw to the output canvas directly.</p>
+          <ul>
+            <li>avoid composing transparent pixels</li>
+            <li>save memory</li>
+          </ul>
+          <br>
+          <br>
+          <p>Consequence: vector layers are very cheap!</p>
         </section>
         <section>
           <h2>Feature Hit Detection</h2>
@@ -158,7 +173,36 @@
           </div>
         </section>
         <section>
-          <h1>Thanks!</h1>
+          <h2>WebGL</h2>
+        </section>
+        <section>
+          <h2>WebGL</h2>
+          <ul>
+            <li>WebGL is now everywhere…</li>
+            <li>even in iOS! (iOS 8)</li>
+            <li>allow to do thing otherwise not possible</li>
+          </ul>
+        </section>
+        <section>
+          <h2>OL3's WebGL renderer</h2>
+          <h3>Current status:</h3>
+          <ul>
+            <li>support for tile and image layers only</li>
+            <li>basic image effect support (hue, …)</li>
+            <li>vector layers are not supported</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Perspectives</h2>
+          <h3>Push WebGL renderer forward!</h3>
+          <ul>
+            <li>Add vector support</li>
+            <li>Tilted/perspective views</li>
+          </ul>
+        </section>
+        <section>
+          <h3>And to finish:</h3>
+          <a href="./examples/tilt.html">Example #4</a> (tilt)
         </section>
       </div>
     </div>
