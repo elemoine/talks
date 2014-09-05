@@ -20,10 +20,17 @@ var map = new ol.Map({
   view: view
 });
 
+var tiltInput = document.getElementById('tilt');
+
 function setViewTilt(tilt) {
   tilt = Math.max(Math.min(tilt, 33 * Math.PI / 180.0), 0);
+  tiltInput.value = tilt;
   view.setTilt(tilt);
 }
+
+tiltInput.onchange = function() {
+  setViewTilt(+tiltInput.value);
+};
 
 document.onkeydown = function(e) {
   var view = map.getView();
@@ -36,3 +43,5 @@ document.onkeydown = function(e) {
     setViewTilt(view.getTilt() + (5 * Math.PI / 180));
   }
 };
+
+setViewTilt(0);
