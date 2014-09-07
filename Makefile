@@ -9,7 +9,7 @@ foss4g2013: foss4g2013/geoalchemy.html
 
 .PHONY: foss4g2014
 foss4g2014: foss4g2013/geoalchemy.html
-	cd foss4g2014 && npm install
+	make -C foss4g2014
 
 .PHONY: gh-pages
 gh-pages: .gh-pages
