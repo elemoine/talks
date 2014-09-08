@@ -73,16 +73,32 @@
           <img src="img/logo_bird.png">
           <img src="img/logo.png">
           <img src="img/c2c_square_64x64.png">
+          <!--
+          - Talk about OpenLayers 3 and what makes it unique
+          -->
         </section>
         <section>
           <h2>OL 3.0 has been released!</h2>
+          <!--
+          -->
         </section>
         <section>
           <h2>This talk:</h2>
           <p>present some of the techniques used in the library</p>
+          <!--
+          - To learn about the API and how to use OL3 in general go
+            to Andreas' and Tim's talk
+          -->
         </section>
         <section>
           <a href="./examples/rotation.html">Example #1</a> (rotate and animate)
+          <!--
+          - Introduce map: canvas renderer, BingMaps layer, vector layer, labels,
+            markers, boundaries of countries
+          - Rotation: labels and markers do not rotate with the map
+          - Animation: fly-to animation (combination of pan + zoom animations), no
+            streching of labels, markers and lines during animations
+          -->
         </section>
         <section>
           <h2>« Draw early, Draw often »</h2>
@@ -104,7 +120,7 @@
         </section>
         <section>
           <h2>#1 batching</h2>
-          <div class="text-align-left">
+          <div>
             <p>Minimize data processing and manipulation:</p>
             <ul>
               <li>style calculations</li>
@@ -122,7 +138,7 @@
         </section>
         <section>
           <h2>#2 geometry simplification</h2>
-          <div class="text-align-left">
+          <div>
             <ul>
               <li>Douglas Peuker (lines)</li>
               <li>Quantization – to maintain topology (polygons)</li>
@@ -159,13 +175,13 @@
         </section>
         <section>
           <h3>Hit Detection</h3>
-          <div class="text-align-left">
+          <div>
             <p>Canvas doesn't natively support hit detection.<p>
             <p>Technique used: redraw the entire "scene" in a 1x1 px canvas, and test if there is a color.</p>
             <br>
             <p>Advantages:
               <ul>
-                <li>simple and efficient</li>
+                <li>features under others are detectable</li>
                 <li>pixel-perfect detection</li>
                 <li>tolerance for line detection on touch devices</li>
               </ul>
@@ -184,10 +200,9 @@
           </ul>
         </section>
         <section>
-          <h2>OL3's WebGL renderer</h2>
-          <h3>Current status:</h3>
+          <h3>Current status of OL3's WebGL renderer</h3>
           <ul>
-            <li>support for tile and image layers only</li>
+            <li>support for tile and image layers</li>
             <li>basic image effect support (hue, …)</li>
             <li>vector layers are not supported</li>
           </ul>
