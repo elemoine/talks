@@ -48,7 +48,7 @@
                 
                 <section>
                     <h2>Qu'est-ce que c'est ?</h2>
-                    <p class="fragment fade-in">Un framework MVC JavaScript</p>
+                    <p class="fragment fade-in">Encore un autre framework MVC JavaScript !</p>
                 </section>
 
                 <section>
@@ -57,6 +57,7 @@
                         <li>un cadre</li>
                         <li>une structure</li>
                         <li>des concepts</li>
+                        <li class="fragment">… et des fonctionnalités</li>
                     </ul>
                 </section>
 
@@ -93,7 +94,7 @@
 
                 <section>
                     <h2>Controllers</h2>
-                    <p class="fragment">Le modèle</p>
+                    <p class="fragment">Rôle : ajouter des données/états et comportement au <em>scope</em>.</p>
                 </section>
 
                 <section>
@@ -136,7 +137,7 @@ module.controller('MainController', function($scope) {
 
                 <section>
                     <h2>Directives</h2>
-                    <p class="fragment">Composant réutilisables</p>
+                    <p class="fragment">Composants réutilisables.</p>
                 </section>
 
                 <section>
@@ -222,7 +223,7 @@ module.factory('myService', function() {
 
                 <section>
                     <h2>Services</h2>
-                    <p>Utilisation : l'injection (a.k.a. <em>DI</em>)</p>
+                    <p>Utilisation : l'injection (a.k.a. <em>Dependency Injection</em>)</p>
                     <pre class="fragment"><code data-trim>
 module.factory('myService', [$http, myOtherService,
   function($http, myOtherService) {
@@ -311,14 +312,6 @@ module.filter('stringify', function() {
 
                 <section>
                     <h2>Modules</h2>
-                    <p>Création d'un module :</p>
-                    <pre class="fragment"><code data-trim>
-var appModule = angular.module('app', ['ngeo', 'gettext']);
-                    </code></pre>
-                </section>
-
-                <section>
-                    <h2>Modules</h2>
                     <p>Récupérer une référence sur un module :</p>
                     <pre class="fragment"><code data-trim>
 var appModule = angular.module('app');
@@ -326,8 +319,8 @@ var appModule = angular.module('app');
                 </section>
 
                 <section>
-                    <h2>Commentaires…</h2>
-                    <p>Angular définit des concepts et une architecture mais le développeur a encore beaucoup de choix de design à faire. Il n'y a pas qu'une façon d'utiliser Angular.</p>
+                    <h2>Commentaire</h2>
+                    <p>La difficulté : il n'y a pas qu'une façon d'utiliser Angular !</p>
                 </section>
 
 
@@ -337,18 +330,21 @@ var appModule = angular.module('app');
 
                 <section>
                     <h2>Qu'est-ce que c'est ?</h2>
-                    <p class="fragment">Une suite d'outils pour le dév web.</p>
-                    <ul class="fragment">
-                        <li>Une librairie JS : <em>Closure Library</em></li>
-                        <li>Un compilateur JS -> JS : <em>Closure Compiler</em></li>
+                    <ul>
+                        <li class="fragment">Un autre projet de Google :-)</li>
+                        <li class="fragment">Une suite d'outils</li>
+                        <ul class="fragment">
+                            <li>Une librairie JS : <em>Closure Library</em></li>
+                            <li>Un compilateur JS -> JS : <em>Closure Compiler</em></li>
+                        </ul>
                     </ul>
                 </section>
 
                 <section>
                     <h2>Closure Library</h2>
                     <ul>
-                        <li class="fragment">Grosse librairie JS</li>
-                        <li class="fragment">DOM, events, math, geometry, matrix, data structures</li>
+                        <li class="fragment">Grosse librairie JS !</li>
+                        <li class="fragment">DOM, events, math, geometry, matrix, data structures…</li>
                         <li class="fragment">Faite pour fonctionner avec le compilateur</li>
                     </ul>
                 </section>
@@ -368,7 +364,7 @@ var appModule = angular.module('app');
                     <h2>Optimisations</h2>
                     <ul>
                         <li>Renommage des variables</li>
-                        <li>Renommage des propriétés des objetst</li>
+                        <li>Renommage des propriétés des objets (danger !)</li>
                         <li>Applatissage des namespaces</li>
                         <li>Inlining des fonctions</li>
                         <li>…</li>
@@ -377,8 +373,12 @@ var appModule = angular.module('app');
 
                 <section>
                     <h2>Annotations</h2>
-                    <p>Le code JS est annoté pour la vérification de type</p>
-                    <div class="fragment"><p>Exemple :<pre><code data-trim>
+                    <p>Le code JS est annoté pour la vérification de type.</p>
+                </section>
+
+                <section>
+                    <h2>Annotations – exemple</h2>
+                    <pre><code data-trim>
 /**
  * @constructor
  * @param {number} radius The circle radius.
@@ -394,12 +394,13 @@ var appModule = angular.module('app');
    this.radius_ = radius;
  };
  goog.inherits(Circle, Shape);
-                    </code></pre></p></div>
+                    </code></pre>
                 </section>
 
                 <section>
                     <h2>Les annotations du compilateur</h2>
                     <a href="https://developers.google.com/closure/compiler/docs/js-for-compiler">https://developers.google.com/closure/compiler/docs/js-for-compiler</a>
+                    <p>Page souvent nécessaire pour travailler avec le compilateur.</p>
                 </section>
 
                 <section>
@@ -407,7 +408,7 @@ var appModule = angular.module('app');
                     <ul>
                         <li class="fragment">Nécessite apprentissage et expérience</li>
                         <li class="fragment">Nécessite une bonne infrastructure</li>
-                        <li class="fragment">Excellent pour refactorer du code !</li>
+                        <li class="fragment">Excellent pour <em>refactorer</em> du code !</li>
                     </ul>
                 </section>
 
@@ -417,23 +418,89 @@ var appModule = angular.module('app');
 
                 <section>
                     <h2>Qu'est-ce que c'est ?</h2>
-                    <p>Une librairie combinant OpenLayers et Angular</p>
+                    <p>Une librairie combinant OpenLayers 3 et Angular.</p>
                 </section>
 
                 <section>
                     <h2>Objectifs</h2>
                     <ul>
-                        <li>Fournir des composantes "core" et "UI" réutilisables</li>
+                        <li>Être efficaces !</li>
+                        <li>Fournir des composantes réutilisables (<em>core</em> et <em>UI</em>)</li>
                         <li>Définir méthode pour développer des apps avec OL3 et Angular</li>
                     </ul>
                 </section>
 
                 <section>
                     <h2>Utilisation du compilateur</h2>
-                    <p>Utilisation du compilateur en mode ADVANCED pour compiler ensemble OpenLayers, ngeo, et l'application.</p>
+                    <p>Utilisation du compilateur en mode ADVANCED pour compiler ensemble OL3, ngeo, et l'application.</p>
                 </section>
 
                 <section>
+                    <h2>État actuel</h2>
+                    <ul>
+                        <li class="fragment">Infrastructure en place</li>
+                        <ul class="fragment">
+                            <li>Compilation</li>
+                            <li>Publication des exemples sur github.io</li>
+                            <li>…</li>
+                        </ul>
+                        <li class="fragment">Quelques directives et services</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Guidelines pour les développeurs d'apps</h2>
+                    <a href="https://github.com/camptocamp/ngeo/tree/master/docs/guidelines.md">https://github.com/camptocamp/ngeo/tree/master/docs/guidelines.md</a>
+                </section>
+
+                <section>
+                    <h2>Pour le moment, en résumé :</h2>
+                    <ul>
+                        <li class="fragment">Ne pas sur-utiliser <code>ng-controller</code></li>
+                        <li class="fragment">Un <code>ng-controller</code> (<code>MainController</code>) par page !</li>
+                        <li class="fragment">Utilisation de <code>controller as</code> (voir slide suivant)</li>
+                        <li class="fragment">Limiter le nombre de <code>watchers</code></li>
+                        <ul class="fragment">
+                            <li>Attention à <code>ng-repeat</code></li>
+                            <li>Utilisation des <em>one-time bindings</em> d'Angular 1.3 (<code>{{ ::title}}</code>)</li>
+                        </ul>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Sans <code>controller as</code></h2>
+                    <pre class="fragment"><code data-trim>
+&lt;div ng-controller="MainCtrl"&gt;
+  {{ title }}
+  &lt;div ng-controller="AnotherCtrl"&gt;
+    {{ title }}
+    &lt;div ng-controller="YetAnotherCtrl"&gt;
+      {{ title }}
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Avec <code>controller as</code></h2>
+                    <pre class="fragment"><code data-trim>
+&lt;div ng-controller="MainCtrl as main"&gt;
+  {{ main.title }}
+  &lt;div ng-controller="AnotherCtrl as another"&gt;
+    {{ another.title }}
+    &lt;div ng-controller="YetAnotherCtrl as yet"&gt;
+      {{ yet.title }}
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p class="fragment">On sait d'où provient la donnée !</p>
+                </section>
+
+                <section>
+                    <h2>Résumé concernant les guidelines</h2>
+                    <p>On maîtrise bien la technique d'Angular mais on a encore à affiner nos guidelines d'utilisation.</p>
                 </section>
 
 				<section>
