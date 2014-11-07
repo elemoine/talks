@@ -458,7 +458,7 @@ var appModule = angular.module('app');
                     <ul>
                         <li class="fragment">Ne pas sur-utiliser <code>ng-controller</code></li>
                         <li class="fragment">Un <code>ng-controller</code> (<code>MainController</code>) par page !</li>
-                        <li class="fragment">Utilisation de <code>controller as</code> (voir slide suivant)</li>
+                        <li class="fragment">Utilisation de <code>controller as</code> (voir slides suivant)</li>
                         <li class="fragment">Limiter le nombre de <code>watchers</code></li>
                         <ul class="fragment">
                             <li>Attention à <code>ng-repeat</code></li>
@@ -496,6 +496,36 @@ var appModule = angular.module('app');
 &lt;/div&gt;
                     </code></pre>
                     <p class="fragment">On sait d'où provient la donnée !</p>
+                </section>
+
+                <section>
+                    <h2>Pas de logique dans index.html !</h2>
+                    <ul>
+                        <li class="fragment">On ne devrait par exemple jamais voir de <code>ng-click</code> et <code>ng-repeat</code> dans <code>index.html</code>.</li>
+                        <li class="fragment">La logique va dans des directives.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Exemple d'un bon index.html</h2>
+                    <pre class="fragment"><code data-trim>
+&lt;!DOCTYPE&gt;
+&lt;html ng-app='app'&gt;
+  &lt;head&gt;
+    &lt;title&gt;Simple example&lt;/title&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body ng-controller=&quot;MainController as ctrl&quot;&gt;
+    &lt;app-map app-map="map"&gt;&lt;/app-map&gt;
+    &lt;div id="west-panel"&gt;
+      &lt;app-bglayers app-bglayer-map="map"&gt;&lt;app-bglayers&gt;
+      &lt;app-catalog app-catalog-map="map"&gt;&lt;app-catalog&gt;
+      &lt;app-mylayers app-mylayers-map="map"&gt;&lt;app-mylayers&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                    <p class="fragment">Un peut théorique, mais c'est la ligne de conduite.</p>
                 </section>
 
                 <section>
