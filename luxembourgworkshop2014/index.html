@@ -225,7 +225,7 @@ module.factory('myService', function() {
                     <h2>Services</h2>
                     <p>Utilisation : l'injection (a.k.a. <em>Dependency Injection</em>)</p>
                     <pre class="fragment"><code data-trim>
-module.factory('myService', [$http, myOtherService,
+module.factory('myService', ['$http', 'myOtherService',
   function($http, myOtherService) {
     ...
 }]);
@@ -244,7 +244,7 @@ module.factory('myService', [$http, myOtherService,
                     <h2>Scope</h2>
                     <p>Typiquement injecté dans les controllers.</p>
                     <pre class="fragment"><code data-trim>
-module.controller('MainController', [$scope, function($scope) {
+module.controller('MainController', ['$scope', function($scope) {
  $scope.a = {b: {c: 1}}; 
 }]);
                 </code></pre>
@@ -312,6 +312,14 @@ module.filter('stringify', function() {
 
                 <section>
                     <h2>Modules</h2>
+                    <p>Créer un module:</p>
+                    <pre class="fragment"><code data-trim>
+var appModule = angular.module('app', ['ng-animate']);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Modules</h2>
                     <p>Récupérer une référence sur un module :</p>
                     <pre class="fragment"><code data-trim>
 var appModule = angular.module('app');
@@ -319,8 +327,24 @@ var appModule = angular.module('app');
                 </section>
 
                 <section>
+                    <h2>Modules</h2>
+                    <p>Les modules "Angular" :</p>
+                    <ul>
+                        <li><code>ng</code> (module implicite)</li>
+                        <li><code>ngAnimate</code></li>
+                        <li><code>ngAria</code></li>
+                        <li><code>ngCookies</code></li>
+                        <li><code>ngResource</code></li>
+                        <li><code>ngRoute</code></li>
+                        <li><code>ngSanitize</code></li>
+                        <li><code>ngTouch</code></li>
+                        <li>…</li>
+                    </ul>
+                </section>
+
+                <section>
                     <h2>Commentaire</h2>
-                    <p>La difficulté : il n'y a pas qu'une façon d'utiliser Angular !</p>
+                    <p>La difficulté : pas qu'une façon d'utiliser Angular !</p>
                 </section>
 
 
