@@ -1,0 +1,40 @@
+OpenLayers 3: A unique web-mapping library
+
+Agenda:
+
+* High-level Introduction
+
+- Rich library / many built-in features
+- Vector rendering
+- Based on Canvas and WebGL (perfomance, flexibility, 3D)
+
+* Features
+
+- Map rotation
+- Support for custom/local projections
+- Support for many data providers (OSM, MapQuest…)
+- Support for many data formats (KML, GeoJSON…)
+- Support for multiple rendering technologies
+- Pixel detection
+
+* Techniques (Vector rendering)
+
+- Drawing at 60 fps
+- Batching
+- Geometry simplification
+- Over-simplification
+- Feature hit detection
+
+-> demo showing off these features
+
+* Next steps
+
+- Support drawing lines and polygons with WebGL
+- Tilted views
+
+* Community
+
+- http://openlayers.org
+- Development by companies and individuals
+- We provide support on the mailing list, StackOverflow, and GIS StackExchange
+- Commercial support by Camptocamp

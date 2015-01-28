@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OpenLayers 3</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="theme/ol3.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+      .reveal h1.beefy {
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 10px 10px 6px rgba(0, 0, 0, 0.2);
+      }
+      .reveal ul.plain {
+        list-style-type: none;
+      }
+      .reveal h2 {
+        margin-bottom: 40px;
+      }
+      .reveal h3 {
+        margin-bottom: 30px;
+      }
+      .reveal h2 > img {
+        vertical-align: sub;
+      }
+      .text-align-left {
+        text-align: left;
+      }
+      .ex-link {
+        font-size: smaller;
+      }
+      #logos > div {
+        padding: 0 10px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+      }
+      #logos > div img {
+        margin: 0;
+        vertical-align: text-bottom;
+      }
+      pre.narrow {
+        width: 50%;
+      }
+
+    </style>
+
+    <script>
+        document.write( '<link rel="stylesheet" href="bower_components/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+  </head>
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 class="beefy">OL3</h1>
+          <h2>A unique mapping library</h2>
+          <img src="img/logo.png">
+          <img src="img/c2c_square_64x64.png">
+          <!--
+          - Presentation of the OL3 web-mapping library
+          - Highlighting some of the features of the library
+          - And some of the techniques we use in the library
+          -->
+        </section>
+        <section>
+          <h2>Introduction</h2>
+          <!--
+          - And a bit of history
+          -->
+          <ul>
+            <li>OL3 is the new version of OL</li>
+            <li>OL2 has been around since 2006</li>
+            <li>OL3 development began in 2013</li>
+            <!--
+            - OL3 is rather new
+            - v3.0 was released in august last year
+            - v3.1 was released one month ago
+            - v3.2 will be released next month
+            - monthly releases
+            -->
+            <li>Complete rewrite</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Goals</h2>
+          <ul>
+            <li>Feature-complete library</li>
+            <!--
+            - Support for many data providers
+            - Support for many data formats
+            - OGC support
+            - Just like OL2 in that sense
+            -->
+            <li>Go far w.r.t. vector rendering</li>
+            <!--
+            - Support for complex styling
+            - Be able to draw many features
+            - Many more than OL2
+            -->
+            <li>Use Computer Graphics technologies (WebGL)</li>
+            <!--
+            - Performance
+            - Flexibility (pixel detection)
+            - Open the 3D doors
+            -->
+            <li>Create a better API</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Positionning</h2>
+          FIXME add drawing
+        </section>
+        <section>
+          <h2>Features</h2>
+          <!--
+          - Some of the features provided by OL3
+          -->
+          <ul>
+            <li>Map rotations</li>
+            <!--
+            - Useful when building navigation systems
+            -->
+            <li>Animations</li>
+            <!--
+            - OL3 provides an animation framework that can be used
+              to animate the map in different ways
+            -->
+            <li>Local/custom projections</li>
+            <!--
+            - Local projection for your area
+            -->
+            <li>Arbitrary tile grids</li>
+            <!--
+            - Not only OSM-like tile grids
+            -->
+            <li>Various data providers: OSM, BingMaps…</li>
+            <!--
+            - OSM, MapQuest, BingMaps
+            - WMS, WMTS
+            - We do not support Google Maps because Google do not
+              allow direct access to their tiles
+            -->
+            <li>Various data formats: GeoJSON, KML, GML…</li>
+            <!--
+            - TopoJSON, WMS Capabilities, WMTS Capabilities
+            -->
+            <li class="fragment">…</li>
+          </ul>
+        </section>
+        <section>
+          <a href="./examples/rotation.html">Example #1</a> (Rotation, Animation, Vector)
+          <!--
+          - Introduce map: canvas renderer, BingMaps layer, vector layer, labels,
+            markers, boundaries of countries
+          - Rotation: labels and markers do not rotate with the map
+          - Animation: fly-to animation (combination of pan + zoom animations), no
+            streching of labels, markers and lines during animations
+          -->
+        </section>
+        <section>
+          <h2>« Draw early, Draw often »</h2>
+          <img src="img/mona320x360_html5.jpg">
+        </section>
+        <section>
+          <h3>For good rendering quality:</h3>
+          <ul>
+            <li>Vectors redrawn at each frame</li>
+            <li>While interacting and animating</li>
+            <li>At 60 fps!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Performance challenge!</h2>
+        </section>
+        <section>
+          <h3>Now let's look at the techniques we use in the library…</h3>
+        </section>
+        <section>
+          <h2>#1 batching</h2>
+          <div>
+            <p>Minimize data processing and manipulation:</p>
+            <ul>
+              <li>style calculations</li>
+              <li>geometry simplifications</li>
+              <li>R-tree lookups</li>
+              <li>object creations</li>
+            </ul>
+            <br>
+            <br>
+            <p>&#8680; replay batch during animations/interactions</p>
+          </div>
+        </section>
+        <section>
+          <h2>#2 geometry simplification</h2>
+          <div>
+            <ul>
+              <li>Douglas Peuker (lines)</li>
+              <li>Quantization – to maintain topology (polygons)</li>
+            </ul>
+            <br>
+            <br>
+            <p>&#8680; also allows for better rendering quality</p>
+          </div>
+        </section>
+        <section>
+          <h2>#3 over-simplification</h2>
+          <p>Over-simplification and clipping for the parts that are outside the viewport.</p>
+          <img src="img/over-simplification.png">
+        </section>
+        <section>
+          <a href="./examples/fractal.html">Example #2</a> (Complex and large features)
+        </section>
+        <section>
+          <h2>#4 No intermediate canvas for vectors</h2>
+          <p>Vector geometries are draw to the output canvas directly.</p>
+          <ul>
+            <li>avoid composing transparent pixels</li>
+            <li>save memory</li>
+          </ul>
+          <br>
+          <br>
+          <p>Consequence: vector layers are very cheap!</p>
+        </section>
+        <section>
+          <h2>Feature Hit Detection</h2>
+        </section>
+        <section>
+          <a href="./examples/hitdetection.html">Example #3</a> (hit detection)
+        </section>
+        <section>
+          <h3>Hit Detection</h3>
+          <div>
+            <p>Canvas doesn't natively support hit detection.<p>
+            <p>Technique used: redraw the entire "scene" in a 1x1 px canvas, and test if there is a color.</p>
+            <br>
+            <p>Advantages:
+              <ul>
+                <li>features under others are detectable</li>
+                <li>pixel-perfect detection</li>
+                <li>tolerance for line detection on touch devices</li>
+              </ul>
+            </p>
+          </div>
+        </section>
+        <section>
+          <h2>WebGL</h2>
+        </section>
+        <section>
+          <h2>WebGL</h2>
+          <ul>
+            <li>WebGL is now everywhere…</li>
+            <li>even in iOS! (iOS 8)</li>
+            <li>allow to do thing otherwise not possible</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Current status of OL3's WebGL renderer</h3>
+          <ul>
+            <li>support for tile and image layers</li>
+            <li>basic image effect support (hue, …)</li>
+            <li>vector layers are not supported</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Perspectives</h2>
+          <h3>Push WebGL renderer forward!</h3>
+          <ul>
+            <li>Add vector support</li>
+            <li>Tilted/perspective views</li>
+          </ul>
+        </section>
+        <section>
+          <h3>And to finish:</h3>
+          <a href="./examples/tilt.html">Example #4</a> (tilt)
+        </section>
+      </div>
+    </div>
+
+    <!-- reveal.js loading and configuration -->
+    <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        rollingLinks: false,
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+          src: 'bower_components/reveal.js/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        }, {
+          src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        }]
+      });
+
+    </script>
+  </body>
+</html>
