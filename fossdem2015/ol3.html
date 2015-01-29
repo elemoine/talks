@@ -42,6 +42,9 @@
       .ex-link {
         font-size: smaller;
       }
+      .underline {
+        text-decoration: underline;
+      }
       #logos > div {
         padding: 0 10px;
         display: inline-block;
@@ -82,11 +85,12 @@
           <h2>Introduction</h2>
           <!--
           - And a bit of history
+          - FIXME add OL2 map image
           -->
           <ul>
-            <li>OL3 is the new version of OL</li>
-            <li>OL2 has been around since 2006</li>
-            <li>OL3 development began in 2013</li>
+            <li>New version of OL</li>
+            <li>Version 2's been around since 2006</li>
+            <li>Development began in 2013</li>
             <!--
             - OL3 is rather new
             - v3.0 was released in august last year
@@ -94,7 +98,7 @@
             - v3.2 will be released next month
             - monthly releases
             -->
-            <li>Complete rewrite</li>
+            <li>Complete rewrite!</li>
           </ul>
         </section>
         <section>
@@ -107,29 +111,94 @@
             - OGC support
             - Just like OL2 in that sense
             -->
-            <li>Go far w.r.t. vector rendering</li>
+            <li>More consistent API</li>
+            <!--
+            - Simpler
+            - More consistent
+            -->
+            <li>Smaller builds</li>
+            <!--
+            - Closure Compiler
+            -->
+            <li>Push the limits of vector rendering</li>
             <!--
             - Support for complex styling
             - Be able to draw many features
             - Many more than OL2
             -->
-            <li>Use Computer Graphics technologies (WebGL)</li>
+            <li>Use Computer Graphics technologies (WebGL & Canvas)</li>
             <!--
             - Performance
             - Flexibility (pixel detection)
             - Open the 3D doors
             -->
-            <li>Create a better API</li>
           </ul>
         </section>
         <section>
+          <h2>« Maps as Graphics »</h2>
+          <img class="framed" src="img/teapot-map.jpg" alt="Teapot map">
+          <!-- Notes:
+               - Rely on the Canvas and WebGL Graphics APIs.
+               - Performance (GPU).
+               - Isolate the map from the rest of the page.
+          -->
+        </section>
+        <section>
           <h2>Positionning</h2>
-          FIXME add drawing
+          <br>
+          <div id="logos">
+            <div class="fragment" data-fragment-index="0">
+              <img src="img/ol2-logo.png"> OpenLayers 2
+              <br><br>
+              <img src="img/leaflet-logo.png">
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <img src="img/ol3-logo.png">
+              <br>
+              OpenLayers 3
+            </div>
+            <div class="fragment" data-fragment-index="1">
+              <img src="img/cesium-logo.png">
+              <br><br>
+              <img src="img/owg-logo.png">
+            </div>
+          </div>
+          <!-- Notes:
+          - Leaflet:
+            - Nice API, easy to work with
+            - Lightweight, works great on mobile
+          - Cesium:
+            - Fantastic virtual globe solution
+          - OL3
+            - Compared to Leaflet:
+              - Support for many layer types, formats, etc
+              - Support for irregular tile grids
+              - Support for local projections
+              - Support for arbitrary resolutions
+              - Support for advanced drawing tools
+              - Built-in functionality, as opposed to 3d-party plugins
+            - Compared to OL2:
+              - Better and more consistent APIs
+              - Smaller builds
+              - Better performance
+              - Flexible architecture
+            - Compared to Cesium:
+              - Smaller and more compact than Cesium
+              - Easier to use
+              - WebGL not required
+              - Better mobile support
+            - Focus on performance
+              - WebGL
+              - GPU acceleration
+              - requestAnimationFrame
+              - Closure Compiler
+          -->
         </section>
         <section>
           <h2>Features</h2>
           <!--
-          - Some of the features provided by OL3
+          - Some of the features natively provided by OL3, that others
+            libraries don't support.
           -->
           <ul>
             <li>Map rotations</li>
@@ -145,21 +214,19 @@
             <!--
             - Local projection for your area
             -->
-            <li>Arbitrary tile grids</li>
+            <li>Arbitrary tile grids (WMTS)</li>
             <!--
             - Not only OSM-like tile grids
             -->
-            <li>Various data providers: OSM, BingMaps…</li>
+            <li>Various data providers and formats<br/>(OSM, BingMaps, WMS, GeoJSON, KML…)</li>
             <!--
             - OSM, MapQuest, BingMaps
             - WMS, WMTS
             - We do not support Google Maps because Google do not
               allow direct access to their tiles
             -->
-            <li>Various data formats: GeoJSON, KML, GML…</li>
-            <!--
-            - TopoJSON, WMS Capabilities, WMTS Capabilities
-            -->
+            <li>Image effect/pixel manipulation</li>
+            <li>« Complex vector »</li>
             <li class="fragment">…</li>
           </ul>
         </section>
@@ -180,34 +247,32 @@
         <section>
           <h3>For good rendering quality:</h3>
           <ul>
-            <li>Vectors redrawn at each frame</li>
+            <li><span class="underline">Vectors</span> redrawn at each animation frame</li>
             <li>While interacting and animating</li>
-            <li>At 60 fps!</li>
+            <li>(Hopefully) At 60 fps!</li>
           </ul>
         </section>
         <section>
           <h2>Performance challenge!</h2>
+          <p class="fragment">Let's look at the techniques used…</p>
         </section>
         <section>
-          <h3>Now let's look at the techniques we use in the library…</h3>
-        </section>
-        <section>
-          <h2>#1 batching</h2>
+          <h2>#1 Batching</h2>
           <div>
             <p>Minimize data processing and manipulation:</p>
             <ul>
-              <li>style calculations</li>
-              <li>geometry simplifications</li>
+              <li>Style calculations</li>
+              <li>Geometry simplifications</li>
               <li>R-tree lookups</li>
-              <li>object creations</li>
+              <li>Object creations</li>
             </ul>
             <br>
             <br>
-            <p>&#8680; replay batch during animations/interactions</p>
+            <p>&#8680; Replay batch during animations/interactions</p>
           </div>
         </section>
         <section>
-          <h2>#2 geometry simplification</h2>
+          <h2>#2 Geometry Simplification</h2>
           <div>
             <ul>
               <li>Douglas Peuker (lines)</li>
@@ -215,11 +280,11 @@
             </ul>
             <br>
             <br>
-            <p>&#8680; also allows for better rendering quality</p>
+            <p>(Also allows for better rendering quality)</p>
           </div>
         </section>
         <section>
-          <h2>#3 over-simplification</h2>
+          <h2>#3 Over-simplification</h2>
           <p>Over-simplification and clipping for the parts that are outside the viewport.</p>
           <img src="img/over-simplification.png">
         </section>
@@ -227,36 +292,19 @@
           <a href="./examples/fractal.html">Example #2</a> (Complex and large features)
         </section>
         <section>
-          <h2>#4 No intermediate canvas for vectors</h2>
-          <p>Vector geometries are draw to the output canvas directly.</p>
-          <ul>
-            <li>avoid composing transparent pixels</li>
-            <li>save memory</li>
-          </ul>
-          <br>
-          <br>
-          <p>Consequence: vector layers are very cheap!</p>
-        </section>
-        <section>
           <h2>Feature Hit Detection</h2>
+          Redraw a subset of the scene in a small and off-screen canvas, and test if there's a color.</p>
+          <!--
+          - Features under others are detectable
+          - Pixel-perfect detection
+          - Tolerance for line detection on touch devices
+          -->
         </section>
         <section>
-          <a href="./examples/hitdetection.html">Example #3</a> (hit detection)
+          <a href="./examples/hitdetection.html">Example #3</a> (Hit Detection)
         </section>
         <section>
-          <h3>Hit Detection</h3>
-          <div>
-            <p>Canvas doesn't natively support hit detection.<p>
-            <p>Technique used: redraw the entire "scene" in a 1x1 px canvas, and test if there is a color.</p>
-            <br>
-            <p>Advantages:
-              <ul>
-                <li>features under others are detectable</li>
-                <li>pixel-perfect detection</li>
-                <li>tolerance for line detection on touch devices</li>
-              </ul>
-            </p>
-          </div>
+            <h2>Roadmap</h2>
         </section>
         <section>
           <h2>WebGL</h2>
