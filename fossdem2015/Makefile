@@ -11,4 +11,4 @@ serve:
 
 .PHONY: serve-tiles
 serve-tiles:
-	cd ~/src/tilecloud/ && /home/elemoine/.virtualenvs/tilecloud/bin/python ./tc-viewer mapquest.mbtiles
+	cd ~/src/tilecloud/ && /home/elemoine/.virtualenvs/tilecloud/bin/python ./tc-viewer mapquest-caribbean.mbtiles mapquest-swiss.mbtiles
