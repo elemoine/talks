@@ -104,14 +104,15 @@
             <li>New version of OL</li>
             <li>Version 2's been around since 2006</li>
             <li>Development began in 2013</li>
+            <li>Complete rewrite!</li>
+            <li>v3.0 released August, 2014</li>
             <!--
             - OL3 is rather new
             - v3.0 was released in august last year
             - v3.1 was released one month ago
-            - v3.2 will be released next month
+            - v3.2 will be released next week
             - monthly releases
             -->
-            <li>Complete rewrite!</li>
           </ul>
         </section>
         <section>
@@ -141,9 +142,9 @@
             -->
             <li>Use Computer Graphics technologies (WebGL & Canvas)</li>
             <!--
-            - Performance
+            - Performance (GPU)
             - Flexibility (pixel detection)
-            - Open the 3D doors
+            - Open the doors of 3D
             -->
           </ul>
         </section>
@@ -151,9 +152,8 @@
           <h2>« Maps as Graphics »</h2>
           <img class="framed" src="img/teapot-map.jpg" alt="Teapot map">
           <!-- Notes:
-               - Rely on the Canvas and WebGL Graphics APIs.
-               - Performance (GPU).
-               - Isolate the map from the rest of the page.
+          - Rely on the Canvas and WebGL Graphics APIs
+          - Performance (GPU)
           -->
         </section>
         <section>
@@ -176,6 +176,8 @@
               <img src="img/owg-logo.png">
             </div>
           </div>
+          <br>
+          <p class="fragment">An ambitious library for ambitious maps!</p>
           <!-- Notes:
           - Leaflet:
             - Nice API, easy to work with
@@ -210,7 +212,7 @@
         <section>
           <h2>Features</h2>
           <!--
-          - Some of the features natively provided by OL3, that others
+          - Some of the features natively provided by OL3, that other
             libraries don't support.
           -->
           <ul>
@@ -246,7 +248,7 @@
         <section>
           <a href="./examples/rotation.html">Example #1</a> (Rotation, Animation, Vector)
           <!--
-          - Introduce map: canvas renderer, BingMaps layer, vector layer, labels,
+          - Introduce map: canvas renderer, MapQuest layer, vector layer, labels
             markers, boundaries of countries
           - Rotation: labels and markers do not rotate with the map
           - Animation: fly-to animation (combination of pan + zoom animations), no
@@ -256,6 +258,10 @@
         <section>
           <h2>« Draw early, Draw often »</h2>
           <img src="img/mona320x360_html5.jpg">
+          <!--
+          - We need to re-render the map very ofter to get good rendering
+            quality at any time (even during animations)
+          -->
         </section>
         <section>
           <h3>For good rendering quality:</h3>
@@ -277,7 +283,7 @@
               <li>Style calculations</li>
               <li>Geometry simplifications</li>
               <li>R-tree lookups</li>
-              <li>Object creations</li>
+              <li>Object creations (less pressure on GC)</li>
             </ul>
             <br>
             <br>
@@ -288,12 +294,12 @@
           <h2>#2 Geometry Simplification</h2>
           <div>
             <ul>
-              <li>Douglas Peuker (lines)</li>
-              <li>Quantization – to maintain topology (polygons)</li>
+              <li>Douglas Peuker for lines</li>
+              <li>Quantization for polygons (to maintain topology)</li>
             </ul>
             <br>
             <br>
-            <p>(Also allows for better rendering quality)</p>
+            <p>(Also allows for better rendering quality.)</p>
           </div>
         </section>
         <section>
@@ -309,7 +315,8 @@
           <!--
           - Capability to detect features at a given pixel
           -->
-          Principle: redraw a subset of the scene in a small and off-screen canvas, and test if there's a color.</p>
+          <p>Principle: redraw a subset of the scene in a small and off-screen
+          canvas, and test if there's a color.</p>
           <!--
           - Features under others are detectable
           - Pixel-perfect detection
@@ -320,7 +327,7 @@
           <a href="./examples/hitdetection.html">Example #3</a> (Hit Detection)
         </section>
         <section>
-          <h3>Support for Hit Detection for raster layers is about to be merged…</h3>
+          <h3>Hit Detection for raster layers coming soon…</h3>
         </section>
         <section>
           <h2>Roadmap</h2>
@@ -339,6 +346,9 @@
         <section>
           <h3>Tilted view prototype</h3>
           <a href="./examples/tilt.html">Example #4</a> (Tilt)
+        </section>
+        <section>
+          <h2>Thanks!</h2>
         </section>
       </div>
     </div>
