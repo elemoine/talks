@@ -1,0 +1,15 @@
+{
+  "name": "foss4g2015",
+  "version": "1.0.0",
+  "description": "FOSS4G 2015 Presentations",
+  "repository": "https://github.com/elemoine/talks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Éric Lemoine <eric.lemoine@camptocamp.com>",
+  "license": "ISC",
+  "dependencies": {
+    "reveal.js": "^3.1.0"
+  }
+}
