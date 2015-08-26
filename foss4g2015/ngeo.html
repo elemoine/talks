@@ -1,128 +1,170 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>OpenLayers 3</title>
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <head>
+        <meta charset="utf-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>ngeo</title>
 
-    <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="theme/ngeo.css" id="theme">
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
 
-    <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <!--[if lt IE 9]>
-    <script src="node_modules/reveal.js/lib/js/html5shiv.js"></script>
-    <![endif]-->
-    <style>
-      .reveal h1.beefy {
-        font-weight: bold;
-        text-transform: uppercase;
-        text-shadow: 10px 10px 6px rgba(0, 0, 0, 0.2);
-        font-size: 3.7em;
-      }
-      .reveal ul.plain {
-        list-style-type: none;
-      }
-      .reveal h2 {
-        margin-bottom: 40px;
-        font-size: 2.11em;
-      }
-      .reveal h3 {
-        margin-bottom: 30px;
-      }
-      .reveal h2 > img {
-        vertical-align: sub;
-      }
-      .reveal p {
-        margin-bottom: 10px;
-        line-height: 1.2em;
-      }
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-      #logos > div {
-        padding: 0 10px;
-        display: inline-block;
-        text-align: center;
-        vertical-align: middle;
-      }
-      #logos > div img {
-        margin: 0;
-        vertical-align: text-bottom;
-      }
-      pre.narrow {
-        width: 50%;
-      }
+        <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="node_modules/reveal.js/css/theme/black.css" id="theme">
 
-      div.slides {
-        zoom: 1 !important;
-      }
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
 
-      .home-logo {
-        height: 64px;
-      }
-    </style>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ?
+                'node_modules/reveal.js/css/print/pdf.css' :
+                'node_modules/reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
 
-    <script>
-        document.write( '<link rel="stylesheet" href="node_modules/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-    </script>
+        <!--[if lt IE 9]>
+        <script src="node_modules/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
 
-  </head>
-  <body>
+        <style>
+        .home-logo {
+            height: 64px;
+        }
+        </style>
+    </head>
 
-    <div class="reveal">
-      <div class="slides">
-        <section>
-          <h1 class="beefy">nGeo</h1>
-          <h2>A companion library for OpenLayers 3 </h2>
-          <img class="home-logo" src="img/foss4g2015_c.png">
-          <img class="home-logo" src="img/c2c_square_64x64.png">
-          <!--
-          - Talk about OpenLayers 3 and what makes it unique
-          -->
-        </section>
-        <section>
-          <h2>ngeo under developement</h2>
-          <p>
-            <img src="img/github-logo.png">
-            <a href="https://github.com/camptocamp/ngeo">https://github.com/camptocamp/ngeo</a>
-          </p>
-        </section>
-      </div>
-    </div>
+    <body>
 
-    <!-- reveal.js loading and configuration -->
-    <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
-    <script src="node_modules/reveal.js/js/reveal.js"></script>
-    <script>
-      // Full list of configuration options available here:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
-        rollingLinks: false,
-        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+        <div class="reveal">
 
-        // Optional libraries used to extend on reveal.js
-        dependencies: [{
-          src: 'node_modules/reveal.js/lib/js/classList.js',
-          condition: function() {
-            return !document.body.classList;
-          }
-        }, {
-          src: 'node_modules/reveal.js/plugin/highlight/highlight.js',
-          async: true,
-          callback: function() {
-            hljs.initHighlightingOnLoad();
-          }
-        }]
-      });
 
-    </script>
-  </body>
+            <!--
+            Copie des notes prises au tableau
+            - Définition
+            - Pour les gens qui utilisent ol3 et Angular (facilite le dév)
+            - Lib avec composants/fonctionnalités typiques
+            - Toolkit complet et sérieux (declarative vs imperative, comparaison avec directives existantes)
+            - Pas de parti-pris
+            - Composants génériques/atomiques
+            - Fonctionnalités (montrer des exemples)
+            - Montrer le projet Lux
+            - Closure, guidelines, cadre, exemples
+            - Conclusion, roadmap
+            -->
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>ngeo</h1>
+                    <h2>Companion Library for OpenLayers 3</h2>
+                    <img class="home-logo" src="img/foss4g2015_c.png">
+                    <img class="home-logo" src="img/c2c_square_64x64.png">
+                </section>
+
+                <section>
+                    <h2>Éric Lemoine (Camptocamp)</h2>
+                    <h2>Florent Gravin (Camptocamp)</h2>
+                    <aside class="notes">
+                        <ul>
+                            <li>Quick presentation of Camptocamp</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>ngeo</h2>
+                    <p>JavaScript lib combining OpenLayers 3 and AngularJS.</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>For people developping web mapping apps with OpenLayers 3 and Angular</li>
+                            <li>OpenLayers 3: Open-source JS lib for adding maps to web page</li>
+                            <li>AngularJS: Open-source JS framework created by Google</li>
+                            <li>Goal is to ease the development</li>
+                            <li>ngeo is open-source</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Features</h2>
+                    <p>Examples of components provided by ngeo:
+                    <ul>
+                        <li>Layer Tree</li>
+                        <li>Measure Tools</li>
+                        <li>Elevation Profile</li>
+                        <li>…</li>
+                    </ul>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Examples shown later</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Design principle</h2>
+                    <p>Provide atomic components that the app developer can combine in different ways.</p>
+                </section>
+
+                <section>
+                    <h2>Declarative versus Imperative</h2>
+                    Compare
+                    <pre><code class="html" data-trim style="font-size: 18px;">
+<openlayers width="100%" height="400px"></openlayers>
+                    </code></pre>
+                    to
+                    <pre><code class="html" data-trim style="font-size: 18px;">
+<div ngeo-map="ctrl.map"></div>
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Examples</h2>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+        <script src="node_modules/reveal.js/js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                    { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
 </html>
