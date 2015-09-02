@@ -65,14 +65,14 @@
             <div class="slides">
                 <section>
                     <h1>ngeo</h1>
-                    <h2>Companion Library for OpenLayers 3</h2>
+                    <h2>A companion Library for OpenLayers 3</h2>
                     <img class="home-logo" src="img/foss4g2015_c.png">
-                    <img class="home-logo" src="img/c2c_square_143x50_transparent.png">
                 </section>
 
                 <section>
                     <h2>Éric Lemoine</h2>
                     <h2>Florent Gravin</h2>
+                    <img class="home-logo" src="img/c2c_square_143x50_transparent.png">
                     <aside class="notes">
                         <ul>
                             <li>Quick presentation of Camptocamp</li>
@@ -82,31 +82,31 @@
 
                 <section>
                     <h2>ngeo</h2>
-                    <p class="fragment">JavaScript lib combining OpenLayers 3 and AngularJS.</p>
+                    <p>JavaScript toolkit combining OpenLayers 3 and AngularJS, aimed at creating rich web-mapping applications</p>
                     <aside class="notes">
                         <ul>
-                            <li>For people developping web mapping apps with OpenLayers 3 and Angular</li>
-                            <li>OpenLayers 3: Open-source JS lib for adding maps to web page</li>
-                            <li>AngularJS: Open-source JS framework created by Google</li>
-                            <li>Goal is to ease the development</li>
+                            <li>For developers who use OpenLayers and Angular for creating web-mapping apps</li>
+                            <li>OpenLayers 3: open-source JS lib for adding maps to web page</li>
+                            <li>Angular: open-source JS framework created by Google</li>
+                            <li>Goal is to ease development</li>
                             <li>ngeo is open-source</li>
                         </ul>
                     </aside>
-                    <p class="fragment">Toolkit library to create rich map web applications.</p>
                 </section>
 
                 <section>
                     <h2>Features</h2>
-                    <p>Examples of components provided by ngeo:
+                    <p>Targeted features include:
                     <ul>
-                        <li>Layer Tree</li>
-                        <li>Measure Tools</li>
-                        <li>Elevation Profile</li>
+                        <li>Layer tree</li>
+                        <li>Measure tools</li>
+                        <li>Elevation profile</li>
                         <li>…</li>
                     </ul>
                     </p>
                     <aside class="notes">
                         <ul>
+                            <li>ngeo provides both low-level and high-level components</li>
                             <li>Examples shown later</li>
                         </ul>
                     </aside>
@@ -114,29 +114,52 @@
 
                 <section>
                     <h2>Design principle</h2>
-                    <p class="fragment">Provide atomic components that the app developer can combine in different ways.</p>
-                    <p class="fragment">Don't be intrusive in your main application.</p>
-                    <p class="fragment">Get rid of UI aspects.</p>
+                    <p>Provide <strong><em>atomic</em></strong> components that can be combined in <strong><em>many</em></strong> different ways</p>
                     <aside class="notes">
                         <ul>
-                            <li>Other ol3/ng lib exist, why our is unique and could be usefull ?</li>
-                            <li>We needed to take design decision on what we wanted ngeo to be</li>
-                            <li>Modularity</li>
-                            <li>The goal is not to provide pre-packaged widgets</li>
+                            <li>ngeo should not get in your way</li>
+                            <li>ngeo should constrain you</li>
+                            <li>for example ngeo should not limit you in the way you can use OpenLayers 3</li>
+                            <li>other ol3/ng libs exist, what does make ngeo unique?</li>
+                            <li>flexibility, modularity</li>
+                            <li>the primary goal is not to provide out-of-the-box widgets</li>
+                            <li>you can style your components the way you want</li>
+                            <li>ngeo is not tied to a specific UI toolkit (although we use it mainly with Bootstrap)</li>
                         </ul>
                     </aside>
                 </section>
 
                 <section>
                     <h2>Declarative versus Imperative</h2>
-                    Compare
-                    <pre><code class="html" data-trim style="font-size: 18px;">
-<openlayers width="100%" height="400px"></openlayers>
-                    </code></pre>
-                    to
+                    <p><a href="http://tombatossals.github.io/angular-openlayers-directive">angular-openlayers-directive</a> is a quite popular project</p>
+                    <div class="fragment" style="margin-top: 45px;">
+                        <p>Basically, this is how you use it:</p>
+                        <pre><code class="html" data-trim style="font-size: 18px;">
+<openlayers width="100%" height="400px">
+</openlayers>
+                        </code></pre>
+                        <p class="fragment">&#10140;purely declaratively…</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>The ngeo approach</h2>
+                    HTML code:
                     <pre><code class="html" data-trim style="font-size: 18px;">
 <div ngeo-map="ctrl.map"></div>
                     </code></pre>
+                    JavaScript code:
+                    <pre><code class="javascript" data-trim style="font-size: 18px;">
+app.MainController = function() {
+  this.map = new ol.Map({
+    layers: [
+      new ol.layer.Tile({source: new ol.source.OSM()})
+    ],
+    // …
+  });
+};
+                    </code></pre>
+                    <p class="fragment">&#10140;We're not looking at creating a declarative layer above OpenLayers 3!</p>
                     <aside class="notes">
                         <ul>
                             <li>We want developer keeps maximum control of his code.</li>
@@ -148,7 +171,7 @@
 
                 <section>
                     <h2>Examples</h2>
-                    <p><a href="http://camptocamp.github.io/ngeo/master/">http://camptocamp.github.io/ngeo/master/</a></p>
+                    Here are a few (pretty crude) examples:
                     <p><a href="http://camptocamp.github.io/ngeo/master/backgroundlayer.html">Background layer</a></p>
                     <p><a href="http://camptocamp.github.io/ngeo/master/interactionbtngroup.html">Interaction button group</a></p>
                     <p><a href="http://camptocamp.github.io/ngeo/master/layerorder.html">Layer order</a></p>
@@ -160,8 +183,13 @@
                 </section>
 
                 <section>
+                    <h2>More examples</h2>
+                    <p>Check <a href="http://camptocamp.github.io/ngeo/master/">http://camptocamp.github.io/ngeo/master/</a> out for more examples…</p>
+                </section>
+
+                <section>
                     <h2>ngeo in real applications</h2>
-                    <p><a href="http://devv3.geoportail.lu/main/wsgi">Luxembourg demo site</a></p>
+                    <p><a href="http://beta.geoportail.lu">Luxembourg demo site</a></p>
                     <aside class="notes">
                     </aside>
                 </section>
