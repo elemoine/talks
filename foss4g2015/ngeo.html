@@ -82,7 +82,7 @@
 
                 <section>
                     <h2>ngeo</h2>
-                    <p>JavaScript lib combining OpenLayers 3 and AngularJS.</p>
+                    <p class="fragment">JavaScript lib combining OpenLayers 3 and AngularJS.</p>
                     <aside class="notes">
                         <ul>
                             <li>For people developping web mapping apps with OpenLayers 3 and Angular</li>
@@ -92,6 +92,7 @@
                             <li>ngeo is open-source</li>
                         </ul>
                     </aside>
+                    <p class="fragment">Toolkit library to create rich map web applications.</p>
                 </section>
 
                 <section>
@@ -113,7 +114,17 @@
 
                 <section>
                     <h2>Design principle</h2>
-                    <p>Provide atomic components that the app developer can combine in different ways.</p>
+                    <p class="fragment">Provide atomic components that the app developer can combine in different ways.</p>
+                    <p class="fragment">Don't be intrusive in your main application.</p>
+                    <p class="fragment">Get rid of UI aspects.</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Other ol3/ng lib exist, why our is unique and could be usefull ?</li>
+                            <li>We needed to take design decision on what we wanted ngeo to be</li>
+                            <li>Modularity</li>
+                            <li>The goal is not to provide pre-packaged widgets</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section>
@@ -126,11 +137,58 @@
                     <pre><code class="html" data-trim style="font-size: 18px;">
 <div ngeo-map="ctrl.map"></div>
                     </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>We want developer keeps maximum control of his code.</li>
+                            <li>Don't want to embed features in too heavy/complex markup.</li>
+                            <li>Easier to understand and maintain.</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section>
                     <h2>Examples</h2>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/">http://camptocamp.github.io/ngeo/master/</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/backgroundlayer.html">Background layer</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/interactionbtngroup.html">Interaction button group</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/layerorder.html">Layer order</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/layertree.html">Layer tree</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/measure.html">Measure</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/search.html">Search</a></p>
                     <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>ngeo in real applications</h2>
+                    <p><a href="http://devv3.geoportail.lu/main/wsgi">Luxembourg demo site</a></p>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>build</h2>
+                    <p class="fragment">Built with closure advanced.</p>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>Keep minified file as small as possible.</li>
+                            <li>Closure for compiling, type check etc..</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h2>technical guidance</h2>
+                    <p class="fragment">Provides angularJS and ol3 usages guideline.</p>
+                    <p class="fragment"><a href="https://github.com/camptocamp/ngeo/blob/master/examples/backgroundlayer.js#L35">Example</a></p>
+                    <p class="fragment">Test suite.</p>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>Example show how we think we should use ngeo.</li>
+                            <li>Use controllerAs, bindToController and put all code in controllers as we can.</li>
+                            <li>Show example of closure annotation.</li>
+                        </ul>
                     </aside>
                 </section>
 
