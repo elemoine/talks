@@ -24,6 +24,4 @@ Open http://localhost:8000/.
 
 Update the version on erilem.net:
 
-    $ cd ..
-    $ make foss4g2015
-    $ make gh-pages
+    $ make -C .. foss4g2015 gh-pages
