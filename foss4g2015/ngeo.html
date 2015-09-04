@@ -132,14 +132,11 @@
                 <section>
                     <h2>Declarative versus Imperative</h2>
                     <p><a href="http://tombatossals.github.io/angular-openlayers-directive">angular-openlayers-directive</a> is a quite popular project</p>
-                    <div class="fragment" style="margin-top: 45px;">
-                        <p>Basically, this is how you use it:</p>
-                        <pre><code class="html" data-trim style="font-size: 18px;">
-<openlayers width="100%" height="400px">
-</openlayers>
-                        </code></pre>
-                        <p class="fragment">&#10140;purely declaratively…</p>
-                    </div>
+                    <p style="margin-top: 45px;">Basically, this is how you use it:</p>
+                    <pre><code class="html" data-trim style="font-size: 18px;">
+<openlayers width="100%" height="400px"></openlayers>
+                    </code></pre>
+                    <p class="fragment">&#8594;Purely declaratively…</p>
                 </section>
 
                 <section>
@@ -159,7 +156,11 @@ app.MainController = function() {
   });
 };
                     </code></pre>
-                    <p class="fragment">&#10140;We're not looking at creating a declarative layer above OpenLayers 3!</p>
+                </section>
+
+                <section>
+                    <h2>The ngeo approach</h2>
+                    <p>&#8594;We're not looking at creating a declarative layer/API above OpenLayers 3!</p>
                     <aside class="notes">
                         <ul>
                             <li>We want developer keeps maximum control of his code.</li>
@@ -184,41 +185,109 @@ app.MainController = function() {
 
                 <section>
                     <h2>More examples</h2>
-                    <p>Check <a href="http://camptocamp.github.io/ngeo/master/">http://camptocamp.github.io/ngeo/master/</a> out for more examples…</p>
+                    <p>Check out <a href="http://camptocamp.github.io/ngeo/master/">http://camptocamp.github.io/ngeo/master/</a> for more examples…</p>
                 </section>
 
                 <section>
                     <h2>ngeo in real applications</h2>
-                    <p><a href="http://beta.geoportail.lu">Luxembourg demo site</a></p>
+                    <p><a href="http://beta.geoportail.lu">Luxembourg beta site</a></p>
                     <aside class="notes">
                     </aside>
                 </section>
 
                 <section>
-                    <h2>build</h2>
-                    <p class="fragment">Built with closure advanced.</p>
-
+                    <h2>Use Angular in a good way!</h2>
+                    <p>ngeo defines a good way to use Angular</p>
+                    <p>&#8594;<a href="https://github.com/camptocamp/ngeo/blob/master/docs/guidelines.md">guidelines</a> and examples are provided</p>
                     <aside class="notes">
                         <ul>
-                            <li>Keep minified file as small as possible.</li>
-                            <li>Closure for compiling, type check etc..</li>
+                            <li>There are many ways to use Angular</li>
+                            <li>There are many BAD ways to use Angular</li>
+                            <li>Guidelines inspired from/similar to guidelines from Google</li>
                         </ul>
                     </aside>
                 </section>
+
                 <section>
-                    <h2>technical guidance</h2>
-                    <p class="fragment">Provides angularJS and ol3 usages guideline.</p>
-                    <p class="fragment"><a href="https://github.com/camptocamp/ngeo/blob/master/examples/backgroundlayer.js#L35">Example</a></p>
-                    <p class="fragment">Test suite.</p>
-
+                    <h2>Closure Compiler</h2>
+                    <p>We use <a href="https://developers.google.com/closure/compiler/">Closure Compiler</a>, and recommend using it in ngeo applications
+                    <pre><code class="js" data-trim style="font-size: 18px;">
+/**
+ * @param {string|function(!angular.JQLite=, !angular.Attributes=)}
+ *     ngeoScaleselectorTemplateUrl Template URL for the directive.
+ * @return {angular.Directive} Directive Definition Object.
+ * @ngInject
+ */
+ngeo.scaleselectorDirective =
+    function(ngeoScaleselectorTemplateUrl) {
+  return {
+    restrict: 'A',
+    scope: true,
+    controller: 'NgeoScaleselectorController',
+    templateUrl: ngeoScaleselectorTemplateUrl
+  };
+};
+                    </code></pre>
+                    </p>
                     <aside class="notes">
                         <ul>
-                            <li>Example show how we think we should use ngeo.</li>
-                            <li>Use controllerAs, bindToController and put all code in controllers as we can.</li>
-                            <li>Show example of closure annotation.</li>
+                            <li>Closure Compiler helps us structure, document and maintain our code</li>
+                            <li>Type checker and code compressor/minifier</li>
+                            <li>Part of our guidelines</li>
+                            <li>Make it possible to create toolkit with lots of features</li>
                         </ul>
                     </aside>
                 </section>
+
+            <section>
+                <h2>Numbers</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Size (gzip'ed)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Full OpenLayers 3 build</td>
+                            <td>143 KB</td>
+                        </tr>
+                        <tr>
+                            <td>Full ngeo build</td>
+                            <td>156 KB</td>
+                        </tr>
+                        <tr>
+                            <td>Luxembourg App + OpenLayers 3 + ngeo</td>
+                            <td>98 KB</td>
+                        </tr>
+                        <tr>
+                            <td>Full Luxembourg build<sup>*</sup></td>
+                            <td>275 KB</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><sup>*</sup>includes: Application + OpenLayers 3 + proj4 + ngeo + d3 + Bootstrap + jQuery + Typeahead + Fuse</p>
+            </section>
+
+            <section>
+                <h2>Roadmap</h2>
+                <ul>
+                    <li>More components</li>
+                    <li>Higher-level components</li>
+                    <li>Documentation</li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>We're actively working on ngeo</li>
+                        <li>We have funds for more components and documentation</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <h1>Thanks!</h1>
+            </section>
 
             </div>
 
