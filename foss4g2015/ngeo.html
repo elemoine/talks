@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>ngeo</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="node_modules/reveal.js/css/theme/black.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ?
+                'node_modules/reveal.js/css/print/pdf.css' :
+                'node_modules/reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="node_modules/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style>
+        .home-logo {
+            height: 64px;
+        }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>ngeo</h1>
+                    <h2>A companion Library for OpenLayers 3</h2>
+                    <img class="home-logo" src="img/foss4g2015_c.png">
+                </section>
+
+                <section>
+                    <h2>Éric Lemoine</h2>
+                    <h2>Florent Gravin</h2>
+                    <img class="home-logo" src="img/c2c_square_143x50_transparent.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Quick presentation of Camptocamp</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>ngeo</h2>
+                    <p>JavaScript toolkit combining OpenLayers 3 and AngularJS, aimed at creating rich web-mapping applications</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>For developers who use OpenLayers and Angular for creating web-mapping apps</li>
+                            <li>OpenLayers 3: open-source JS lib for adding maps to web page</li>
+                            <li>Angular: open-source JS framework created by Google</li>
+                            <li>Goal is to ease development</li>
+                            <li>ngeo is open-source</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Features</h2>
+                    <p>Targeted features include:
+                    <ul>
+                        <li>Layer tree</li>
+                        <li>Measure tools</li>
+                        <li>Elevation profile</li>
+                        <li>…</li>
+                    </ul>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>ngeo provides both low-level and high-level components</li>
+                            <li>Examples shown later</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Design principle</h2>
+                    <p>Provide <strong><em>atomic</em></strong> components that can be combined in <strong><em>many</em></strong> different ways</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>ngeo should not get in your way</li>
+                            <li>ngeo should constrain you</li>
+                            <li>for example ngeo should not limit you in the way you can use OpenLayers 3</li>
+                            <li>other ol3/ng libs exist, what does make ngeo unique?</li>
+                            <li>flexibility, modularity</li>
+                            <li>the primary goal is not to provide out-of-the-box widgets</li>
+                            <li>you can style your components the way you want</li>
+                            <li>ngeo is not tied to a specific UI toolkit (although we use it mainly with Bootstrap)</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Declarative versus Imperative</h2>
+                    <p><a href="http://tombatossals.github.io/angular-openlayers-directive">angular-openlayers-directive</a> is a quite popular project</p>
+                    <p style="margin-top: 45px;">Basically, this is how you use it:</p>
+                    <pre><code class="html" data-trim style="font-size: 18px;">
+<openlayers width="100%" height="400px"></openlayers>
+                    </code></pre>
+                    <p class="fragment">&#8594;Purely declaratively…</p>
+                </section>
+
+                <section>
+                    <h2>The ngeo approach</h2>
+                    HTML code:
+                    <pre><code class="html" data-trim style="font-size: 18px;">
+<div ngeo-map="ctrl.map"></div>
+                    </code></pre>
+                    JavaScript code:
+                    <pre><code class="javascript" data-trim style="font-size: 18px;">
+app.MainController = function() {
+  this.map = new ol.Map({
+    layers: [
+      new ol.layer.Tile({source: new ol.source.OSM()})
+    ],
+    // …
+  });
+};
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>The ngeo approach</h2>
+                    <p>&#8594;We're not looking at creating a declarative layer/API above OpenLayers 3!</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>We want developer keeps maximum control of his code.</li>
+                            <li>Don't want to embed features in too heavy/complex markup.</li>
+                            <li>Easier to understand and maintain.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Examples</h2>
+                    Here are a few (pretty crude) examples:
+                    <p><a href="http://camptocamp.github.io/ngeo/master/backgroundlayer.html">Background layer</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/interactionbtngroup.html">Interaction button group</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/layerorder.html">Layer order</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/layertree.html">Layer tree</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/measure.html">Measure</a></p>
+                    <p><a href="http://camptocamp.github.io/ngeo/master/search.html">Search</a></p>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>More examples</h2>
+                    <p>Check out <a href="http://camptocamp.github.io/ngeo/master/">http://camptocamp.github.io/ngeo/master/</a> for more examples…</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Good infrastructure</li>
+                            <li>Online examples are updated automatically on each git push</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>ngeo in real applications</h2>
+                    <p><a href="http://beta.geoportail.lu">Luxembourg beta site</a></p>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Use Angular in a good way!</h2>
+                    <p>ngeo defines a good way to use Angular</p>
+                    <p>&#8594;<a href="https://github.com/camptocamp/ngeo/blob/master/docs/guidelines.md">guidelines</a> and examples are provided</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>There are many ways to use Angular</li>
+                            <li>There are many BAD ways to use Angular</li>
+                            <li>Guidelines inspired from/similar to guidelines from Google</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Closure Compiler</h2>
+                    <p>We use <a href="https://developers.google.com/closure/compiler/">Closure Compiler</a>, and recommend using it in ngeo applications
+                    <pre><code class="js" data-trim style="font-size: 18px;">
+/**
+ * @param {string|function(!angular.JQLite=, !angular.Attributes=)}
+ *     ngeoScaleselectorTemplateUrl Template URL for the directive.
+ * @return {angular.Directive} Directive Definition Object.
+ * @ngInject
+ */
+ngeo.scaleselectorDirective =
+    function(ngeoScaleselectorTemplateUrl) {
+  return {
+    restrict: 'A',
+    scope: true,
+    controller: 'NgeoScaleselectorController',
+    templateUrl: ngeoScaleselectorTemplateUrl
+  };
+};
+                    </code></pre>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Closure Compiler helps us structure, document and maintain our code</li>
+                            <li>Type checker and code compressor/minifier</li>
+                            <li>Part of our guidelines</li>
+                            <li>Make it possible to create toolkit with lots of features</li>
+                        </ul>
+                    </aside>
+                </section>
+
+            <section>
+                <h2>Numbers</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Size (gzip'ed)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Full OpenLayers 3 build</td>
+                            <td>143 KB</td>
+                        </tr>
+                        <tr>
+                            <td>Full ngeo build</td>
+                            <td>156 KB</td>
+                        </tr>
+                        <tr>
+                            <td>Luxembourg App + OpenLayers 3 + ngeo</td>
+                            <td>98 KB</td>
+                        </tr>
+                        <tr>
+                            <td>Full Luxembourg build<sup>*</sup></td>
+                            <td>275 KB</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><sup>*</sup>includes: Application + OpenLayers 3 + proj4 + ngeo + d3 + Bootstrap + jQuery + Typeahead + Fuse</p>
+            </section>
+
+            <section>
+                <h2>Roadmap</h2>
+                <ul>
+                    <li>More components</li>
+                    <li>Higher-level components (maybe, if we find good cases)</li>
+                    <li>Documentation</li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>We're actively working on ngeo</li>
+                        <li>We have funds for more components and documentation</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <h1>Thanks!</h1>
+            </section>
+
+            </div>
+
+        </div>
+
+        <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+        <script src="node_modules/reveal.js/js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                    { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
