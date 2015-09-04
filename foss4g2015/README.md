@@ -1,6 +1,7 @@
 # FOSS4G 2015 Talks
 
-Talks for the FOSS4G 2015 conference.
+Talks for the FOSS4G 2015 conference. Available online at
+http://erilem.net/talks/foss4g2015/ngeo.html.
 
 Dependencies:
 
@@ -20,3 +21,9 @@ Run the HTTP server:
     $ make serve
 
 Open http://localhost:8000/.
+
+Update the version on erilem.net:
+
+    $ cd ..
+    $ make foss4g2015
+    $ make gh-pages
