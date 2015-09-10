@@ -55,14 +55,9 @@
                 </section>
 
                 <section>
-                    <h2>Slides available at:</h2>
-                    <a ref="http://erilem.net/talks/foss4g2015/ngeo.html">http://erilem.net/talks/foss4g2015/ngeo.html</a>
-                </section>
-
-                <section>
                     <h2>Éric Lemoine</h2>
                     <h2>Florent Gravin</h2>
-                    <img class="home-logo" src="img/c2c_square_143x50_transparent.png">
+                    <img "home-logo" src="img/c2c_square_143x50_transparent.png">
                     <aside class="notes">
                         <ul>
                             <li>Quick presentation of Camptocamp</li>
@@ -78,14 +73,14 @@
                 <section>
                     <h2>ngeo</h2>
                     <p>JavaScript toolkit combining OpenLayers 3 and AngularJS, aimed at creating rich web-mapping applications</p>
+                    <p><a href="https://github.com/camptocamp/ngeo">https://github.com/camptocamp/ngeo</a></p>
                     <aside class="notes">
                         <ul>
-                            <li>For developers who use OpenLayers and Angular for creating web-mapping apps</li>
-                            <li>OpenLayers 3: open-source JS lib for adding maps to web page</li>
-                            <li>Angular: open-source JS framework created by Google</li>
-                            <li>We develop and use OpenLayers at Camptocamp, and we use Angular, so we decided to create ngeo</li>
+                            <li>For developers who use OpenLayers 3 and Angular for creating mapping apps</li>
+                            <li>OpenLayers 3: JavaScript lib for adding maps to web pages</li>
+                            <li>Angular: JavaScript MVC framework created by Google</li>
+                            <li>We at Camptocamp develop and use OpenLayers, and we use Angular, so we decided to create ngeo</li>
                             <li>Goal is to ease development, and make us more efficient</li>
-                            <li>ngeo is open-source</li>
                         </ul>
                     </aside>
                 </section>
@@ -102,8 +97,8 @@
                     </p>
                     <aside class="notes">
                         <ul>
-                            <li>ngeo provides both low-level and high-level components</li>
-                            <li>Examples shown later</li>
+                            <li>ngeo provides components that help you create these types of features in your application</li>
+                            <li>ngeo provides building blocks</li>
                         </ul>
                     </aside>
                 </section>
@@ -111,16 +106,16 @@
                 <section>
                     <h2>Design principle</h2>
                     <p>Provide <strong><em>atomic</em></strong> components that can be combined in <strong><em>many</em></strong> different ways</p>
+                    <img src="img/2_duplo_lego_bricks.jpg" alt="">
                     <aside class="notes">
                         <ul>
                             <li>ngeo should not get in your way</li>
                             <li>ngeo should constrain you</li>
                             <li>for example ngeo should not limit you in the way you can use OpenLayers 3</li>
-                            <li>other ol3/ng libs exist, what does make ngeo unique?</li>
-                            <li>flexibility, modularity</li>
+                            <li>main design principles: flexibility and  modularity</li>
                             <li>the primary goal is not to provide out-of-the-box widgets</li>
                             <li>you can style your components the way you want</li>
-                            <li>ngeo is not tied to a specific UI toolkit (although we use it mainly with Bootstrap)</li>
+                            <li>ngeo is not tied to a specific CSS framework (although we use it mainly with Bootstrap)</li>
                         </ul>
                     </aside>
                 </section>
@@ -159,9 +154,9 @@ app.MainController = function() {
                     <p>&#8594;We're not creating a declarative layer/API above OpenLayers 3!</p>
                     <aside class="notes">
                         <ul>
-                            <li>We want developer keeps maximum control of his code.</li>
-                            <li>Don't want to embed features in too heavy/complex markup.</li>
-                            <li>Easier to understand and maintain.</li>
+                            <li>We want that the developer keep maximum control of his code</li>
+                            <li>Don't want to embed features in too heavy/complex markup</li>
+                            <li>Easier to understand and maintain</li>
                         </ul>
                     </aside>
                 </section>
