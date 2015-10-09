@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>GeoAlchemy</title>
+
+    <meta name="description" content="Using SQLAlchemy with Spatial Databases">
+    <meta name="author" content="Eric Lemoine">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ?
+        'node_modules/reveal.js/css/print/pdf.css' :
+        'node_modules/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="node_modules/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+    .home-logo {
+        height: 64px;
+    }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h1>GeoAlchemy</h1>
+          <p><a href="http://erilem.net/talks/pyconfr2015">http://erilem.net/talks/pyconfr2015</a></p>
+          <img class="home-logo" src="img/banner.png">
+          <img class="home-logo" src="img/geoalchemy.png">
+        </section>
+
+        <section>
+          <h1>Éric Lemoine</h1>
+          <p>Python (and Javascript) developer at Camptocamp</p>
+          <p><img style="vertical-align:middle" src="img/c2c_square_143x50_transparent.png"></p>
+          <p><img style="height:60px;vertical-align:middle;" src="img/GitHub-Mark.png">
+          &nbsp;<a href="https://github.com/elemoine">@elemoine</a></p>
+        </section>
+
+        <section>
+          <h1>GeoAlchemy</h1>
+          <h2>Use SQL Spatial Databases from Python</h2>
+        </section>
+
+        <section>
+          <h2>What's an SQL Spatial Database?</h2>
+          <p>Quoting Wikipedia:</p>
+          <blockquote cite="https://en.wikipedia.org/wiki/Spatial_database">
+          &ldquo;A spatial database, or geodatabase is a database that is optimized to store and query data that represents objects defined in a geometric space.&rdquo;
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>The Spatial Database extender for PostgreSQL</h2>
+          <a href="http://postgis.net/"><img src="img/postgis-logo.png"></a>
+        </section>
+
+        <section>
+          <h1>GeoAlchemy</h1>
+          <p>Provides extensions to <strong>SQLAlchemy</strong> for working with Spatial databases.</p>
+          <p><img class="home-logo" src="img/geoalchemy.png"></p>
+        </section>
+
+        <section>
+          <p>We have PostGIS. Hooray!</p>
+          <!-- We all love PostGIS. For good reasons. -->
+        </section>
+
+        <section>
+          <p>We have Python. Horray!</p>
+          <!-- Lots of great Python libs. And lots of great Python GIS libs. -->
+        </section>
+
+        <section>
+          <p>We need good ways/tools to use PostGIS from Python.</p>
+        </section>
+
+        <section>
+          <p>That's the reason we're developing GeoAlchemy</p>
+          <img src="img/geoalchemy.png">
+        </section>
+
+        <section>
+          <p>Wait! There's Django, and GeoDjango!</p>
+        </section>
+
+        <section>
+          <p>YES (it's great), BUT...</p>
+        </section>
+
+        <section>
+          <p>There's a life outside Web and Django!</p>
+          <!-- Think data manipulation and scripting. -->
+        </section>
+
+        <section>
+          <p>Has anyone heard about Flask, Bottle, Pyramid?</p>
+          <p class="fragment">They're great frameworks, with lots of users.</p>
+        </section>
+
+        <section>
+          <p>They all love the SQLAlchemy toolkit.</p>
+          <p class="fragment">For good reasons!</p>
+          <!-- If you use one of these frameworks then you probably know SQLAlchemy already. -->
+        </section>
+
+        <section>
+          <h2>SQLAlchemy</h2>
+          <!--
+          http://techspot.zzzeek.org/files/2011/sqla_arch_retro.key.pdf
+          -->
+          <quote>The Database Toolkit for Python</quote>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy Philosophy</h3>
+          <ul>
+              <li class="fragment">It's not about abstracting the DB</li>
+              <li class="fragment">Abstracting is Hiding</li>
+              <li class="fragment">It's about Automation</li>
+              <li class="fragment">Instruct SQLA to do the grunt work we give it</li>
+              <li class="fragment">Relational form of data is preserved</li>
+              <li class="fragment">SQLA provides a rich vocabulary to express decisions made by the developer</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy Core / ORM</h3>
+          <p>SQLAlchemy has two distinct areas:</p>
+          <ul>
+            <li>Core (SQL expression system)</li>
+            <li>Object Relational Mapper (ORM)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy Query Example</h3>
+          <pre><code>
+          user = session.query(User).join(Address).\
+              filter(Address.email_address=='jack@google.com').\
+              one()
+          </code></pre>
+          <i>The user whose email address is jack@google.com.</i>
+        </section>
+
+        <section>
+          <h2>GeoAlchemy</h2>
+          <p>Thin layer above SQLAlchemy</p>
+          <p class="fragment">With the same philosophy</p>
+        </section>
+
+        <section>
+          <h3>GeoAlchemy Query Example</h3>
+          <pre><code>
+          lakes = session.query(Lake).filter(
+              Lake.geom.ST_Buffer(2).ST_Area() > 33).all()
+          </code></pre>
+          <i>The lakes whose buffers have areas greater than 33.</i>
+          <p class="fragment">It looks like SQLA!</p>
+          <p class="fragment">It looks like PostGIS SQL!</p>
+        </section>
+
+        <section>
+          <h3>Shapely Integration</h3>
+          <p><code>to_shape</code> and <code>from_shape</code> functions</p>
+          <pre><code>
+          lake  = session.query(Lake).filter(
+              Lake.geom.ST_Buffer(2).ST_Area() > 33).first()
+          lake_shape = to_shape(lake.geom)
+          lake_shape.representative_point().wkt
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Status</h2>
+          <p>Version 2 released 6 months ago (03/17/2013)</p>
+          <p>
+            <a href="https://geoalchemy-2.readthedocs.org">https://geoalchemy-2.readthedocs.org</a>
+          </p>
+          <ul>
+            <li>Benefits from SQLALchemy's latest advances</li>
+            <li>Improved API</li>
+            <li>Works both with SQLA Core and ORM</li>
+            <li>PostGIS 2 support (Raster included)</li>
+            <li>Fully documented and tested</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Exposure</h2>
+          <p>Used in production</p>
+          <ul>
+            <li>Many client projects by Camptocamp</li>
+            <li>The SkyLines project (<a href="https://www.skylines-project.org/">https://www.skylines-project.org)</a>)<br>By Tobias Bieniek (@Turbo87)</li>
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+    <script src="node_modules/reveal.js/js/reveal.js"></script>
+
+    <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+    </script>
+
+  </body>
+</html>
