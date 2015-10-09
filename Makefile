@@ -15,6 +15,10 @@ foss4g2014: foss4g2013/geoalchemy.html
 foss4g2015: foss4g2015/ngeo.html
 	make -C foss4g2015 install
 
+.PHONY: pyconfr2015
+pyconfr2015: pyconfr2015/ngeo.html
+	make -C pyconfr2015 install
+
 .PHONY: gh-pages
 gh-pages: .gh-pages
 	(cd .gh-pages && \
@@ -35,6 +39,10 @@ gh-pages: .gh-pages
 	 cp -r ../foss4g2015/node_modules foss4g2015 && \
 	 cp -r ../foss4g2015/img foss4g2015 && \
 	 cp -r ../foss4g2015/theme foss4g2015 && \
+	 mkdir -p pyconfr2015 && \
+	 cp ../pyconfr2015/index.html pyconfr2015 && \
+	 cp -r ../pyconfr2015/node_modules pyconfr2015 && \
+	 cp -r ../pyconfr2015/img pyconfr2015 && \
 	 git add --all . && \
 	 git commit -m 'Update' && \
 	 git push origin gh-pages)
