@@ -75,14 +75,14 @@
         </section>
 
         <section>
-          <h2>PostGIS</h2>
-          <h3>The Spatial Database extender for PostgreSQL</h3>
+          <h1>PostGIS</h1>
+          <p>The Spatial Database extender for PostgreSQL</p>
           <a href="http://postgis.net/"><img src="img/postgis-logo.png"></a>
         </section>
 
         <section>
           <h1>GeoAlchemy</h1>
-          <p>Provides extensions to <strong>SQLAlchemy</strong> for working with Spatial databases.</p>
+          <p>Provides extensions to <strong>SQLAlchemy</strong> for working with Spatial databases</p>
           <p><img class="home-logo" src="img/geoalchemy.png"></p>
         </section>
 
@@ -94,16 +94,9 @@
         </section>
 
         <section>
-          <h2>SQLAlchemy Architecture</h2>
-          <img src="img/sqlalchemy-architecture.png">
-          <p>Two parts: SQLAlchemy Core and SQLAlchemy ORM.</p>
-        </section>
-
-        <section>
           <h2>SQLAlchemy Philosophy</h2>
           <ul>
-              <li>It's not about abstracting the DB</li>
-              <li>Abstracting is Hiding</li>
+              <li>It's not about abstracting/hiding the DB</li>
               <li>It's about Automation</li>
               <li>Instruct SQLA to do the grunt work we give it</li>
               <li>Relational form of data is preserved</li>
@@ -116,41 +109,93 @@
         </section>
 
         <section>
-          <p>Has anyone heard about Flask, Bottle, Pyramid?</p>
-          <p class="fragment">They're great frameworks, with lots of users.</p>
+          <h2>SQLAlchemy Architecture</h2>
+          <p>Two parts: SQLAlchemy Core and SQLAlchemy ORM</p>
+          <img src="img/sqlalchemy-architecture.png">
         </section>
 
         <section>
-          <p>They all love the SQLAlchemy toolkit.</p>
-          <p class="fragment">For good reasons!</p>
-          <!-- If you use one of these frameworks then you probably know SQLAlchemy already. -->
+          <h3>SQLAlchemy Core Example #1</h3>
+          <p>Define and create tables</p>
+          <pre><code class="python">
+          from sqlalchemy import (Table, Column, Integer,
+                                  String, MetaData, ForeignKey)
+          metadata = MetaData()
+          users = Table('users', metadata,
+              Column('id', Integer, primary_key=True),
+              Column('name', String),
+              Column('fullname', String),
+              )
+          addresses = Table('addresses', metadata,
+              Column('id', Integer, primary_key=True),
+              Column('user_id', None, ForeignKey('users.id')),
+              Column('email_address', String, nullable=False)
+              )
+          metadata.create_all()
+          </code></pre>
         </section>
 
         <section>
-          <h2>SQLAlchemy</h2>
-          <!--
-          http://techspot.zzzeek.org/files/2011/sqla_arch_retro.key.pdf
-          -->
-          <quote>The Database Toolkit for Python</quote>
+          <h3>SQLAlchemy Core Example #2</h3>
+          <p>Insert records</p>
+          <pre><code class="python">
+          insert = users.insert().values(
+              name='jack', fullname='Jack Jones')
+          conn = engine.connect()  # get a connection
+          result = conn.execute(insert)
+          user_id = result.inserted_primary_key
+          </code></pre>
         </section>
 
         <section>
-          <h3>SQLAlchemy Core / ORM</h3>
-          <p>SQLAlchemy has two distinct areas:</p>
-          <ul>
-            <li>Core (SQL expression system)</li>
-            <li>Object Relational Mapper (ORM)</li>
-          </ul>
+          <h3>SQLAlchemy Core Example #3</h3>
+          <p>Select records</p>
+          <pre><code class="python">
+          from sqlalchemy.sql import select
+          s = select([users, addresses]).where(
+              users.c.id == addresses.c.user_id)
+          result = conn.execute(s)
+          for row in result:
+              print(row['name'], row['fullname'])
+          </code></pre>
         </section>
 
         <section>
-          <h3>SQLAlchemy Query Example</h3>
+          <h3>SQLAlchemy ORM Example #1</h3>
+          <p>Declare a mapping</p>
+          <pre><code class="python">
+          from sqlalchemy import Column, Integer, String
+          class User(Base):
+              __tablename__ = 'users'
+              id = Column(Integer, primary_key=True)
+              name = Column(String)
+              fullname = Column(String)
+              password = Column(String)
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy ORM Example #2</h3>
+          <p>Add new objects</p>
+          <pre><code class="python">
+          session = Session()
+          ed_user = User(name='ed', fullname='Ed Jones',
+                         password='edspassword')
+          session.add(ed_user)
+          session.commit()
+          ed_user_id = ed_user.id
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy ORM Example #3</h3>
+          <p>Querying</p>
           <pre><code>
           user = session.query(User).join(Address).\
               filter(Address.email_address=='jack@google.com').\
               one()
           </code></pre>
-          <i>The user whose email address is jack@google.com.</i>
+          <i>(The user whose email address is jack@google.com)</i>
         </section>
 
         <section>
