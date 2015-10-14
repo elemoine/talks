@@ -93,7 +93,7 @@
 
         <section>
           <h3>PostGIS Example #1</h3>
-          <p>Create a PostGIS database:</p>
+          <p>Create a PostGIS database</p>
           <pre><code>
           $ createdb my-postgis-db
           $ psql -c 'CREATE EXTENSION postgis' my-postgis-db
@@ -103,7 +103,7 @@
 
         <section>
           <h3>PostGIS Example #2</h3>
-          <p>Create a table with a "geometry" column:</p>
+          <p>Create a table with a "geometry" column</p>
           <pre><code class="sql">
           CREATE TABLE users (
             id SERIAL,
@@ -116,7 +116,7 @@
 
         <section>
           <h3>PostGIS Example #3</h3>
-          <p>Insert a record with a geometry:</p>
+          <p>Insert a record with a geometry</p>
           <pre><code class="sql">
           INSERT INTO users (name, fullname, geom)
           VALUES('pramsey', 'Paul Ramsey',
@@ -221,7 +221,6 @@
               id = Column(Integer, primary_key=True)
               name = Column(String)
               fullname = Column(String)
-              password = Column(String)
           </code></pre>
         </section>
 
@@ -230,8 +229,7 @@
           <p>Add new objects</p>
           <pre><code class="python">
           session = Session()
-          ed_user = User(name='ed', fullname='Ed Jones',
-                         password='edspassword')
+          ed_user = User(name='ed', fullname='Ed Jones')
           session.add(ed_user)
           session.commit()
           ed_user_id = ed_user.id
@@ -256,57 +254,104 @@
         </section>
 
         <section>
-          <h2>GeoAlchemy</h2>
-          <p>Thin layer above SQLAlchemy</p>
+          <h2>GeoAlchemy History</h2>
           <ul>
-            <li>Using GeoA requires knowing SQLA</li>
-            <li>If you know how to use SQLA you know how to use GeoA</li>
+            <li>GeoAlchemy 1 created in 2009</li>
+            <li>Initially PostGIS only</li>
+            <li>MySQL, SpatiaLite, Oracle, MS SQL support added in 2009</li>
+            <li>GeoAlchemy 2 created in 2012</li>
+            <li>Only supports PostGIS!</li>
+          </ul>
+        </section>
+
+        <section data-background="img/evolution.jpg">
+        </section>
+
+        <section>
+          <h2>GeoAlchemy 2</h2>
+          <p>GeoAlchemy 2 actually much simpler, and much easier to use and
+          maintain than the first series.</p>
+          <p>SpatiaLite support considered.</p>
+        </section>
+
+        <section>
+          <h2>GeoAlchemy Features</h2>
+          <ul>
+            <li>Supports Geometry, Geography and Raster types</li>
+            <li>Supports many PostGIS functions and operators</li>
+            <li>Supports custom functions</li>
+            <li>Works both with SQLAlchemy Core and SQLAlchemy ORM</li>
+            <li>Integrates with Shapely</li>
           </ul>
         </section>
 
         <section>
-          <h3>GeoAlchemy Query Example</h3>
+          <h3>GeoAlchemy Example #1</h3>
+          <p>Declare a "spatial" table</p>
+          <pre><code class="python">
+          from sqlalchemy import Column, Integer, String
+          from geoalchemy2 import Geometry
+          class User(Base):
+              __tablename__ = 'users'
+              id = Column(Integer, primary_key=True)
+              name = Column(String)
+              fullname = Column(String)
+              geom = Colum(Geometry('POINT'))
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>GeoAlchemy Example #2</h3>
+          <p>Add new "spatial" objects</p>
+          <pre><code class="python">
+          session = Session()
+          ed_user = User(name='ed', fullname='Ed Jones',
+                         geom='POINT(90 43)')
+          session.add(ed_user)
+          session.commit()
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>GeoAlchemy Example #3</h3>
+          <p>Querying</p>
           <pre><code>
+          users = session.query(User). \
+              filter(User.geom.ST_DWithin('POINT(90 43)', 1)). \
+              all()
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>GeoAlchemy Example #4</h3>
+          <p>Another Querying example</p>
+          <pre><code class="python">
           lakes = session.query(Lake).filter(
               Lake.geom.ST_Buffer(2).ST_Area() > 33).all()
           </code></pre>
           <i>The lakes whose buffers have areas greater than 33.</i>
-          <p class="fragment">It looks like SQLA!</p>
-          <p class="fragment">It looks like PostGIS SQL!</p>
         </section>
 
         <section>
-          <h3>Shapely Integration</h3>
-          <p><code>to_shape</code> and <code>from_shape</code> functions</p>
-          <pre><code>
-          lake  = session.query(Lake).filter(
-              Lake.geom.ST_Buffer(2).ST_Area() > 33).first()
-          lake_shape = to_shape(lake.geom)
-          lake_shape.representative_point().wkt
-          </code></pre>
+          <h3>Integration with other libraries</h3>
+          <p>GeoAlchemy integrates well with other Python tools.</p>
+          <p>E.g. Shapely, geojson, pyproj, Pyramid (thru Papyrus)</p>
         </section>
 
         <section>
-          <h2>Status</h2>
-          <p>Version 2 released 6 months ago (03/17/2013)</p>
-          <p>
-            <a href="https://geoalchemy-2.readthedocs.org">https://geoalchemy-2.readthedocs.org</a>
-          </p>
+          <h2>Community/Status</h2>
           <ul>
-            <li>Benefits from SQLALchemy's latest advances</li>
-            <li>Improved API</li>
-            <li>Works both with SQLA Core and ORM</li>
-            <li>PostGIS 2 support (Raster included)</li>
-            <li>Fully documented and tested</li>
+            <li>Fully documented: <a href="https://geoalchemy-2.readthedocs.org">https://geoalchemy-2.readthedocs.org</a></li>
+            <li>Fully tested (on Travis):
+              <ul>
+                <li>Python 2.6, 2.7, 3.3, 3.4, 3.5</li>
+                <li>PostGIS 1.5 and 2</li>
+                <li>SQLAlchemy 0.8, 0.9 and 1.0</li>
+              </ul>
+            </li>
+            <li>3-4 active developers</li>
+            <li>Feel free to join: <a href="https://github.com/geoalchemy/geoalchemy2">https://github.com/geoalchemy/geoalchemy2</a></li>
           </ul>
-        </section>
-
-        <section>
-          <h2>Exposure</h2>
-          <p>Used in production</p>
-          <ul>
-            <li>Many client projects by Camptocamp</li>
-            <li>The SkyLines project (<a href="https://www.skylines-project.org/">https://www.skylines-project.org)</a>)<br>By Tobias Bieniek (@Turbo87)</li>
         </section>
 
         <section>
