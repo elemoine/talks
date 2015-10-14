@@ -64,6 +64,7 @@
         <section>
           <h1>GeoAlchemy</h1>
           <p>Use SQLAlchemy with Spatial Databases</p>
+          <p><img class="home-logo" src="img/geoalchemy.png"></p>
           <aside class="notes">
             GeoAlchemy est une bibliothèque Python qui fournit des extensions à
             SQLAlchemy pour l'utilisation de bases de données SQL géographiques.
@@ -85,9 +86,51 @@
         </section>
 
         <section>
-          <h1>GeoAlchemy</h1>
-          <p>Provides extensions to <strong>SQLAlchemy</strong> for working with Spatial databases</p>
-          <p><img class="home-logo" src="img/geoalchemy.png"></p>
+          <h1>PostGIS</h1>
+          <p>PostGIS provides "spatial" types, functions and operators, and an R-Tree
+          index implementation (based on PostgreSQL's GiST).</p>
+        </section>
+
+        <section>
+          <h3>PostGIS Example #1</h3>
+          <p>Create a PostGIS database:</p>
+          <pre><code>
+          $ createdb my-postgis-db
+          $ psql -c 'CREATE EXTENSION postgis' my-postgis-db
+          CREATE EXTENSION
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>PostGIS Example #2</h3>
+          <p>Create a table with a "geometry" column:</p>
+          <pre><code class="sql">
+          CREATE TABLE users (
+            id SERIAL,
+            name TEXT,
+            fullname TEXT,
+            geom GEOMETRY(POINT)
+          );
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>PostGIS Example #3</h3>
+          <p>Insert a record with a geometry:</p>
+          <pre><code class="sql">
+          INSERT INTO users (name, fullname, geom)
+          VALUES('pramsey', 'Paul Ramsey',
+                 ST_GeomFromText('POINT(-123 48)'));
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>PostGIS Example #4</h3>
+          <p>Select users within a distance of a point:</p>
+          <pre><code class="sql">
+          SELECT name FROM users
+          WHERE ST_DWithin(users.geom, 'POINT(-123 49)', 1);
+          </code></pre>
         </section>
 
         <section>
