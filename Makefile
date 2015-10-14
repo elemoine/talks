@@ -16,7 +16,7 @@ foss4g2015: foss4g2015/ngeo.html
 	make -C foss4g2015 install
 
 .PHONY: pyconfr2015
-pyconfr2015: pyconfr2015/ngeo.html
+pyconfr2015: pyconfr2015/index.html
 	make -C pyconfr2015 install
 
 .PHONY: gh-pages
