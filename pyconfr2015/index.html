@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>GeoAlchemy</title>
+
+    <meta name="description" content="Using SQLAlchemy with Spatial Databases">
+    <meta name="author" content="Eric Lemoine">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ?
+        'node_modules/reveal.js/css/print/pdf.css' :
+        'node_modules/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="node_modules/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+    .home-logo {
+        height: 64px;
+    }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h1>GeoAlchemy</h1>
+          <p><a href="http://erilem.net/talks/pyconfr2015">http://erilem.net/talks/pyconfr2015</a></p>
+          <img class="home-logo" src="img/banner.png">
+          <img class="home-logo" src="img/geoalchemy.png">
+        </section>
+
+        <section>
+          <h1>Éric Lemoine</h1>
+          <p>Python (and Javascript) developer at Camptocamp</p>
+          <p><img style="vertical-align:middle" src="img/c2c_square_143x50_transparent.png"></p>
+          <p><img style="height:60px;vertical-align:middle;" src="img/GitHub-Mark.png">
+          &nbsp;<a href="https://github.com/elemoine">@elemoine</a></p>
+        </section>
+
+        <section>
+          <h1>GeoAlchemy</h1>
+          <p>Use SQLAlchemy with Spatial Databases</p>
+          <p><img class="home-logo" src="img/geoalchemy.png"></p>
+          <aside class="notes">
+            GeoAlchemy est une bibliothèque Python qui fournit des extensions à
+            SQLAlchemy pour l'utilisation de bases de données SQL géographiques.
+          </aside>
+        </section>
+
+        <section>
+          <h2>What's an SQL Spatial Database?</h2>
+          <p>Quoting Wikipedia:</p>
+          <blockquote cite="https://en.wikipedia.org/wiki/Spatial_database">
+          &ldquo;A spatial database, or geodatabase is a database that is optimized to store and query data that represents objects defined in a geometric space.&rdquo;
+          </blockquote>
+        </section>
+
+        <section>
+          <h1>PostGIS</h1>
+          <p>The Spatial Database extender for PostgreSQL</p>
+          <a href="http://postgis.net/"><img src="img/postgis-logo.png"></a>
+        </section>
+
+        <section>
+          <h1>PostGIS</h1>
+          <p>PostGIS provides "spatial" types, functions and operators, and an R-Tree
+          index implementation (based on PostgreSQL's GiST).</p>
+        </section>
+
+        <section>
+          <h3>PostGIS Example #1</h3>
+          <p>Create a PostGIS database</p>
+          <pre><code>
+          $ createdb my-postgis-db
+          $ psql -c 'CREATE EXTENSION postgis' my-postgis-db
+          CREATE EXTENSION
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>PostGIS Example #2</h3>
+          <p>Create a table with a "geometry" column</p>
+          <pre><code class="sql">
+          CREATE TABLE users (
+            id SERIAL,
+            name TEXT,
+            fullname TEXT,
+            geom GEOMETRY(POINT)
+          );
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>PostGIS Example #3</h3>
+          <p>Insert a record with a geometry</p>
+          <pre><code class="sql">
+          INSERT INTO users (name, fullname, geom)
+          VALUES('pramsey', 'Paul Ramsey',
+                 ST_GeomFromText('POINT(-123 48)'));
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>PostGIS Example #4</h3>
+          <p>Select users within a distance of a point:</p>
+          <pre><code class="sql">
+          SELECT name FROM users
+          WHERE ST_DWithin(users.geom, 'POINT(-123 49)', 1);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>SQLAlchemy</h1>
+          <h3>The Database Toolkit for Python</h3>
+          <img src="img/sqla_logo.png">
+        </section>
+
+        <section>
+          <h1>SQLAlchemy</h1>
+          <blockquote>&ldquo;The SQLAlchemy SQL Toolkit and Object Relational Mapper is a comprehensive set of tools for working with databases and Python.&rdquo;</blockquote>
+        </section>
+
+        <section>
+          <h2>SQLAlchemy Philosophy</h2>
+          <ul>
+              <li>It's not about abstracting/hiding the DB</li>
+              <li>It's about Automation</li>
+              <li>Instruct SQLA to do the grunt work we give it</li>
+              <li>Relational form of data is preserved</li>
+              <li>SQLA provides a rich vocabulary to express decisions made by the developer</li>
+          </ul>
+        </section>
+
+        <section>
+          <blockquote>&ldquo;The main goal of SQLAlchemy is to change the way you think about databases and SQL!&rdquo;</blockquote>
+        </section>
+
+        <section>
+          <h2>SQLAlchemy Architecture</h2>
+          <p>Two parts: SQLAlchemy Core and SQLAlchemy ORM</p>
+          <img src="img/sqlalchemy-architecture.png">
+        </section>
+
+        <section>
+          <h3>SQLAlchemy Core Example #1</h3>
+          <p>Define and create tables</p>
+          <pre><code class="python">
+          from sqlalchemy import (Table, Column, Integer,
+                                  String, MetaData, ForeignKey)
+          metadata = MetaData()
+          users = Table('users', metadata,
+              Column('id', Integer, primary_key=True),
+              Column('name', String),
+              Column('fullname', String),
+              )
+          addresses = Table('addresses', metadata,
+              Column('id', Integer, primary_key=True),
+              Column('user_id', None, ForeignKey('users.id')),
+              Column('email_address', String, nullable=False)
+              )
+          metadata.create_all()
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy Core Example #2</h3>
+          <p>Insert records</p>
+          <pre><code class="python">
+          insert = users.insert().values(
+              name='jack', fullname='Jack Jones')
+          conn = engine.connect()  # get a connection
+          result = conn.execute(insert)
+          user_id = result.inserted_primary_key
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy Core Example #3</h3>
+          <p>Select records</p>
+          <pre><code class="python">
+          from sqlalchemy.sql import select
+          s = select([users, addresses]).where(
+              users.c.id == addresses.c.user_id)
+          result = conn.execute(s)
+          for row in result:
+              print(row['name'], row['fullname'])
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy ORM Example #1</h3>
+          <p>Declare a mapping</p>
+          <pre><code class="python">
+          from sqlalchemy import Column, Integer, String
+          class User(Base):
+              __tablename__ = 'users'
+              id = Column(Integer, primary_key=True)
+              name = Column(String)
+              fullname = Column(String)
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy ORM Example #2</h3>
+          <p>Add new objects</p>
+          <pre><code class="python">
+          session = Session()
+          ed_user = User(name='ed', fullname='Ed Jones')
+          session.add(ed_user)
+          session.commit()
+          ed_user_id = ed_user.id
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>SQLAlchemy ORM Example #3</h3>
+          <p>Querying</p>
+          <pre><code>
+          user = session.query(User).join(Address).\
+              filter(Address.email_address=='jack@google.com').\
+              one()
+          </code></pre>
+          <i>(The user whose email address is jack@google.com)</i>
+        </section>
+
+        <section>
+          <h1>GeoAlchemy</h1>
+          <p>Provides extensions to <strong>SQLAlchemy</strong> for working with Spatial databases</p>
+          <p><img class="home-logo" src="img/geoalchemy.png"></p>
+        </section>
+
+        <section>
+          <h2>GeoAlchemy History</h2>
+          <ul>
+            <li>GeoAlchemy 1 created in 2009</li>
+            <li>Initially PostGIS only</li>
+            <li>MySQL, SpatiaLite, Oracle, MS SQL support added in 2009</li>
+            <li>GeoAlchemy 2 created in 2012</li>
+            <li>Only supports PostGIS!</li>
+          </ul>
+        </section>
+
+        <section data-background="img/evolution.jpg">
+        </section>
+
+        <section>
+          <h2>GeoAlchemy 2</h2>
+          <p>GeoAlchemy 2 actually much simpler, and much easier to use and
+          maintain than the first series.</p>
+          <p>SpatiaLite support considered.</p>
+        </section>
+
+        <section>
+          <h2>GeoAlchemy Features</h2>
+          <ul>
+            <li>Supports Geometry, Geography and Raster types</li>
+            <li>Supports many PostGIS functions and operators</li>
+            <li>Supports custom functions</li>
+            <li>Works both with SQLAlchemy Core and SQLAlchemy ORM</li>
+            <li>Integrates with Shapely</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>GeoAlchemy Example #1</h3>
+          <p>Declare a "spatial" table</p>
+          <pre><code class="python">
+          from sqlalchemy import Column, Integer, String
+          from geoalchemy2 import Geometry
+          class User(Base):
+              __tablename__ = 'users'
+              id = Column(Integer, primary_key=True)
+              name = Column(String)
+              fullname = Column(String)
+              geom = Colum(Geometry('POINT'))
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>GeoAlchemy Example #2</h3>
+          <p>Add new "spatial" objects</p>
+          <pre><code class="python">
+          session = Session()
+          ed_user = User(name='ed', fullname='Ed Jones',
+                         geom='POINT(90 43)')
+          session.add(ed_user)
+          session.commit()
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>GeoAlchemy Example #3</h3>
+          <p>Querying</p>
+          <pre><code>
+          users = session.query(User). \
+              filter(User.geom.ST_DWithin('POINT(90 43)', 1)). \
+              all()
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>GeoAlchemy Example #4</h3>
+          <p>Another Querying example</p>
+          <pre><code class="python">
+          lakes = session.query(Lake).filter(
+              Lake.geom.ST_Buffer(2).ST_Area() > 33).all()
+          </code></pre>
+          <i>The lakes whose buffers have areas greater than 33.</i>
+        </section>
+
+        <section>
+          <h3>Integration with other libraries</h3>
+          <p>GeoAlchemy integrates well with other Python tools.</p>
+          <p>E.g. Shapely, geojson, pyproj, Pyramid (thru Papyrus)</p>
+        </section>
+
+        <section>
+          <h2>Community/Status</h2>
+          <ul>
+            <li>Fully documented: <a href="https://geoalchemy-2.readthedocs.org">https://geoalchemy-2.readthedocs.org</a></li>
+            <li>Fully tested (on Travis):
+              <ul>
+                <li>Python 2.6, 2.7, 3.3, 3.4, 3.5</li>
+                <li>PostGIS 1.5 and 2</li>
+                <li>SQLAlchemy 0.8, 0.9 and 1.0</li>
+              </ul>
+            </li>
+            <li>3-4 active developers</li>
+            <li>Feel free to join: <a href="https://github.com/geoalchemy/geoalchemy2">https://github.com/geoalchemy/geoalchemy2</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+        </section>
+
+        <section>
+          <img src="img/photo_twitter.jpg" alt="">
+        </section>
+      </div>
+    </div>
+
+    <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+    <script src="node_modules/reveal.js/js/reveal.js"></script>
+
+    <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+    </script>
+
+  </body>
+</html>
