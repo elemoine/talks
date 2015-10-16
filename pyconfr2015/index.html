@@ -62,6 +62,11 @@
         </section>
 
         <section>
+          <h2>Camptocamp</h2>
+          <p><img src="img/departments-c2ceng.png"></p>
+        </section>
+
+        <section>
           <h1>GeoAlchemy</h1>
           <p>Use SQLAlchemy with Spatial Databases</p>
           <p><img class="home-logo" src="img/geoalchemy.png"></p>
@@ -111,6 +116,8 @@
             fullname TEXT,
             geom GEOMETRY(POINT)
           );
+          CREATE INDEX users_geom_idx
+          ON users USING GIST ( geom );
           </code></pre>
         </section>
 
@@ -216,11 +223,17 @@
           <p>Declare a mapping</p>
           <pre><code class="python">
           from sqlalchemy import Column, Integer, String
+          from sqlalchemy.ext import declarative_base
+
+          Base = declarative_base()
+
           class User(Base):
               __tablename__ = 'users'
               id = Column(Integer, primary_key=True)
               name = Column(String)
               fullname = Column(String)
+
+          Base.metadata.create_all()
           </code></pre>
         </section>
 
@@ -271,7 +284,7 @@
           <h2>GeoAlchemy 2</h2>
           <p>GeoAlchemy 2 actually much simpler, and much easier to use and
           maintain than the first series.</p>
-          <p>SpatiaLite support considered.</p>
+          <p>SpatiaLite and MySQL support still considered.</p>
         </section>
 
         <section>
@@ -339,6 +352,27 @@
         </section>
 
         <section>
+          <h3>Pyramid GeoJSON Web Service Example</h3>
+          <pre style="font-size: 0.50em;"><code class="python">
+          @view_config(route_name="users")
+          def users_view(request):
+              point_wkt = request.params.get('point')
+              query = Session.query(User). \
+                  filter(User.geom.ST_DWithin(point_wkt, 1))
+              features = []
+              for user in query:
+                  feature = {
+                      'type': 'Feature',
+                      'geometry': to_shape(user.geom),
+                      'properties': {'name': user.name}
+                  }
+                  features.append(feature)
+              return geojson.dumps(
+                  {'type': 'FeatureCollection', 'features': features})
+          </code></pre>
+        </section>
+
+        <section>
           <h2>Community/Status</h2>
           <ul>
             <li>Fully documented: <a href="https://geoalchemy-2.readthedocs.org">https://geoalchemy-2.readthedocs.org</a></li>
@@ -360,6 +394,10 @@
 
         <section>
           <img src="img/photo_twitter.jpg" alt="">
+        </section>
+
+        <section>
+          <p>Slides available at:<br><a href="http://erilem.net/talks/pyconfr2015">http://erilem.net/talks/pyconfr2015</a></p>
         </section>
       </div>
     </div>
