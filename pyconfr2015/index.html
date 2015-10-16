@@ -210,6 +210,7 @@
           <p>Select records</p>
           <pre><code class="python">
           from sqlalchemy.sql import select
+
           s = select([users, addresses]).where(
               users.c.id == addresses.c.user_id)
           result = conn.execute(s)
@@ -304,6 +305,7 @@
           <pre><code class="python">
           from sqlalchemy import Column, Integer, String
           from geoalchemy2 import Geometry
+
           class User(Base):
               __tablename__ = 'users'
               id = Column(Integer, primary_key=True)
@@ -354,19 +356,19 @@
         <section>
           <h3>Pyramid GeoJSON Web Service Example</h3>
           <pre style="font-size: 0.50em;"><code class="python">
+          import geojson
+          from pyramid import view_config
+          from geoalchemy2.shape import to_shape
+
           @view_config(route_name="users")
           def users_view(request):
               point_wkt = request.params.get('point')
               query = Session.query(User). \
                   filter(User.geom.ST_DWithin(point_wkt, 1))
-              features = []
-              for user in query:
-                  feature = {
-                      'type': 'Feature',
-                      'geometry': to_shape(user.geom),
-                      'properties': {'name': user.name}
-                  }
-                  features.append(feature)
+              features = [{'type': 'Feature',
+                           'geometry': to_shape(user.geom),
+                           'properties': {'name': user.name}
+                           } for user in query]
               return geojson.dumps(
                   {'type': 'FeatureCollection', 'features': features})
           </code></pre>
