@@ -49,4 +49,3 @@ gh-pages: .gh-pages
 
 .gh-pages:
 	git clone --branch gh-pages git@github.com:elemoine/talks.git .gh-pages
-
